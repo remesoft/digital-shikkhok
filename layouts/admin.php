@@ -1,3 +1,9 @@
+<?php
+error_reporting(E_ALL); // Report all PHP errors
+ini_set('display_errors', 1); // Display errors on the page
+ini_set('display_startup_errors', 1); // Display errors during PHP's startup sequence
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

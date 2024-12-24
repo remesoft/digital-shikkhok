@@ -1245,26 +1245,128 @@ e.init();
 
 /* ------------------------------------
             Customization
---------------------------------------*/
+-------------------------------------*/
+let lecturesCount = 0;
+let currentLectureId = null;
 
-function addLectureButton() {
+function setCurrentLecture(lectureId) {
+  currentLectureId = lectureId;
+}
+
+function addLecture() {
   const lecturesContainer = document.getElementById("lecturesContainer");
+  const lectureNameInput = document.getElementById("lectureNameInput");
+  const lectureName = lectureNameInput.value;
 
-  lecturesContainer.appendChild(`
+  // Check if the input is empty
+  if (!lectureName.trim()) {
+    alert("Course name is required!");
+    return;
+  }
+
+  // Increase count
+  lecturesCount++;
+
+  // Generate unique IDs for each lecture
+  const lectureId = `lecture-${lecturesCount}`;
+  const collapseId = `collapse-${lecturesCount}`;
+
+  lecturesContainer.insertAdjacentHTML(
+    "beforeend",
+    `
     <div class="accordion-item mb-3">
-      <h6 class="accordion-header font-base" id="heading-2">
-        <button class="accordion-button fw-bold rounded d-inline-block collapsed d-block pe-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
-          Customer Life cycle
+      <!-- Lecture Title Start -->
+      <h6 class="accordion-header font-base" id="${lectureId}">
+        <button class="accordion-button fw-bold rounded d-inline-block collapsed d-block pe-5" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
+           ${lectureName}
         </button>
       </h6>
-      <div id="collapse-2" class="accordion-collapse collapse" aria-labelledby="heading-2" data-bs-parent="#accordionExample2">
+      <input type="text" name="lectures[${lecturesCount}][title]" value="${lectureName}" hidden>
+      <div id="${collapseId}" class="accordion-collapse collapse show" aria-labelledby="${lectureId}" data-bs-parent="#accordionExample2">
         <div class="accordion-body mt-3">
-          <!-- Add topic -->
-          <a href="#" class="btn btn-sm btn-dark mb-0" data-bs-toggle="modal" data-bs-target="#addTopic">
-            <i class="bi bi-plus-circle me-2"></i>Add topic
-          </a>
+          <a href="#" class="btn btn-sm btn-dark mb-0" data-bs-toggle="modal" data-bs-target="#addTopic" onclick="setCurrentLecture('${collapseId}')"><i class="bi bi-plus-circle me-2"></i>Add topic</a>
+          <a href="#" onclick="removeLecture('${lectureId}')" class="btn btn-sm btn-danger-soft mb-0 mt-1 mt-sm-0">Delete this Lecture</a>
         </div>
       </div>
-    </div>  
-  `);
+    </div>
+    `
+  );
+}
+
+function addTopic() {
+  const topicNameInput = document.querySelector(
+    "#addTopic input[placeholder='Enter topic name']"
+  );
+  const videoLinkInput = document.querySelector(
+    "#addTopic input[placeholder='Enter Video link']"
+  );
+  const topicName = topicNameInput.value.trim();
+  const videoLink = videoLinkInput.value.trim();
+
+  // Validate input fields
+  if (!topicName) {
+    alert("Topic name is required!");
+    return;
+  }
+  if (!videoLink) {
+    alert("Video link is required!");
+    return;
+  }
+
+  // Clear the input fields after saving
+  topicNameInput.value = "";
+  videoLinkInput.value = "";
+
+  // Create the topic HTML
+  const topicHTML = `
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="position-relative">
+        <input type="text" name="lectures[${lecturesCount}][topic_name][]" value="${topicName}" hidden>
+        <input type="text" name="lectures[${lecturesCount}][topic_video][]" value="${videoLink}" hidden>
+        <a href="${videoLink}" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static"><i class="fas fa-play"></i></a>
+        <span class="ms-2 mb-0 h6 fw-light">${topicName}</span>
+      </div>
+      <div>
+        <a href="#" class="btn btn-sm btn-success-soft btn-round me-1 mb-1 mb-md-0"><i class="far fa-fw fa-edit"></i></a>
+        <button class="btn btn-sm btn-danger-soft btn-round mb-0"><i class="fas fa-fw fa-times"></i></button>
+      </div>
+    </div>
+    <hr>
+  `;
+
+  // Add the topic to the current lecture
+  if (currentLectureId) {
+    const lectureBody = document.querySelector(
+      `#${currentLectureId} .accordion-body`
+    );
+    if (lectureBody) {
+      const addTopicButton = lectureBody.querySelector(
+        ".btn[data-bs-target='#addTopic']"
+      );
+      addTopicButton.insertAdjacentHTML("beforebegin", topicHTML);
+    }
+  }
+}
+
+function removeLecture(lectureId) {
+  const lectureElement = document.getElementById(lectureId);
+  if (lectureElement) {
+    const accordionItem = lectureElement.closest(".accordion-item");
+    if (accordionItem) {
+      accordionItem.remove();
+    }
+  }
+}
+
+// Initialize Quill
+const quill = new Quill("#quilleditor", {
+  theme: "snow",
+  modules: {
+    toolbar: "#quilltoolbar",
+  },
+});
+
+function setDescription() {
+  const htmlContent = quill.root.innerHTML;
+  document.getElementById("descriptionInput").value = htmlContent;
 }
