@@ -1,6 +1,8 @@
 
 <?php
 session_start();
+$showAlert = isset($_SESSION['showAlert']) ? $_SESSION['showAlert'] : false;
+$showErr = isset($_SESSION['showErr']) ? $_SESSION['showErr'] : '';
 $pageTitle = "Home";
 ob_start();
 ?>
@@ -51,15 +53,28 @@ ob_start();
                         <span class="mb-0 fs-1">👋</span>
                         <h1 class="fs-2">Login into Eduport!</h1>
                         <p class="lead mb-4">Nice to see you! Please log in with your account.</p>
-
+                        <?php
+							if ($showAlert) {
+								echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+										<strong>Success!</strong> Your account has been created successfully.Now you can login!
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+									</div>';
+							}
+							if ($showErr) {
+								echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+										<strong>Opps!</strong> ' . $showErr . '
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+									</div>';
+							}
+							?>
                         <!-- Form START -->
-                        <form>
+                        <form action="./includes/process_login.php" method="POST">
                             <!-- Email -->
                             <div class="mb-4">
                                 <label for="exampleInputEmail1" class="form-label">Email address *</label>
                                 <div class="input-group input-group-lg">
                                     <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="bi bi-envelope-fill"></i></span>
-                                    <input type="email" class="form-control border-0 bg-light rounded-end ps-1" placeholder="E-mail" id="exampleInputEmail1">
+                                    <input type="email" class="form-control border-0 bg-light rounded-end ps-1" placeholder="E-mail" id="email" name="email" required>
                                 </div>
                             </div>
                             <!-- Password -->
@@ -67,7 +82,7 @@ ob_start();
                                 <label for="inputPassword5" class="form-label">Password *</label>
                                 <div class="input-group input-group-lg">
                                     <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="fas fa-lock"></i></span>
-                                    <input type="password" class="form-control border-0 bg-light rounded-end ps-1" placeholder="password" id="inputPassword5">
+                                    <input type="password" class="form-control border-0 bg-light rounded-end ps-1" placeholder="password" id="pass" name="pass" required>
                                 </div>
                                 <div id="passwordHelpBlock" class="form-text">
                                     Your password must be 8 characters at least 
@@ -88,7 +103,7 @@ ob_start();
                             <!-- Button -->
                             <div class="align-items-center mt-0">
                                 <div class="d-grid">
-                                    <button class="btn btn-primary mb-0" type="button">Login</button>
+                                    <button class="btn btn-primary mb-0" type="submit">Login</button>
                                 </div>
                             </div>
                         </form>
