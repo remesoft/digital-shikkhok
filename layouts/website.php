@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($pageTitle) ? $pageTitle : "Digital-Shikkhok"; ?></title>
-    <link rel="stylesheet" href="assets/css/style.css">
+<!-- Mirrored from eduport.webestica.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Dec 2024 08:12:55 GMT -->
 
+<head>
+    <title>Eduport - LMS, Education and Course Theme</title>
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Webestica.com">
+    <meta name="description" content="Eduport- LMS, Education and Course Theme">
 
     <!-- Dark mode -->
     <script>
@@ -67,10 +71,40 @@
         })
     </script>
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&amp;family=Roboto:wght@400;500;700&amp;display=swap">
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendor/tiny-slider/tiny-slider.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendor/glightbox/css/glightbox.css">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7N7LGGGWT1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-7N7LGGGWT1');
+    </script>
+
 </head>
 
 <body>
-    <!-- Website Header -->
+
     <!-- Header START -->
     <header class="navbar-light navbar-sticky header-static">
         <!-- Nav START -->
@@ -738,136 +772,134 @@
         <!-- Nav END -->
     </header>
     <!-- Header END -->
-    <!-- Main Content -->
-    <main>
-        <?php echo $content; ?>
-    </main>
-    <!-- Website Footer -->
-    <!-- =======================
-    Footer START -->
-        <footer class="pt-5">
-            <div class="container">
-                <!-- Row START -->
-                <div class="row g-4">
 
-                    <!-- Widget 1 START -->
-                    <div class="col-lg-3">
-                        <!-- logo -->
-                        <a class="me-0" href="index-2.html">
-                            <img class="light-mode-item h-40px" src="assets/images/logo.svg" alt="logo">
-                            <img class="dark-mode-item h-40px" src="assets/images/logo-light.svg" alt="logo">
-                        </a>
-                        <p class="my-3">Eduport education theme, built specifically for the education centers which is dedicated to teaching and involve learners.</p>
-                        <!-- Social media icon -->
-                        <ul class="list-inline mb-0 mt-3">
-                            <li class="list-inline-item"> <a class="btn btn-white btn-sm shadow px-2 text-facebook" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> </li>
-                            <li class="list-inline-item"> <a class="btn btn-white btn-sm shadow px-2 text-instagram" href="#"><i class="fab fa-fw fa-instagram"></i></a> </li>
-                            <li class="list-inline-item"> <a class="btn btn-white btn-sm shadow px-2 text-twitter" href="#"><i class="fab fa-fw fa-twitter"></i></a> </li>
-                            <li class="list-inline-item"> <a class="btn btn-white btn-sm shadow px-2 text-linkedin" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a> </li>
-                        </ul>
-                    </div>
-                    <!-- Widget 1 END -->
+    <main><?php echo $content; ?></main>
 
-                    <!-- Widget 2 START -->
-                    <div class="col-lg-6">
-                        <div class="row g-4">
-                            <!-- Link block -->
-                            <div class="col-6 col-md-4">
-                                <h5 class="mb-2 mb-md-4">Company</h5>
-                                <ul class="nav flex-column">
-                                    <li class="nav-item"><a class="nav-link" href="#">About us</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Contact us</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">News and Blogs</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Library</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Career</a></li>
-                                </ul>
-                            </div>
 
-                            <!-- Link block -->
-                            <div class="col-6 col-md-4">
-                                <h5 class="mb-2 mb-md-4">Community</h5>
-                                <ul class="nav flex-column">
-                                    <li class="nav-item"><a class="nav-link" href="#">Documentation</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Faq</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Forum</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Sitemap</a></li>
-                                </ul>
-                            </div>
+    <!-- ======================= Footer START -->
+    <footer class="pt-5">
+        <div class="container">
+            <!-- Row START -->
+            <div class="row g-4">
 
-                            <!-- Link block -->
-                            <div class="col-6 col-md-4">
-                                <h5 class="mb-2 mb-md-4">Teaching</h5>
-                                <ul class="nav flex-column">
-                                    <li class="nav-item"><a class="nav-link" href="#">Become a teacher</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">How to guide</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Terms &amp; Conditions</a></li>
-                                </ul>
-                            </div>
+                <!-- Widget 1 START -->
+                <div class="col-lg-3">
+                    <!-- logo -->
+                    <a class="me-0" href="index-2.html">
+                        <img class="light-mode-item h-40px" src="assets/images/logo.svg" alt="logo">
+                        <img class="dark-mode-item h-40px" src="assets/images/logo-light.svg" alt="logo">
+                    </a>
+                    <p class="my-3">Eduport education theme, built specifically for the education centers which is dedicated to teaching and involve learners.</p>
+                    <!-- Social media icon -->
+                    <ul class="list-inline mb-0 mt-3">
+                        <li class="list-inline-item"> <a class="btn btn-white btn-sm shadow px-2 text-facebook" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> </li>
+                        <li class="list-inline-item"> <a class="btn btn-white btn-sm shadow px-2 text-instagram" href="#"><i class="fab fa-fw fa-instagram"></i></a> </li>
+                        <li class="list-inline-item"> <a class="btn btn-white btn-sm shadow px-2 text-twitter" href="#"><i class="fab fa-fw fa-twitter"></i></a> </li>
+                        <li class="list-inline-item"> <a class="btn btn-white btn-sm shadow px-2 text-linkedin" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a> </li>
+                    </ul>
+                </div>
+                <!-- Widget 1 END -->
+
+                <!-- Widget 2 START -->
+                <div class="col-lg-6">
+                    <div class="row g-4">
+                        <!-- Link block -->
+                        <div class="col-6 col-md-4">
+                            <h5 class="mb-2 mb-md-4">Company</h5>
+                            <ul class="nav flex-column">
+                                <li class="nav-item"><a class="nav-link" href="#">About us</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Contact us</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">News and Blogs</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Library</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Career</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Link block -->
+                        <div class="col-6 col-md-4">
+                            <h5 class="mb-2 mb-md-4">Community</h5>
+                            <ul class="nav flex-column">
+                                <li class="nav-item"><a class="nav-link" href="#">Documentation</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Faq</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Forum</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Sitemap</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Link block -->
+                        <div class="col-6 col-md-4">
+                            <h5 class="mb-2 mb-md-4">Teaching</h5>
+                            <ul class="nav flex-column">
+                                <li class="nav-item"><a class="nav-link" href="#">Become a teacher</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">How to guide</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Terms &amp; Conditions</a></li>
+                            </ul>
                         </div>
                     </div>
-                    <!-- Widget 2 END -->
+                </div>
+                <!-- Widget 2 END -->
 
-                    <!-- Widget 3 START -->
-                    <div class="col-lg-3">
-                        <h5 class="mb-2 mb-md-4">Contact</h5>
-                        <!-- Time -->
-                        <p class="mb-2">
-                            Toll free:<span class="h6 fw-light ms-2">+1234 568 963</span>
-                            <span class="d-block small">(9:AM to 8:PM IST)</span>
-                        </p>
+                <!-- Widget 3 START -->
+                <div class="col-lg-3">
+                    <h5 class="mb-2 mb-md-4">Contact</h5>
+                    <!-- Time -->
+                    <p class="mb-2">
+                        Toll free:<span class="h6 fw-light ms-2">+1234 568 963</span>
+                        <span class="d-block small">(9:AM to 8:PM IST)</span>
+                    </p>
 
-                        <p class="mb-0">Email:<span class="h6 fw-light ms-2">example@gmail.com</span></p>
+                    <p class="mb-0">Email:<span class="h6 fw-light ms-2">example@gmail.com</span></p>
 
-                        <div class="row g-2 mt-2">
-                            <!-- Google play store button -->
-                            <div class="col-6 col-sm-4 col-md-3 col-lg-6">
-                                <a href="#"> <img src="assets/images/client/google-play.svg" alt=""> </a>
-                            </div>
-                            <!-- App store button -->
-                            <div class="col-6 col-sm-4 col-md-3 col-lg-6">
-                                <a href="#"> <img src="assets/images/client/app-store.svg" alt="app-store"> </a>
-                            </div>
-                        </div> <!-- Row END -->
-                    </div>
-                    <!-- Widget 3 END -->
-                </div><!-- Row END -->
+                    <div class="row g-2 mt-2">
+                        <!-- Google play store button -->
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-6">
+                            <a href="#"> <img src="assets/images/client/google-play.svg" alt=""> </a>
+                        </div>
+                        <!-- App store button -->
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-6">
+                            <a href="#"> <img src="assets/images/client/app-store.svg" alt="app-store"> </a>
+                        </div>
+                    </div> <!-- Row END -->
+                </div>
+                <!-- Widget 3 END -->
+            </div><!-- Row END -->
 
-                <!-- Divider -->
-                <hr class="mt-4 mb-0">
+            <!-- Divider -->
+            <hr class="mt-4 mb-0">
 
-                <!-- Bottom footer -->
-                <div class="py-3">
-                    <div class="container px-0">
-                        <div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-md-left">
-                            <!-- copyright text -->
-                            <div class="text-body text-primary-hover"> Copyrights ©2024 Eduport. Build by <a href="https://www.webestica.com/" target="_blank" class="text-body">Webestica</a></div>
-                            <!-- copyright links-->
-                            <div class="justify-content-center mt-3 mt-lg-0">
-                                <ul class="nav list-inline justify-content-center mb-0">
-                                    <li class="list-inline-item">
-                                        <!-- Language selector -->
-                                        <div class="dropup mt-0 text-center text-sm-end">
-                                            <a class="dropdown-toggle nav-link" href="#" role="button" id="languageSwitcher" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="fas fa-globe me-2"></i>Language
-                                            </a>
-                                            <ul class="dropdown-menu min-w-auto" aria-labelledby="languageSwitcher">
-                                                <li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="assets/images/flags/uk.svg" alt="">English</a></li>
-                                                <li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="assets/images/flags/gr.svg" alt="">German </a></li>
-                                                <li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="assets/images/flags/sp.svg" alt="">French</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="list-inline-item"><a class="nav-link" href="#">Terms of use</a></li>
-                                    <li class="list-inline-item"><a class="nav-link pe-0" href="#">Privacy policy</a></li>
-                                </ul>
-                            </div>
+            <!-- Bottom footer -->
+            <div class="py-3">
+                <div class="container px-0">
+                    <div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-md-left">
+                        <!-- copyright text -->
+                        <div class="text-body text-primary-hover"> Copyrights ©2024 Eduport. Build by <a href="https://www.webestica.com/" target="_blank" class="text-body">Webestica</a></div>
+                        <!-- copyright links-->
+                        <div class="justify-content-center mt-3 mt-lg-0">
+                            <ul class="nav list-inline justify-content-center mb-0">
+                                <li class="list-inline-item">
+                                    <!-- Language selector -->
+                                    <div class="dropup mt-0 text-center text-sm-end">
+                                        <a class="dropdown-toggle nav-link" href="#" role="button" id="languageSwitcher" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-globe me-2"></i>Language
+                                        </a>
+                                        <ul class="dropdown-menu min-w-auto" aria-labelledby="languageSwitcher">
+                                            <li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="assets/images/flags/uk.svg" alt="">English</a></li>
+                                            <li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="assets/images/flags/gr.svg" alt="">German </a></li>
+                                            <li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="assets/images/flags/sp.svg" alt="">French</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="list-inline-item"><a class="nav-link" href="#">Terms of use</a></li>
+                                <li class="list-inline-item"><a class="nav-link pe-0" href="#">Privacy policy</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>
-        <!-- =======================
-    Footer END -->
+        </div>
+    </footer>
+    <!-- =======================
+Footer END -->
 
     <!-- Back to top -->
     <div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
@@ -882,6 +914,9 @@
 
     <!-- Template Functions -->
     <script src="assets/js/functions.js"></script>
+
 </body>
+
+<!-- Mirrored from eduport.webestica.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Dec 2024 08:13:27 GMT -->
 
 </html>
