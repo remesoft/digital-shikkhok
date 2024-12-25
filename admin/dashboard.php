@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
-    header('Location: login.php');
+if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != '2') {
+    header('Location: ../sign_in.php');
     exit();
 }
 $pageTitle = "Admin Panel";
@@ -16,5 +16,5 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-include('layouts/admin.php');
+include('../layouts/admin.php');
 ?>
