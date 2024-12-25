@@ -45,14 +45,14 @@
       lectureDiv.dataset.lectureId = lectureCount;
 
       lectureDiv.innerHTML = `
-                <h4>Lecture ${lectureCount}</h4>
-                <label for="lectureTitle${lectureCount}">Title:</label>
-                <input type="text" id="lectureTitle${lectureCount}" name="lectures[${lectureCount}][title]" required>
-                <button type="button" class="addTopicButton">Add Topic</button>
-                <div class="topicsContainer"></div>
-                <button type="button" class="removeLectureButton">Remove Lecture</button>
-                <br><br>
-            `;
+          <h4>Lecture ${lectureCount}</h4>
+          <label for="lectureTitle${lectureCount}">Title:</label>
+          <input type="text" id="lectureTitle${lectureCount}" name="lectures[${lectureCount}][title]" required>
+          <button type="button" class="addTopicButton">Add Topic</button>
+          <div class="topicsContainer"></div>
+          <button type="button" class="removeLectureButton">Remove Lecture</button>
+          <br><br>
+      `;
 
       lecturesContainer.appendChild(lectureDiv);
 
@@ -68,10 +68,10 @@
         const topicDiv = document.createElement('div');
         topicDiv.classList.add('topic');
         topicDiv.innerHTML = `
-                    <label for="topic${lectureCount}_${topicCount}">Topic ${topicCount}:</label>
-                    <input type="text" id="topic${lectureCount}_${topicCount}" name="lectures[${lectureCount}][topics][]" required>
-                    <button type="button" class="removeTopicButton">Remove Topic</button>
-                `;
+            <label for="topic${lectureCount}_${topicCount}">Topic ${topicCount}:</label>
+            <input type="text" id="topic${lectureCount}_${topicCount}" name="lectures[${lectureCount}][topics][]" required>
+            <button type="button" class="removeTopicButton">Remove Topic</button>
+        `;
 
         topicsContainer.appendChild(topicDiv);
 
