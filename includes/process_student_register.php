@@ -17,28 +17,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check if all required fields are filled
     if (empty($fname) || empty($lname) || empty($email) || empty($pass) || empty($cpass)) {
         $_SESSION['showErr'] = "All input fields are required!";
-        header("location: ../signUp.php");
+        header("location: ../sign_up.php");
         exit();
     }
 
     // Check if email is valid
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $_SESSION['showErr'] = "Invalid email format!";
-        header("location: ../signUp.php");
+        header("location: ../sign_up.php");
         exit();
     }
 
     // Check if passwords match
     if ($pass !== $cpass) {
         $_SESSION['showErr'] = "Passwords do not match!";
-        header("location: ../signUp.php");
+        header("location: ../sign_up.php");
         exit();
     }
 
     // Check password strength (example: minimum 8 characters, at least one letter and one number)
     if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $pass)) {
         $_SESSION['showErr'] = "Password must be at least 8 characters long and include at least one letter and one number.";
-        header("location: ../signUp.php");
+        header("location: ../sign_up.php");
         exit();
     }
 
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($stmt->num_rows > 0) {
         $_SESSION['showErr'] = "User already exists with this email!";
         $stmt->close();
-        header("location: ../signUp.php");
+        header("location: ../sign_up.php");
         exit();
     }
     $stmt->close();
@@ -70,13 +70,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['showErr'] = null;
         $stmt->close();
         $conn->close();
-        header("location: ../signUp.php");
+        header("location: ../sign_up.php");
         exit();
     } else {
         $_SESSION['showErr'] = "Registration failed. Please try again.";
         $stmt->close();
         $conn->close();
-        header("location: ../signUp.php");
+        header("location: ../sign_up.php");
         exit();
     }
 }

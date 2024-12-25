@@ -129,7 +129,7 @@ ob_start();
 
                         <!-- Sign up link -->
                         <div class="mt-4 text-center">
-                            <span>Don't have an account? <a href="signUp.php">Sign Up here</a></span>
+                            <span>Don't have an account? <a href="sign_up.php">Sign Up here</a></span>
                         </div>
                     </div>
                 </div> <!-- Row END -->
