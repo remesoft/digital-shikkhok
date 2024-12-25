@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'] ?? '';
     $short_desc = $_POST['short_desc'] ?? '';
     $description = $_POST['description'] ?? '';
-    $thumbnail = upload_image("../uploads/img/thumbnails", "thumbnail");
+    $thumbnail = upload_image("../uploads/img/thumbnails/", "thumbnail");
     $duration = $_POST['duration'] ?? '';
     $instructor = 1; // TODO: Make this dynamic
     $price = $_POST['price'] ?? '';
