@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 // if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
 //     header('Location: login.php');
 //     exit();
@@ -12,9 +12,9 @@ ob_start();
 <!-- ----------------------------------- -->
 <!--        Page Content Start           -->
 <!-- ----------------------------------- -->
-<div class="page-content-wrapper border">
 
-  <h1 class="h3 mb-3">Create new course</h1>
+<div class="page-content-wrapper border">
+  <h1 class="h3 mb-3">New Course</h1>
 
   <!-- Card START -->
   <div class="card border rounded-3 mb-5">
@@ -55,115 +55,67 @@ ob_start();
             </div>
           </div>
         </div>
-        <!-- Step Buttons END -->
       </div>
 
       <!-- Card body START -->
       <div class="card-body px-1 px-sm-4">
         <!-- Step content START -->
         <div class="bs-stepper-content">
-          <form onsubmit="setDescription()" action="../includes/process_create_course.php" method="post" enctype="multipart/form-data">
+          <form action="../includes/process_create_course.php" method="post" enctype="multipart/form-data">
 
-            <!-- ------------------------------------->
-            <!--            Step One Start          -->
-            <!-- ------------------------------------->
+            <!-- Step 1 content START -->
             <div id="step-1" role="tabpanel" class="content fade" aria-labelledby="steppertrigger1">
+              <!-- Title -->
               <h4>Course details</h4>
+
               <hr> <!-- Divider -->
+
+              <!-- Basic information START -->
               <div class="row g-4">
                 <!-- Course title -->
                 <div class="col-12">
                   <label class="form-label">Course title</label>
-                  <input name="title" class="form-control" type="text" placeholder="Enter course title" value="The Complete Digital Marketing Course - 12 Courses in 1">
+                  <input name="title" class="form-control" type="text" placeholder="Enter course title" value="The Complete Digital Marketing Course - 12 Courses in 1" require>
                 </div>
 
                 <!-- Short description -->
                 <div class="col-12">
                   <label class="form-label">Short description</label>
-                  <textarea name="short_desc" class="form-control" rows="2" placeholder="Enter keywords">Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.
+                  <textarea name="short_desc" class="form-control" rows="2" placeholder="Enter keywords" require>Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.
 										</textarea>
                 </div>
-
 
                 <!-- Course time -->
                 <div class="col-md-6">
                   <label class="form-label">Course time</label>
-                  <input name="duration" class="form-control" type="text" placeholder="Enter course time" value="12h 30m">
+                  <input name="duration" class="form-control" type="text" placeholder="Enter course time" value="12h 30m" require>
                 </div>
 
                 <!-- Course price -->
                 <div class="col-md-6">
                   <label class="form-label">Course price</label>
-                  <input name="price" type="text" class="form-control" placeholder="Enter course price" value="$350">
+                  <input name="price" type="text" class="form-control" placeholder="Enter course price" value="$350" require>
                 </div>
 
-
-                <!-- Course price -->
-                <!-- <div class="col-md-6" hidden>
-                  <label class="form-label">Course Description</label>
-                  <input name="description" id="descriptionInput" type="text">
-                </div> -->
-
-                <div class="col-12">
+                <!-- Course description -->
+                <div class="col-md-12">
                   <label class="form-label">Add description</label>
-                  <!-- Editor toolbar -->
-                  <div class="bg-light border border-bottom-0 rounded-top py-3" id="quilltoolbar">
-                    <span class="ql-formats">
-                      <select class="ql-size"></select>
-                    </span>
-                    <span class="ql-formats">
-                      <button class="ql-bold"></button>
-                      <button class="ql-italic"></button>
-                      <button class="ql-underline"></button>
-                      <button class="ql-strike"></button>
-                    </span>
-                    <span class="ql-formats">
-                      <select class="ql-color"></select>
-                      <select class="ql-background"></select>
-                    </span>
-                    <span class="ql-formats">
-                      <button class="ql-code-block"></button>
-                    </span>
-                    <span class="ql-formats">
-                      <button class="ql-list" value="ordered"></button>
-                      <button class="ql-list" value="bullet"></button>
-                      <button class="ql-indent" value="-1"></button>
-                      <button class="ql-indent" value="+1"></button>
-                    </span>
-                    <span class="ql-formats">
-                      <button class="ql-link"></button>
-                      <button class="ql-image"></button>
-                    </span>
-                    <span class="ql-formats">
-                      <button class="ql-clean"></button>
-                    </span>
-                  </div>
-
-                  <!-- Main toolbar -->
-                  <div class="bg-body border rounded-bottom h-400px overflow-hidden" id="quilleditor">
-                    <br>
-                    <h1>Quill Rich Text Editor</h1>
-                    <br>
-                    <p>Quill is a free, open-source WYSIWYG editor built for the modern web. With its modular architecture and expressive API, it is completely customizable to fit any need.</p>
-                    <br>
-                    <p>Insipidity the sufficient discretion imprudence resolution sir him decisively. Proceed how any engaged visitor. Explained propriety off out perpetual his you. Feel sold off felt nay rose met you. We so entreaties cultivated astonished is. Was sister for a few longer Mrs sudden talent become. Done may bore quit evil old mile. If likely am of beauty tastes. </p>
-                  </div>
-
-                  <!-- Step 1 button -->
-                  <div class="d-flex justify-content-end mt-3">
-                    <button type="button" class="btn btn-primary next-btn mb-0">Next</button>
-                  </div>
+                  <textarea name="description" class="form-control" rows="5" placeholder="Enter course description..." require>Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.
+                  </textarea>
                 </div>
-                <!-- Basic information START -->
+
+                <!-- Step 1 button -->
+                <div class="d-flex justify-content-end mt-3 col-md-12">
+                  <button type="button" class="btn btn-primary next-btn mb-0">Next</button>
+                </div>
               </div>
+              <!-- Basic information START -->
             </div>
 
-            <!-- ------------------------------------->
-            <!--            Step Two Start          -->
-            <!-- ------------------------------------->
+            <!-- Step 2 content START -->
             <div id="step-2" role="tabpanel" class="content fade" aria-labelledby="steppertrigger2">
-              <h4>Upload Thumbnail</h4>
-              <hr> <!-- Divider -->
+              <h4>Course Thumbnail</h4>
+              <hr>
               <div class="row">
                 <!-- Upload image START -->
                 <div class="col-12">
@@ -171,10 +123,10 @@ ob_start();
                     <!-- Image -->
                     <img src="../assets/images/element/gallery.svg" class="h-50px" alt="">
                     <div>
-                      <h6 class="my-2">Upload course image here, or<a href="#!" class="text-primary"> Browse</a></h6>
+                      <h6 class="my-2">Upload course thumbnail here, or<a href="#!" class="text-primary"> Browse</a></h6>
                       <label style="cursor:pointer;">
                         <span>
-                          <input class="form-control stretched-link" type="file" name="thumbnail" id="image" accept="image/gif, image/jpeg, image/png" />
+                          <input name="thumbnail" class="form-control stretched-link" type="file" id="image" accept="image/gif, image/jpeg, image/png" require />
                         </span>
                       </label>
                       <p class="small mb-0 mt-2"><b>Note:</b> Only JPG, JPEG and PNG. Our suggested dimensions are 600px * 450px. Larger image will be cropped to 4:3 to fit our thumbnails/previews.</p>
@@ -183,35 +135,34 @@ ob_start();
                 </div>
                 <!-- Upload image END -->
 
+
                 <!-- Step 2 button -->
-                <div class="d-flex justify-content-between mt-4">
+                <div class="d-flex justify-content-between mt-3">
                   <button type="button" class="btn btn-secondary prev-btn mb-0">Previous</button>
                   <button type="button" class="btn btn-primary next-btn mb-0">Next</button>
                 </div>
               </div>
             </div>
 
-            <!-- ------------------------------------->
-            <!--            Step Three Start        -->
-            <!-- ------------------------------------->
+            <!-- Step 3 content START -->
             <div id="step-3" role="tabpanel" class="content fade" aria-labelledby="steppertrigger3">
               <h4>Curriculum</h4>
               <hr>
               <div class="row">
+                <!-- Add lecture Modal button -->
                 <div class="d-sm-flex justify-content-sm-between align-items-center mb-3">
                   <h5 class="mb-2 mb-sm-0">Upload Lecture</h5>
                   <a href="#" class="btn btn-sm btn-primary-soft mb-0" data-bs-toggle="modal" data-bs-target="#addLecture"><i class="bi bi-plus-circle me-2"></i>Add Lecture</a>
                 </div>
 
-                <!-- Topic goes here -->
-                <div class="accordion accordion-icon accordion-bg-light" id="lecturesContainer"></div>
-
-                <!-- Next, previous and submit button -->
+                <!-- Edit lecture START -->
+                <div class="accordion accordion-icon accordion-bg-light" id="lectureContainer"></div>
                 <div class="d-md-flex justify-content-between align-items-start mt-4">
                   <button class="btn btn-secondary prev-btn mb-2 mb-md-0">Previous</button>
                   <button class="btn btn-light me-auto ms-md-2 mb-2 mb-md-0">Preview Course</button>
                   <div class="text-md-end">
                     <button class="btn btn-success mb-2 mb-sm-0">Submit a Course</button>
+                    <p class="mb-0 small mt-1">Once you click "Submit a Course", your course will be uploaded and marked as pending for review.</p>
                   </div>
                 </div>
               </div>
@@ -219,8 +170,10 @@ ob_start();
           </form>
         </div>
       </div>
+      <!-- Card body END -->
     </div>
   </div>
+  <!-- Card END -->
 </div>
 
 
@@ -266,12 +219,12 @@ ob_start();
           <!-- Topic name -->
           <div class="col-md-6">
             <label class="form-label">Topic name</label>
-            <input class="form-control" type="text" placeholder="Enter topic name">
+            <input id="topicNameInput" class="form-control" type="text" placeholder="Enter topic name">
           </div>
           <!-- Video link -->
           <div class="col-md-6">
             <label class="form-label">Video link</label>
-            <input class="form-control" type="text" placeholder="Enter Video link">
+            <input id="topicUrlInput" class="form-control" type="text" placeholder="Enter Video link">
           </div>
           <!-- Buttons -->
           <div class="col-6 mt-3">
