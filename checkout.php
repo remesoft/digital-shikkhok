@@ -1,5 +1,14 @@
 <?php
 session_start();
+include('includes/db.php');
+include('includes/get_user_by_email.php');
+$user = get_user($conn, $_SESSION['user_email']);
+if (isset($_GET['id'])) {
+    $course_id = $_GET['id'];
+} else {
+    // Handle the error (e.g., redirect or show an error message)
+    $course_id= null;
+}
 $pageTitle = "Home";
 ob_start();
 ?>
@@ -44,14 +53,36 @@ Page content START -->
 				<!-- Main content START -->
 				<div class="col-xl-8 mb-4 mb-sm-0">
 					<!-- Alert -->
-					<div class="alert alert-danger alert-dismissible d-flex justify-content-between align-items-center fade show py-2 pe-2" role="alert">
-						<div>
-							<i class="bi bi-exclamation-octagon-fill me-2"></i>
-							Already have an account? <a href="#" class="text-reset btn-link mb-0 fw-bold">Log in</a>
-						</div>
-						<button type="button" class="btn btn-link mb-0 text-primary-hover text-end" data-bs-dismiss="alert" aria-label="Close"><i class="bi bi-x-lg"></i></button>
-					</div>
+					 <?php if(!isset($_SESSION['user_email'])) { 
+						echo '<div class="alert alert-danger alert-dismissible d-flex justify-content-between align-items-center fade show py-2 pe-2" role="alert">
+							<div>
+								<i class="bi bi-exclamation-octagon-fill me-2"></i>
+								Already have an account? <a href="#" class="text-reset btn-link mb-0 fw-bold">Log in</a>
+							</div>
+							<button type="button" class="btn btn-link mb-0 text-primary-hover text-end" data-bs-dismiss="alert" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+						</div>';
+					}
+						?>
+						<?php 
+						
+						if (isset($_SESSION['showAlert'])) {
+							echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+									 ' . $_SESSION['showAlert'] . '
+									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								</div>';
+								unset($_SESSION['showAlert']);
 
+						}
+						if  (isset($_SESSION['showErr'])) {
+							echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+									<strong>Opps!</strong> ' . $_SESSION['showErr'] . '
+									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								</div>';
+								unset($_SESSION['showErr']);
+						}
+						
+						?>
+					
 					<!-- Personal info START -->
 					<div class="card card-body shadow p-4">
 						<!-- Title -->
@@ -59,30 +90,30 @@ Page content START -->
 
 						<!-- Form START -->
 						<form action="includes/process_payment.php" method="POST" class="row g-3 mt-0">
+							<input type="hidden" name="course_id" value="<?= htmlspecialchars($course_id) ?>">
 							<!-- Name -->
 							<div class="col-md-6 bg-light-input">
 								<label for="yourName" class="form-label">Your name *</label>
-								<input type="text" class="form-control" name="name" id="name" placeholder="Name">
+								<input type="text" class="form-control" name="name" id="name" value="<?php echo $user['first_name']; ?>" placeholder="Your name" readonly>
 							</div>
 							<!-- Email -->
 							<div class="col-md-6 bg-light-input">
 								<label for="emailInput" class="form-label">Email address *</label>
-								<input type="email" class="form-control" email id="email" placeholder="Email">
+								<input type="email" class="form-control" email id="email" value="<?php echo $user['email']; ?>" readonly>
 							</div>
 							<!-- Number -->
 							<div class="col-md-6 bg-light-input">
 								<label for="mobileNumber" class="form-label">Mobile number *</label>
-								<input type="text" class="form-control" name="phone" id="mobileNumber" placeholder="Mobile number">
+								<input type="text" class="form-control" name="phone" id="mobileNumber" placeholder="Mobile number" required>
 							</div>
 							<!-- Tranxacton code -->
 							<div class="col-md-6 bg-light-input">
 								<label for="postalCode" class="form-label">Transaction ID *</label>
-								<input type="text" class="form-control" name="trnx_id" id="postalCode" placeholder="Transaction ID">
+								<input type="text" class="form-control" name="trnx_id" id="trnx_id" placeholder="Transaction ID" required>
 							</div>
-
 							<!-- Button -->
 							<div class="col-12 text-end">
-								<button type="submit" class="btn btn-primary mb-0" disabled>Confirm Payment</button>
+								<button type="submit" class="btn btn-primary mb-0">   Confirm Payment</button>
 							</div>
 						</form>
 						<!-- Form END -->
