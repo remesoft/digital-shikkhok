@@ -21,7 +21,6 @@ ob_start();
           <!-- Title START -->
           <div class="col-12">
 
-            <?= print_r($course['lectures']) ?>
             <!-- Title -->
             <h2><?= $course['title'] ?></h2>
             <p><?= $course['short_desc'] ?></p>
@@ -483,8 +482,8 @@ ob_start();
 
                 <!-- Buttons -->
                 <div class="mt-3 d-grid">
-                  <a href="#" class="btn btn-outline-primary">Add to cart</a>
-                  <a href="#" class="btn btn-success">Buy now</a>
+                  <a href="./checkout.php?id=<?= $course['id'] ?>" class="btn btn-outline-primary">Add to cart</a>
+                  <a href="./checkout.php?id=<?= $course['id'] ?>" class="btn btn-success">Buy now</a>
                 </div>
                 <!-- Divider -->
                 <hr>
