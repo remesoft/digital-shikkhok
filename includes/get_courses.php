@@ -1,7 +1,6 @@
 <?php
 function get_courses($conn)
 {
-  // Query to fetch course data
   $sql = "SELECT * FROM courses";
 
   if ($result = $conn->query($sql)) {
