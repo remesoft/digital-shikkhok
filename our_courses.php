@@ -2,6 +2,7 @@
 session_start();
 include('includes/db.php');
 include('includes/get_courses.php');
+include('includes/get_course_by_id.php');
 $pageTitle = "Our Courses";
 ob_start();
 ?>
@@ -74,7 +75,7 @@ ob_start();
                   <!-- Time -->
                   <div class="hstack gap-3">
                     <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i><?= $course['duration'] ?></span>
-                    <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>82
+                    <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i><?= count_topics($conn, $course['id']) ?>
                       lectures</span>
                   </div>
                 </div>

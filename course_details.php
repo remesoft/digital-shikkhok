@@ -7,9 +7,6 @@ $course = get_course_by_id($conn, $_GET['id']);
 ob_start();
 ?>
 
-
-
-
 <!--Page content START -->
 <section class="pt-3 pt-xl-5">
   <div class="container" data-sticky-container>
@@ -26,7 +23,7 @@ ob_start();
               <li class="list-inline-item fw-light h6 me-3 mb-1 mb-sm-0"><i class="fas fa-user-graduate me-2"></i>12k Enrolled</li>
               <li class="list-inline-item fw-light h6 me-3 mb-1 mb-sm-0"><i class="fas fa-signal me-2"></i>All levels</li>
               <li class="list-inline-item fw-light h6 me-3 mb-1 mb-sm-0"><i class="bi bi-patch-exclamation-fill me-2"></i>Last updated <?= date('m/Y', strtotime($course['updated_at'])) ?></li>
-              <li class="list-inline-item fw-light h6"><i class="fas fa-globe me-2"></i>Bangla</li>
+              <li class="list-inline-item fw-light h6"><i class="fas fa-globe me-2"></i><?= $course['language'] ?></li>
             </ul>
           </div>
           <!-- Title END -->
@@ -220,7 +217,7 @@ ob_start();
                   </li>
                   <li class="list-group-item px-0 d-flex justify-content-between">
                     <span class="h6 fw-light mb-0"><i class="fas fa-fw fa-globe text-primary"></i>Language</span>
-                    <span>Bangla</span>
+                    <span><?= $course['language'] ?></span>
                   </li>
                   <li class="list-group-item px-0 d-flex justify-content-between">
                     <span class="h6 fw-light mb-0"><i class="fas fa-fw fa-medal text-primary"></i>Certificate</span>

@@ -4,26 +4,34 @@ include '../includes/db.php';
 include '../includes/auth.php';
 include '../includes/helpers.php';
 
-error_reporting(E_ALL); // Report all PHP errors
-ini_set('display_errors', 1); // Display errors on the page
-ini_set('display_startup_errors', 1); // Display errors during PHP's startup sequence
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   try {
-    $title = $_POST['title'] ?? '';
-    $short_desc = $_POST['short_desc'] ?? '';
-    $description = $_POST['description'] ?? '';
-    $thumbnail = upload_image("../uploads/img/thumbnails/", "thumbnail");
-    $video = $_POST['video'] ?? '';
-    $duration = $_POST['duration'] ?? '';
-    $instructor = 1; // TODO: Make this dynamic
-    $price = $_POST['price'] ?? '';
+    // Map form fields to database columns
+    $fields = [
+      'title' => $_POST['title'] ?? '',
+      'short_desc' => $_POST['short_desc'] ?? '',
+      'description' => $_POST['description'] ?? '',
+      'thumbnail' => upload_image("../uploads/img/thumbnails/", "thumbnail"),
+      'video' => $_POST['video'] ?? '',
+      'duration' => $_POST['duration'] ?? '',
+      'instructor' => 1, // TODO: Replace with dynamic instructor value
+      'price' => $_POST['price'] ?? '',
+      'total_lectures' => $_POST['total_lectures'] ?? '',
+      'language' => $_POST['language'] ?? '',
+    ];
 
-    // Insert the main course
-    $course_sql = "INSERT INTO `courses` (`title`, `short_desc`, `description`, `thumbnail`, `video`, `duration`, `instructor`, `price`) 
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    // Generate the placeholders and values dynamically
+    $columns = implode(', ', array_keys($fields));
+    $placeholders = implode(', ', array_fill(0, count($fields), '?'));
+    $values = array_values($fields);
+
+    // Prepare SQL for inserting the course
+    $course_sql = "INSERT INTO `courses` ($columns) VALUES ($placeholders)";
     if ($stmt = $conn->prepare($course_sql)) {
-      $stmt->bind_param("ssssssis", $title, $short_desc, $description, $thumbnail, $video, $duration, $instructor, $price);
+      // Generate parameter types string
+      // Assuming all fields are strings
+      $types = str_repeat('s', count($fields));
+      $stmt->bind_param($types, ...$values);
 
       if ($stmt->execute()) {
         $course_id = $stmt->insert_id;
@@ -38,18 +46,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $lectureStmt->bind_param("is", $course_id, $lecture_title);
 
             if ($lectureStmt->execute()) {
-              $lecture_db_id = $lectureStmt->insert_id; // Get the inserted lecture ID
+              $lecture_db_id = $lectureStmt->insert_id;
 
               // Process topics
               if (isset($lecture['topics'])) {
                 foreach ($lecture['topics'] as $topic) {
                   $topic_title = $topic['name'] ?? '';
                   $video_url = $topic['url'] ?? '';
+                  $topic_duration = $topic['duration'] ?? '';
+                  $topic_price = $topic['price'] ?? '';
 
                   // Insert topic
-                  $topic_sql = "INSERT INTO `topics` (`lecture_id`, `title`, `video`) VALUES (?, ?, ?)";
+                  $topic_sql = "INSERT INTO `topics` (`lecture_id`, `title`, `video`, `duration`, `price`) VALUES (?, ?, ?, ?, ?)";
                   if ($topicStmt = $conn->prepare($topic_sql)) {
-                    $topicStmt->bind_param("iss", $lecture_db_id, $topic_title, $video_url);
+                    $topicStmt->bind_param("issss", $lecture_db_id, $topic_title, $video_url, $topic_duration, $topic_price);
 
                     if (!$topicStmt->execute()) {
                       throw new Exception("Error inserting topic: " . $topicStmt->error);
@@ -82,6 +92,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 
-// Redirect to another page or reload the current page to display the alert
-header("Location: " . "../admin/create_course.php");
+header("Location: ../admin/create_course.php");
 exit;
