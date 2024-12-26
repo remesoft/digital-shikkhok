@@ -94,7 +94,7 @@ ob_start();
                 <!-- Course price -->
                 <div class="col-md-6">
                   <label class="form-label">Course price</label>
-                  <input name="price" type="text" class="form-control" placeholder="Enter course price" value="$350" require>
+                  <input name="price" type="text" class="form-control" placeholder="Enter course price" value="350" require>
                 </div>
 
                 <!-- Course description -->

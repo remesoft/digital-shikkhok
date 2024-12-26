@@ -105,7 +105,9 @@
 
 <body>
 
-    <!-- Header START -->
+    <!-- ----------------------------------- -->
+    <!--         Header Start                -->
+    <!-- ----------------------------------- -->
     <header class="navbar-light navbar-sticky header-static">
         <!-- Nav START -->
         <nav class="navbar navbar-expand-xl">
@@ -465,12 +467,38 @@
         </nav>
         <!-- Nav END -->
     </header>
-    <!-- Header END -->
 
+    <!-- ----------------------------------- -->
+    <!--         Alert Dialog                -->
+    <!-- ----------------------------------- -->
+    <?php
+    if (isset($_SESSION['error_message']) || isset($_SESSION['success_message'])) {
+        $alert_type = isset($_SESSION['error_message']) ? 'warning' : 'success';
+        $message = isset($_SESSION['error_message']) ? $_SESSION['error_message'] : $_SESSION['success_message'];
+    ?>
+        <div class="alert alert-<?= $alert_type ?> alert-dismissible fade show" role="alert">
+            <strong><?= $alert_type === 'warning' ? 'Error:' : 'Success:' ?></strong> <?= htmlspecialchars($message) ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php
+        if ($alert_type === 'warning') {
+            unset($_SESSION['error_message']);
+        } else {
+            unset($_SESSION['success_message']);
+        }
+    }
+    ?>
+
+
+    <!-- ----------------------------------- -->
+    <!--       Main content goes here        -->
+    <!-- ----------------------------------- -->
     <main><?php echo $content; ?></main>
 
 
-    <!-- ======================= Footer START -->
+    <!-- ----------------------------------- -->
+    <!--       Footer start here             -->
+    <!-- ----------------------------------- -->
     <footer class="pt-5">
         <div class="container">
             <!-- Row START -->
@@ -592,8 +620,7 @@
             </div>
         </div>
     </footer>
-    <!-- =======================
-Footer END -->
+
 
     <!-- Back to top -->
     <div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>

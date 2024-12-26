@@ -38,29 +38,72 @@ ob_start();
           <?php
           $courses = get_courses($conn);
           foreach ($courses as $course): ?>
-            <div class="col-sm-6 col-lg-4 col-xl-3">
-              <div class="card shadow h-100">
-                <img src="./uploads/img/thumbnails/<?= htmlspecialchars($course['thumbnail']) ?>" class="card-img-top" alt="course image">
+            <div class="col-lg-4">
+              <div class="card action-trigger-hover border bg-transparent">
+                <img
+                  src="uploads/img/thumbnails/<?= $course['thumbnail'] ?>"
+                  class="card-img-top"
+                  alt="course image" />
                 <div class="card-body pb-0">
-                  <div class="d-flex justify-content-between mb-2">
-                    <a href="#" class="badge bg-purple bg-opacity-10 text-purple">All level</a>
-                    <a href="#" class="h6 fw-light mb-0"><i class="far fa-heart"></i></a>
+                  <div class="d-flex justify-content-between mb-3">
+                    <span class="hstack gap-2">
+                      <a
+                        href="#"
+                        class="badge bg-primary bg-opacity-10 text-primary">Student</a>
+                      <a href="#" class="badge text-bg-dark">Diploma</a>
+                    </span>
+                    <a href="#" class="h6 fw-light mb-0"><i class="far fa-bookmark"></i></a>
                   </div>
-                  <h5 class="card-title"><a href="#"><?= htmlspecialchars($course['title']) ?></a></h5>
-                  <ul class="list-inline mb-0">
-                    <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                    <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                    <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                    <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                    <li class="list-inline-item me-0 small"><i class="far fa-star text-warning"></i></li>
-                    <li class="list-inline-item ms-2 h6 fw-light mb-0">4.0/5.0</li>
-                  </ul>
+                  <!-- Title -->
+                  <h5 class="card-title">
+                    <a href="course_details.php?id=<?= $course['id'] ?>"><?= $course['title'] ?></a>
+                  </h5>
+                  <!-- Rating -->
+                  <div class="d-flex justify-content-between mb-2">
+                    <div class="hstack gap-2">
+                      <p class="text-warning m-0">
+                        4.5<i class="fas fa-star text-warning ms-1"></i>
+                      </p>
+                      <span class="small">(6500)</span>
+                    </div>
+                    <div class="hstack gap-2">
+                      <p class="h6 fw-light mb-0 m-0">6500</p>
+                      <span class="small">(Student)</span>
+                    </div>
+                  </div>
+                  <!-- Time -->
+                  <div class="hstack gap-3">
+                    <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i><?= $course['duration'] ?></span>
+                    <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>82
+                      lectures</span>
+                  </div>
                 </div>
-                <div class="card-footer pt-0 pb-3">
-                  <hr>
-                  <div class="d-flex justify-content-between">
-                    <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i><?= htmlspecialchars($course['duration']) ?></span>
-                    <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>15 lectures</span>
+                <!-- Card footer -->
+                <div class="card-footer pt-0 bg-transparent">
+                  <hr />
+                  <!-- Avatar and Price -->
+                  <div
+                    class="d-flex justify-content-between align-items-center">
+                    <!-- Avatar -->
+                    <div class="d-flex align-items-center">
+                      <div class="avatar avatar-sm">
+                        <img
+                          class="avatar-img rounded-1"
+                          src="./uploads/img/instructors/instructor-02.png"
+                          alt="avatar" />
+                      </div>
+                      <p class="mb-0 ms-2">
+                        <a href="#" class="h6 fw-light mb-0">MD. Sharif Ahmed</a>
+                      </p>
+                    </div>
+                    <!-- Price -->
+                    <div>
+                      <h4 class="text-success mb-0 item-show">৳<?= $course['price'] ?></h4>
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-success-soft item-show-hover"><i class="fas fa-shopping-cart me-2"></i>Add to
+                        cart</a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -70,7 +113,7 @@ ob_start();
         <!-- Course Grid END -->
 
         <!-- Pagination START -->
-        <div class="col-12">
+        <!-- <div class="col-12">
           <nav class="mt-4 d-flex justify-content-center" aria-label="navigation">
             <ul class="pagination pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
               <li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-double-left"></i></a></li>
@@ -81,7 +124,7 @@ ob_start();
               <li class="page-item mb-0"><a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a></li>
             </ul>
           </nav>
-        </div>
+        </div> -->
         <!-- Pagination END -->
       </div>
       <!-- Main content END -->

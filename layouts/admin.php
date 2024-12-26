@@ -129,7 +129,7 @@
                             </a>
                             <!-- Submenu -->
                             <ul class="nav collapse flex-column show" id="collapsepage" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link active" href="#">All Courses</a></li>
+                                <li class="nav-item"> <a class="nav-link active" href="../admin/all_courses.php">All Courses</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="admin-course-category.html">Course Category</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="admin-course-detail.html">Course Detail</a></li>
                             </ul>

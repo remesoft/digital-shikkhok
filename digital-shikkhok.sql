@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 25, 2024 at 02:15 PM
+-- Generation Time: Dec 26, 2024 at 06:20 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -45,10 +45,10 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`id`, `title`, `short_desc`, `description`, `thumbnail`, `duration`, `instructor`, `price`, `created_at`, `updated_at`) VALUES
-(5, 'First Course', 'this is my short description\r\n										', 'this is my long description\r\n                  ', '1735119850_676bd3ead6dd7.png', '12h 30m', 1, '$350', '2024-12-25 15:44:10', '2024-12-25 15:44:10'),
-(6, 'The Complete Digital Marketing Course - 12 Courses in 1', 'Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.\r\n										', 'Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.\r\n                  ', '1735122789_676bdf656115a.png', '12h 30m', 1, '$350', '2024-12-25 16:33:09', '2024-12-25 16:33:09'),
-(7, 'My Most Interesting Course', 'Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.\r\n										', 'Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.\r\n                  ', '1735122943_676bdfff21257.jpg', '12h 30m', 1, '$350', '2024-12-25 16:35:43', '2024-12-25 16:35:43'),
-(8, 'How to hack a facebook account.', 'Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.\r\n										', 'Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.\r\nSatisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.\r\n                  ', '1735129266_676bf8b250549.jpg', '20h 30m', 1, '$350', '2024-12-25 18:21:06', '2024-12-25 18:21:06');
+(9, 'JavaScript Mastery Course', 'Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.\r\n										', 'Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.\r\n                  ', '1735139625_676c2129b5c50.jpg', '12h 30m', 1, '350', '2024-12-25 21:13:45', '2024-12-25 21:26:55'),
+(10, 'Python full course', 'Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.\r\n										', 'Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.\r\n                  ', '1735139906_676c224251100.jpg', '20h 30m', 1, '350', '2024-12-25 21:18:26', '2024-12-25 21:26:39'),
+(11, 'Make game easy', 'Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.\r\n										', 'Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.\r\n                  ', '1735140061_676c22dd7cd94.jpg', '12h 30m', 1, '350', '2024-12-25 21:21:01', '2024-12-25 21:26:46'),
+(12, 'Wordpress word', 'Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.\r\n										', 'Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.\r\n                  ', '1735140173_676c234dcbcbe.jpg', '12h 30m', 1, '350', '2024-12-25 21:22:53', '2024-12-25 21:26:51');
 
 -- --------------------------------------------------------
 
@@ -67,12 +67,15 @@ CREATE TABLE `lectures` (
 --
 
 INSERT INTO `lectures` (`id`, `course_id`, `title`) VALUES
-(7, 5, 'First Lecture'),
-(8, 5, 'New Leacture'),
-(9, 6, 'sadfsdafsdaf'),
-(10, 7, 'sdfsfsd'),
-(11, 8, 'Introduction'),
-(12, 8, 'How to hack your girlfriend facebook account.');
+(13, 9, 'Introduction'),
+(14, 9, 'Hacking using javascript'),
+(15, 10, 'Introduction'),
+(16, 10, 'Python hacking'),
+(17, 10, 'Conclusions'),
+(18, 11, 'First lecture'),
+(19, 11, 'Second lacture'),
+(20, 12, 'First lecture'),
+(21, 12, 'Second Lecture');
 
 -- --------------------------------------------------------
 
@@ -92,13 +95,18 @@ CREATE TABLE `topics` (
 --
 
 INSERT INTO `topics` (`id`, `lecture_id`, `title`, `video`) VALUES
-(1, 7, 'first topic', 'first video link'),
-(2, 7, 'second video', 'second video link'),
-(3, 8, 'New leacture', 'New video link'),
-(4, 9, 'sadfsdf', 'asdfdsfasf'),
-(5, 10, 'sdfsf', 'sfsdfsdf'),
-(6, 11, 'How to create a facebook account', 'https://youtube.com/slkdfjsdlkjf'),
-(7, 12, 'You can\'t hack.', 'youtuldskfjsd/sdfjskdlf');
+(8, 13, 'What is javascript', 'youtube.com/sdklfjksl'),
+(9, 13, 'What is most variable', 'youtube.com/variable'),
+(10, 14, 'How to hack anyone', 'youtube.com/hakdjflks'),
+(11, 15, 'How to make python better', 'youtube.com/sjdfklsjdf'),
+(12, 16, 'Introduction of hacking', 'youtub.com/dsklfjsldkfj'),
+(13, 17, 'Thank you', 'youtueb.com/sdfjsdklfj'),
+(14, 18, 'first topic', 'video link'),
+(15, 18, 'second topic', 'video link'),
+(16, 19, 'first topic', 'video link'),
+(17, 19, 'second video', 'video link'),
+(18, 20, 'First topic', 'video link'),
+(19, 21, 'second topic', 'video link');
 
 -- --------------------------------------------------------
 
@@ -167,19 +175,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `lectures`
 --
 ALTER TABLE `lectures`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `topics`
 --
 ALTER TABLE `topics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`
