@@ -11,6 +11,7 @@ function get_course_by_id($conn, $course_id)
             c.description AS course_description, 
             c.duration AS course_duration, 
             c.price AS course_price,
+            c.updated_at As course_updated_at,
             l.id AS lecture_id, 
             l.title AS lecture_title, 
             t.id AS topic_id, 
@@ -45,6 +46,7 @@ function get_course_by_id($conn, $course_id)
           'description' => $row['course_description'],
           'duration' => $row['course_duration'],
           'price' => $row['course_price'],
+          'updated_at' => $row['course_updated_at'],
           'lectures' => [],
         ];
       }
@@ -78,4 +80,19 @@ function get_course_by_id($conn, $course_id)
     echo "Error: " . $conn->error;
     return null;
   }
+}
+
+function get_total_lectures($course)
+{
+  $total_topics = 0;
+
+  if (!empty($course['lectures'])) {
+    foreach ($course['lectures'] as $lecture) {
+      if (!empty($lecture['topics'])) {
+        $total_topics += count($lecture['topics']);
+      }
+    }
+  }
+
+  return $total_topics;
 }
