@@ -114,7 +114,7 @@ ob_start();
 
             <!-- Step 2 content START -->
             <div id="step-2" role="tabpanel" class="content fade" aria-labelledby="steppertrigger2">
-              <h4>Course Thumbnail</h4>
+              <h4>Course Media</h4>
               <hr>
               <div class="row">
                 <!-- Upload image START -->
@@ -134,6 +134,15 @@ ob_start();
                   </div>
                 </div>
                 <!-- Upload image END -->
+
+
+                <!-- Upload video START -->
+                <div class="col-12 mt-4">
+                  <h5>Introduction video URL</h5>
+                  <div class="col-12 mt-3">
+                    <input class="form-control" name="video" type="text" placeholder="Enter video url" value="https://www.youtube.com/embed/tXHviS-4ygo">
+                  </div>
+                </div>
 
 
                 <!-- Step 2 button -->

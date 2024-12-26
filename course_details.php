@@ -19,12 +19,8 @@ ob_start();
 
         <div class="row g-4">
           <div class="col-12">
-
-            <?= print_r($course['lectures']) ?>
-            <!-- Title -->
             <h2><?= $course['title'] ?></h2>
             <p><?= $course['short_desc'] ?></p>
-            <!-- Content -->
             <ul class="list-inline mb-0">
               <li class="list-inline-item fw-light h6 me-3 mb-1 mb-sm-0"><i class="fas fa-star me-2"></i>4.5/5.0</li>
               <li class="list-inline-item fw-light h6 me-3 mb-1 mb-sm-0"><i class="fas fa-user-graduate me-2"></i>12k Enrolled</li>
@@ -36,11 +32,13 @@ ob_start();
           <!-- Title END -->
 
           <!-- Image and video -->
+
           <div class="col-12 position-relative">
             <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden;">
               <iframe
+                class="rounded-3"
                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-                src="https://www.youtube.com/embed/666K4aizIu8?si=DTQbOkaMRK0ly0it?modestbranding=0"
+                src="<?= $course['video'] ?>"
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -64,31 +62,6 @@ ob_start();
               <!-- Card body START -->
               <div class="card-body">
                 <?= $course['description'] ?>
-
-                <!-- List content -->
-                <h5 class="mt-4">What you’ll learn</h5>
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <ul class="list-group list-group-borderless">
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Digital marketing course introduction</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Customer Life cycle</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>What is Search engine optimization(SEO)</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Facebook ADS</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Facebook Messenger Chatbot</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Search engine optimization tools</li>
-                    </ul>
-                  </div>
-                  <div class="col-md-6">
-                    <ul class="list-group list-group-borderless">
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Why SEO</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>URL Structure</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Featured Snippet</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>SEO tips and tricks</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Google tag manager</li>
-                    </ul>
-                  </div>
-                </div>
-                <p class="mb-0">As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant the expense? Tolerably behavior may admit daughters offending her ask own. Praise effect wishes change way and any wanted. Lively use looked latter regard had. Do he it part more last in. </p>
               </div>
               <!-- Card body START -->
             </div>

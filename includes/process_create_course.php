@@ -14,18 +14,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $short_desc = $_POST['short_desc'] ?? '';
     $description = $_POST['description'] ?? '';
     $thumbnail = upload_image("../uploads/img/thumbnails/", "thumbnail");
+    $video = $_POST['video'] ?? '';
     $duration = $_POST['duration'] ?? '';
     $instructor = 1; // TODO: Make this dynamic
     $price = $_POST['price'] ?? '';
 
     // Insert the main course
-    $course_sql = "INSERT INTO `courses` (`title`, `short_desc`, `description`, `thumbnail`, `duration`, `instructor`, `price`) 
-                   VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $course_sql = "INSERT INTO `courses` (`title`, `short_desc`, `description`, `thumbnail`, `video`, `duration`, `instructor`, `price`) 
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     if ($stmt = $conn->prepare($course_sql)) {
-      $stmt->bind_param("sssssis", $title, $short_desc, $description, $thumbnail, $duration, $instructor, $price);
+      $stmt->bind_param("ssssssis", $title, $short_desc, $description, $thumbnail, $video, $duration, $instructor, $price);
 
       if ($stmt->execute()) {
-        $course_id = $stmt->insert_id; // Get the inserted course ID
+        $course_id = $stmt->insert_id;
 
         // Process lectures
         $lectures = $_POST['lectures'] ?? [];
