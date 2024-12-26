@@ -419,7 +419,7 @@
                                     <img class="avatar-img rounded-circle shadow" src="assets/images/avatar/01.jpg" alt="avatar">
                                 </div>
                                 <div>
-                                    <a class="h6" href="#">Lori Ferguson</a>
+                                    <a class="h6" href="student/student_dashboard.php">Lori Ferguson</a>
                                     <p class="small m-0">example@gmail.com</p>
                                 </div>
                             </div>
