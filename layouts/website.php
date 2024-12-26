@@ -332,9 +332,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courses</a>
                             <ul class="dropdown-menu" aria-labelledby="pagesMenu">
-                                <li> <a class="dropdown-item" href="event-detail.html">All Courses</a></li>
-                                <li> <a class="dropdown-item" href="event-detail.html">Free Course</a></li>
-                                <li> <a class="dropdown-item" href="workshop-detail.html">Paid Course</a></li>
+                                <li> <a class="dropdown-item" href="/digital-shikkhok/our_courses.php">All Courses</a></li>
+                                <li> <a class="dropdown-item" href="/digital-shikkhok/our_courses.php">Free Course</a></li>
+                                <li> <a class="dropdown-item" href="/digital-shikkhok/our_courses.php">Paid Course</a></li>
                             </ul>
                         </li>
 
