@@ -40,7 +40,16 @@ function get_checkout_link($course_id)
     return "./sign_up.php";
   }
 }
+function get_status_classes($status)
+{
+  $classes = [
+    'success' => 'bg-success text-success',
+    'pending' => 'bg-orange text-orange',
+    'cancel'  => 'bg-danger text-danger'
+  ];
 
+  return $classes[$status] ?? 'bg-gray';
+}
 
 
 // include('includes/get_user_by_email.php');
