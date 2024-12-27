@@ -292,26 +292,6 @@
 
     </header>
 
-    <!-- ----------------------------------- -->
-    <!--         Alert Dialog                -->
-    <!-- ----------------------------------- -->
-    <?php
-    if (isset($_SESSION['error_message']) || isset($_SESSION['success_message'])) {
-        $alert_type = isset($_SESSION['error_message']) ? 'warning' : 'success';
-        $message = isset($_SESSION['error_message']) ? $_SESSION['error_message'] : $_SESSION['success_message'];
-    ?>
-        <div class="alert alert-<?= $alert_type ?> alert-dismissible fade show" role="alert">
-            <strong><?= $alert_type === 'warning' ? 'Error:' : 'Success:' ?></strong> <?= htmlspecialchars($message) ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    <?php
-        if ($alert_type === 'warning') {
-            unset($_SESSION['error_message']);
-        } else {
-            unset($_SESSION['success_message']);
-        }
-    }
-    ?>
 
 
     <!-- ----------------------------------- -->
@@ -461,7 +441,5 @@
     <script src="assets/js/functions.js"></script>
 
 </body>
-
-<!-- Mirrored from eduport.webestica.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Dec 2024 08:13:27 GMT -->
 
 </html>

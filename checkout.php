@@ -1,237 +1,170 @@
 <?php
 session_start();
 include('includes/db.php');
-include('includes/get_user_by_email.php');
-$user = get_user($conn, $_SESSION['user_email']);
-if (isset($_GET['id'])) {
-	$course_id = $_GET['id'];
-} else {
-	// Handle the error (e.g., redirect or show an error message)
-	$course_id = null;
-}
-$pageTitle = "Home";
+include('includes/get_course_by_id.php');
+$course = get_course($conn, $_GET['id']);
+
+// include('includes/get_user_by_email.php');
+// $user = get_user($conn, $_SESSION['user_email']);
+// if (isset($_GET['id'])) {
+// 	$course_id = $_GET['id'];
+// } else {
+// 	// Handle the error (e.g., redirect or show an error message)
+// 	$course_id = null;
+// }
+$pageTitle = "Checkout | Digital Shikkhok";
 ob_start();
 ?>
 
 
-<!-- **************** MAIN CONTENT START **************** -->
-<main>
 
-	<!-- Page Banner START -->
-	<section class="py-0">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="bg-light p-4 text-center rounded-3">
-						<h1 class="m-0">Checkout</h1>
-						<!-- Breadcrumb -->
-						<div class="d-flex justify-content-center">
-							<nav aria-label="breadcrumb">
-								<ol class="breadcrumb breadcrumb-dots mb-0">
-									<li class="breadcrumb-item"><a href="#">Home</a></li>
-									<li class="breadcrumb-item"><a href="#">Courses</a></li>
-									<li class="breadcrumb-item"><a href="#">Cart</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Checkout</li>
-								</ol>
-							</nav>
-						</div>
+<!-- Page Banner START -->
+<section class="py-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="bg-light p-4 text-center rounded-3">
+					<h1 class="m-0">Checkout</h1>
+					<!-- Breadcrumb -->
+					<div class="d-flex justify-content-center">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb breadcrumb-dots mb-0">
+								<li class="breadcrumb-item"><a href="index.php">Home</a></li>
+								<li class="breadcrumb-item"><a href="our_courses.php">Courses</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Checkout</li>
+							</ol>
+						</nav>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-	<!-- Page Banner END -->
+	</div>
+</section>
 
-	<!-- =======================
-Page content START -->
-	<section class="pt-5">
-		<div class="container">
-
-			<div class="row g-4 g-sm-5">
-				<!-- Main content START -->
-				<div class="col-xl-8 mb-4 mb-sm-0">
-					<!-- Alert -->
-					<?php if (!isset($_SESSION['user_email'])) {
-						echo '<div class="alert alert-danger alert-dismissible d-flex justify-content-between align-items-center fade show py-2 pe-2" role="alert">
-							<div>
-								<i class="bi bi-exclamation-octagon-fill me-2"></i>
-								Already have an account? <a href="#" class="text-reset btn-link mb-0 fw-bold">Log in</a>
-							</div>
-							<button type="button" class="btn btn-link mb-0 text-primary-hover text-end" data-bs-dismiss="alert" aria-label="Close"><i class="bi bi-x-lg"></i></button>
-						</div>';
-					}
-					?>
-					<?php
-
-					if (isset($_SESSION['showAlert'])) {
-						echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-									 ' . $_SESSION['showAlert'] . '
-									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-								</div>';
-						unset($_SESSION['showAlert']);
-					}
-					if (isset($_SESSION['showErr'])) {
-						echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-									<strong>Opps!</strong> ' . $_SESSION['showErr'] . '
-									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-								</div>';
-						unset($_SESSION['showErr']);
-					}
-
-					?>
-
-					<!-- Personal info START -->
-					<div class="card card-body shadow p-4">
-						<!-- Title -->
-						<h5 class="mb-0">Personal Details</h5>
-
-						<!-- Form START -->
-						<form action="includes/process_payment.php" method="POST" class="row g-3 mt-0">
-							<input type="hidden" name="course_id" value="<?= htmlspecialchars($course_id) ?>">
-							<!-- Name -->
-							<div class="col-md-6 bg-light-input">
-								<label for="yourName" class="form-label">Your name *</label>
-								<input type="text" class="form-control" name="name" id="name" value="<?php echo $user['first_name']; ?>" placeholder="Your name" readonly>
-							</div>
-							<!-- Email -->
-							<div class="col-md-6 bg-light-input">
-								<label for="emailInput" class="form-label">Email address *</label>
-								<input type="email" class="form-control" email id="email" value="<?php echo $user['email']; ?>" readonly>
-							</div>
-							<!-- Number -->
-							<div class="col-md-6 bg-light-input">
-								<label for="mobileNumber" class="form-label">Mobile number *</label>
-								<input type="text" class="form-control" name="phone" id="mobileNumber" placeholder="Mobile number" required>
-							</div>
-							<!-- Tranxacton code -->
-							<div class="col-md-6 bg-light-input">
-								<label for="postalCode" class="form-label">Transaction ID *</label>
-								<input type="text" class="form-control" name="trnx_id" id="trnx_id" placeholder="Transaction ID" required>
-							</div>
-							<!-- Button -->
-							<div class="col-12 text-end">
-								<button type="submit" class="btn btn-primary mb-0"> Confirm Payment</button>
-							</div>
-						</form>
-						<!-- Form END -->
+<section class="pt-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-8">
+				<?php if (isset($_SESSION['error_message'])) { ?>
+					<div class="alert <?= $_SESSION['error_type'] ?? 'alert-danger' ?> alert-dismissible fade show" role="alert">
+						<?= $_SESSION['error_message'] ?>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 					</div>
-					<!-- Personal info END -->
-				</div>
-				<!-- Main content END -->
+				<?php
+					// Unset the session variables
+					unset($_SESSION['error_message']);
+					unset($_SESSION['error_type']);
+				} ?>
 
-				<!-- Right sidebar START -->
-				<div class="col-xl-4">
-
-					<div class="row mb-0">
-						<div class="col-md-6 col-xl-12">
-							<!-- Order summary START -->
-							<div class="card card-body shadow p-4 mb-4">
-								<!-- Title -->
-								<h4 class="mb-2">Order Summary</h4>
-
-								<!-- Coupon START -->
-								<div class="mb-3">
-									<div class="input-group mt-2">
-										<input class="form-control form-control" placeholder="COUPON CODE">
-										<button type="button" class="btn btn-primary">Apply</button>
-									</div>
-
-								</div>
-								<hr>
-								<!-- Coupon END -->
-
-								<!-- Course item START -->
-								<div class="row g-3">
-									<!-- Image -->
-									<div class="col-sm-4">
-										<img class="rounded" src="assets/images/courses/4by3/08.jpg" alt="">
-									</div>
-									<!-- Info -->
-									<div class="col-sm-8">
-										<h6 class="mb-0"><a href="#">Sketch from A to Z: for an app designer</a></h6>
-										<!-- Info -->
-										<div class="d-flex justify-content-between align-items-center mt-3">
-											<!-- Price -->
-											<span class="text-success">$150</span>
-
-											<!-- Remove and edit button -->
-											<div class="text-primary-hover">
-												<a href="#" class="text-body me-2"><i class="bi bi-trash me-1"></i>Remove</a>
-												<a href="#" class="text-body me-2"><i class="bi bi-pencil-square me-1"></i>Edit</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Course item END -->
-
-
-								<hr> <!-- Divider -->
-
-								<!-- Price and detail -->
-								<ul class="list-group list-group-borderless mb-2">
-									<li class="list-group-item px-0 d-flex justify-content-between">
-										<span class="h6 fw-light mb-0">Original Price</span>
-										<span class="h6 fw-light mb-0 fw-bold">$500</span>
-									</li>
-									<li class="list-group-item px-0 d-flex justify-content-between">
-										<span class="h6 fw-light mb-0">Coupon Discount</span>
-										<span class="text-danger">-$20</span>
-									</li>
-									<li class="list-group-item px-0 d-flex justify-content-between">
-										<span class="h5 mb-0">Total</span>
-										<span class="h5 mb-0">$480</span>
-									</li>
-								</ul>
-
-								<!-- Button -->
-								<div class="d-grid">
-									<a href="#" class="btn btn-lg btn-success">Place Order</a>
-								</div>
-
-								<!-- Content -->
-								<p class="small mb-0 mt-2 text-center">By completing your purchase, you agree to these <a href="#"><strong>Terms of Service</strong></a></p>
-
-							</div>
-							<!-- Order summary END -->
+				<!-- -----------------------------------------
+				 					BILLING INFORMATION START 
+				--------------------------------------------->
+				<div class="card card-body shadow border p-4">
+					<h5 class="mb-0 mt-3">Billing Details</h5>
+					<form action="includes/process_payment.php" method="POST" class="row g-3 mt-0">
+						<input type="hidden" name="course_id" value="<?= htmlspecialchars($course['id']) ?>">
+						<div class="col-md-6 bg-light-input">
+							<label for="mobileNumber" class="form-label">Your bKash Account Number *</label>
+							<input type="text" class="form-control" name="phone" id="mobileNumber" placeholder="01700000000" require>
 						</div>
+						<!-- Tranxacton code -->
+						<div class="col-md-6 bg-light-input">
+							<label for="postalCode" class="form-label">bKash Transaction ID *</label>
+							<input type="text" class="form-control" name="tnx_id" id="trnx_id" placeholder="BL08CEOGWU" require>
+						</div>
+						<!-- Button -->
+						<div class="col-12 text-end">
+							<button type="submit" class="btn btn-primary mb-0"> Confirm Payment</button>
+						</div>
+					</form>
+				</div>
+				<!-- -----------------------------------------
+				 					HOW TO PAY INFORMATION
+				--------------------------------------------->
+				<div class="card card-body shadow border p-4 mt-3">
+					<h5 class="mb-3">How to pay</h5>
+					<ul class="list-group list-group-borderless pt-3">
+						<li class="list-group-item h6 fw-light d-flex mb-0">
+							<i class="fas fa-info-circle text-primary me-2"></i>
+							<strong style="color: #E2136E;">Bkash Number : 01752684239</strong>
+						</li>
+						<li class="list-group-item h6 fw-light d-flex mb-0">
+							<i class="fas fa-info-circle text-primary me-2"></i>
+							bKash অ্যাপ বা *247# ডায়াল করে উপরের Personal Number-এ নির্ধারিত টাকা পাঠান।
+						</li>
+						<li class="list-group-item h6 fw-light d-flex mb-0">
+							<i class="fas fa-info-circle text-primary me-2"></i>
+							Billing Details এ সঠিক ভাবে Phone Number, Transaction ID প্রদান করুন।
+						</li>
 
-					</div>
-					<!-- Row End -->
-					<!-- Payment Process -->
-					<div class="row">
-						<div class="col-xl-12">
-							<div class="row mb-0">
-								<div class="col-md-6 col-xl-12">
-									<!-- Order summary START -->
-									<div class="card card-body shadow p-4 mb-4">
-										<ol class="list-group list-group-borderless mb-2">
-											<h4>How to pay</h4>
-											<li class="list-group-item px-0 d-flex justify-content-between"> Billing Details এ সঠিক ভাবে First name, Last name, Phone Number, Email address প্রদান করুন।</li>
-											<li class="list-group-item px-0 d-flex justify-content-between"> bKash App থেকে অথবা *247# Dial করে নিচে দেয়া Personal Number এ নির্দিষ্ট পরিমান টাকা Send Money করুন।</li>
-											<li class="list-group-item px-0 d-flex justify-content-between">Bkash: 01752684239 করুন।</li>
-											<li class="list-group-item px-0 d-flex justify-content-between">আপনি যে bKash Number থেকে টাকা দিয়েছেন সেটি “Your bKash Account Number” এর BOX এ লিখুন।</li>
-											<li class="list-group-item px-0 d-flex justify-content-between"> টাকা পাঠানোর পরে bKash থেকে যে Successful SMS এ TrxID পেয়েছেন সেটি “bKash Transaction ID” এর BOX এ লিখুন।</li>
-											<li class="list-group-item px-0 d-flex justify-content-between">উপর এর 01 থেকে 04 সম্পূর্ণ করে থাকলে Complete Payment এ Click করুন। [NB: 1.85% bKash "Send Money" fee will be added to the net price.]</li>
-										</ol>
-									</div>
-								</div>
+
+						<li class="list-group-item h6 fw-light d-flex mb-0">
+							<i class="fas fa-info-circle text-primary me-2"></i>
+							আপনি যে bKash নম্বর থেকে টাকা পাঠিয়েছেন, তা "Your bKash Account Number" বক্সে লিখুন।
+						</li>
+						<li class="list-group-item h6 fw-light d-flex mb-0">
+							<i class="fas fa-info-circle text-primary me-2"></i>
+							টাকা পাঠানোর পর bKash থেকে পাওয়া SMS-এর TrxID "bKash Transaction ID" বক্সে লিখুন।
+						</li>
+						<li class="list-group-item h6 fw-light d-flex mb-0">
+							<i class="fas fa-info-circle text-primary me-2"></i>
+							উপর এর 01 থেকে 04 সম্পূর্ণ করে থাকলে Complete Payment এ Click করুন। [NB: 1.85% bKash "Send Money" fee will be added to the net price.]
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-12 col-md-4">
+				<!-- -----------------------------------------
+				 					Order Summery
+				--------------------------------------------->
+				<div class="card card-body shadow border p-4">
+					<h5 class="mb-2">Order Summary</h5>
+					<hr>
+
+					<div class="row g-3">
+						<!-- Image -->
+						<div class="col-sm-4">
+							<img class="rounded" src="./uploads/img/thumbnails/<?= $course['thumbnail'] ?>" alt="">
+						</div>
+						<!-- Info -->
+						<div class="col-sm-8">
+							<h6 class="mb-0"><a href="#"><?= $course['title'] ?></a></h6>
+							<!-- Info -->
+							<div class="d-flex justify-content-between align-items-center mt-2">
+								<!-- Price -->
+								<span class="text-success">৳ <?= $course['price'] ?></span>
+
 							</div>
 						</div>
 					</div>
+					<!-- Course item END -->
 
 
+					<hr> <!-- Divider -->
+
+					<!-- Price and detail -->
+					<ul class="list-group list-group-borderless mb-2" style="border: 0;">
+						<li class="list-group-item px-0 d-flex justify-content-between">
+							<span class="h6 fw-light mb-0">Original Price</span>
+							<span class="h6 fw-light mb-0 fw-bold">৳ <?= $course['price'] ?></span>
+						</li>
+						<li class="list-group-item px-0 d-flex justify-content-between">
+							<span class="h6 fw-light mb-0">Coupon Discount</span>
+							<span class="text-danger">-৳ 0</span>
+						</li>
+						<li class="list-group-item px-0 d-flex justify-content-between">
+							<span class="h5 mb-0">Total</span>
+							<span class="h5 mb-0">৳ <?= $course['price'] ?></span>
+						</li>
+					</ul>
+
+					<!-- Content -->
+					<p class="small mb-0 mt-2 text-center">By completing your purchase, you agree to these <a href="#"><strong>Terms of Service</strong></a></p>
 				</div>
-				<!-- Right sidebar END -->
-
-
-			</div><!-- Row END -->
+			</div>
 		</div>
-	</section>
-	<!-- =======================
-Page content END -->
-
-</main>
-<!-- **************** MAIN CONTENT END **************** -->
+	</div>
+</section>
 
 <?php
 $content = ob_get_clean();
