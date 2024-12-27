@@ -7,9 +7,6 @@ $course = get_course_by_id($conn, $_GET['id']);
 ob_start();
 ?>
 
-
-
-
 <!--Page content START -->
 <section class="pt-3 pt-xl-5">
   <div class="container" data-sticky-container>
@@ -18,35 +15,36 @@ ob_start();
       <div class="col-xl-8">
 
         <div class="row g-4">
-          <!-- Title START -->
           <div class="col-12">
-
-            <!-- Title -->
             <h2><?= $course['title'] ?></h2>
             <p><?= $course['short_desc'] ?></p>
-            <!-- Content -->
             <ul class="list-inline mb-0">
               <li class="list-inline-item fw-light h6 me-3 mb-1 mb-sm-0"><i class="fas fa-star me-2"></i>4.5/5.0</li>
               <li class="list-inline-item fw-light h6 me-3 mb-1 mb-sm-0"><i class="fas fa-user-graduate me-2"></i>12k Enrolled</li>
               <li class="list-inline-item fw-light h6 me-3 mb-1 mb-sm-0"><i class="fas fa-signal me-2"></i>All levels</li>
-              <li class="list-inline-item fw-light h6 me-3 mb-1 mb-sm-0"><i class="bi bi-patch-exclamation-fill me-2"></i>Last updated 09/2021</li>
-              <li class="list-inline-item fw-light h6"><i class="fas fa-globe me-2"></i>English</li>
+              <li class="list-inline-item fw-light h6 me-3 mb-1 mb-sm-0"><i class="bi bi-patch-exclamation-fill me-2"></i>Last updated <?= date('m/Y', strtotime($course['updated_at'])) ?></li>
+              <li class="list-inline-item fw-light h6"><i class="fas fa-globe me-2"></i><?= $course['language'] ?></li>
             </ul>
           </div>
           <!-- Title END -->
 
           <!-- Image and video -->
+
           <div class="col-12 position-relative">
-            <div class="video-player rounded-3">
-              <video controls crossorigin="anonymous" playsinline poster="assets/images/videos/poster.jpg">
-                <source src="assets/images/videos/360p.mp4" type="video/mp4" size="360">
-                <source src="assets/images/videos/720p.mp4" type="video/mp4" size="720">
-                <source src="assets/images/videos/1080p.mp4" type="video/mp4" size="1080">
-                <!-- Caption files -->
-                <track kind="captions" label="English" srclang="en" src="assets/images/videos/en.vtt" default>
-                <track kind="captions" label="French" srclang="fr" src="assets/images/videos/fr.vtt">
-              </video>
+            <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+              <iframe
+                class="rounded-3"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                src="<?= $course['video'] ?>"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
             </div>
+
+
           </div>
 
           <!-- About course START -->
@@ -60,43 +58,7 @@ ob_start();
 
               <!-- Card body START -->
               <div class="card-body">
-                <p class="mb-3">Welcome to the <strong> Digital Marketing Ultimate Course Bundle - 12 Courses in 1 (Over 36 hours of content)</strong></p>
-                <p class="mb-3">In this practical hands-on training, you’re going to learn to become a digital marketing expert with this <strong> ultimate course bundle that includes 12 digital marketing courses in 1!</strong></p>
-                <p class="mb-0">If you wish to find out the skills that should be covered in a basic digital marketing course syllabus in India or anywhere around the world, then reading this blog will help. Before we delve into the advanced <strong><a href="#" class="text-reset text-decoration-underline">digital marketing course</a></strong> syllabus, let’s look at the scope of digital marketing and what the future holds.</p>
-                <!-- Collapse body -->
-                <div class="collapse" id="collapseContent">
-                  <p class="my-3">We focus a great deal on the understanding of behavioral psychology and influence triggers which are crucial for becoming a well rounded Digital Marketer. We understand that theory is important to build a solid foundation, we understand that theory alone isn’t going to get the job done so that’s why this course is packed with practical hands-on examples that you can follow step by step.</p>
-                  <p class="mb-0">Behavioral psychology and influence triggers which are crucial for becoming a well rounded Digital Marketer. We understand that theory is important to build a solid foundation, we understand that theory alone isn’t going to get the job done so that’s why this course is packed with practical hands-on examples that you can follow step by step.</p>
-                </div>
-                <!-- Collapse button -->
-                <a class="p-0 mb-0 mt-2 btn-more d-flex align-items-center" data-bs-toggle="collapse" href="#collapseContent" role="button" aria-expanded="false" aria-controls="collapseContent">
-                  See <span class="see-more ms-1">more</span><span class="see-less ms-1">less</span><i class="fas fa-angle-down ms-2"></i>
-                </a>
-
-                <!-- List content -->
-                <h5 class="mt-4">What you’ll learn</h5>
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <ul class="list-group list-group-borderless">
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Digital marketing course introduction</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Customer Life cycle</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>What is Search engine optimization(SEO)</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Facebook ADS</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Facebook Messenger Chatbot</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Search engine optimization tools</li>
-                    </ul>
-                  </div>
-                  <div class="col-md-6">
-                    <ul class="list-group list-group-borderless">
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Why SEO</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>URL Structure</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Featured Snippet</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>SEO tips and tricks</li>
-                      <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-check-circle text-success me-2"></i>Google tag manager</li>
-                    </ul>
-                  </div>
-                </div>
-                <p class="mb-0">As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant the expense? Tolerably behavior may admit daughters offending her ask own. Praise effect wishes change way and any wanted. Lively use looked latter regard had. Do he it part more last in. </p>
+                <?= $course['description'] ?>
               </div>
               <!-- Card body START -->
             </div>
@@ -116,276 +78,26 @@ ob_start();
               <div class="card-body">
                 <div class="row g-5">
                   <!-- Lecture item START -->
-                  <div class="col-12">
-                    <!-- Curriculum item -->
-                    <h5 class="mb-4">Introduction of Digital Marketing (3 lectures)</h5>
-                    <div class="d-sm-flex justify-content-sm-between align-items-center">
-                      <div class="d-flex">
-                        <a href="#" class="btn btn-danger-soft btn-round mb-0"><i class="fas fa-play"></i></a>
-                        <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                          <h6 class="mb-0">Introduction</h6>
-                          <p class="mb-2 mb-sm-0 small">10m 56s</p>
-                        </div>
-                      </div>
-                      <!-- Button -->
-                      <a href="#" class="btn btn-sm btn-success mb-0">Play</a>
-                    </div>
-                    <!-- Divider -->
-                    <hr>
-
-                    <!-- Curriculum item -->
-                    <div class="d-sm-flex justify-content-sm-between align-items-center">
-                      <div class="d-flex">
-                        <a href="#" class="btn btn-danger-soft btn-round mb-0 flex-shrink-0"><i class="fas fa-play"></i></a>
-                        <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                          <h6 class="mb-0">What is Digital Marketing</h6>
-                          <p class="mb-2 mb-sm-0 small">18m 30s</p>
-                        </div>
-                      </div>
-                      <!-- Button -->
-                      <a href="#" class="btn btn-sm btn-success mb-0">Play</a>
-                    </div>
-                    <!-- Divider -->
-                    <hr>
-
-                    <!-- Curriculum item -->
-                    <div class="d-sm-flex justify-content-sm-between align-items-center">
-                      <div class="d-flex">
-                        <a href="#" class="btn btn-light btn-round mb-0 flex-shrink-0"><i class="bi bi-lock-fill"></i></a>
-                        <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                          <h6 class="mb-0">Type of Digital Marketing</h6>
-                          <p class="mb-2 mb-sm-0 small">22m 26s</p>
-                        </div>
-                      </div>
-                      <!-- Button -->
-                      <a href="#" class="btn btn-sm btn-orange mb-0">Premium</a>
-                    </div>
-                  </div>
-                  <!-- Lecture item END -->
-
-                  <!-- Lecture item START -->
-                  <div class="col-12">
-                    <!-- Curriculum item -->
-                    <h5 class="mb-4">Customer Life cycle (4 lectures)</h5>
-                    <div class="d-sm-flex justify-content-sm-between align-items-center">
-                      <div class="d-flex">
-                        <a href="#" class="btn btn-danger-soft btn-round mb-0 flex-shrink-0"><i class="fas fa-play"></i></a>
-                        <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                          <h6 class="mb-0">What is Digital Marketing</h6>
-                          <p class="mb-2 mb-sm-0 small">10m 56s</p>
-                        </div>
-                      </div>
-                      <!-- Button -->
-                      <a href="#" class="btn btn-sm btn-success mb-0">Play</a>
-                    </div>
-                    <!-- Divider -->
-                    <hr>
-
-                    <!-- Curriculum item -->
-                    <div class="d-sm-flex justify-content-sm-between align-items-center">
-                      <div class="d-flex">
-                        <a href="#" class="btn btn-danger-soft btn-round mb-0 flex-shrink-0"><i class="fas fa-play"></i></a>
-                        <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                          <h6 class="mb-0">15 Tips for Writing Magnetic Headlines</h6>
-                          <p class="mb-2 mb-sm-0 small">18m 30s</p>
-                        </div>
-                      </div>
-                      <!-- Button -->
-                      <a href="#" class="btn btn-sm btn-success mb-0">Play</a>
-                    </div>
-                    <!-- Divider -->
-                    <hr>
-
-                    <!-- Curriculum item -->
-                    <div class="d-sm-flex justify-content-sm-between align-items-center">
-                      <div class="d-flex">
-                        <a href="#" class="btn btn-light btn-round mb-0 flex-shrink-0"><i class="bi bi-lock-fill"></i></a>
-                        <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                          <h6 class="mb-0">How to Write Like Your Customers Talk</h6>
-                          <p class="mb-2 mb-sm-0 small">22m 26s</p>
-                        </div>
-                      </div>
-                      <!-- Button -->
-                      <a href="#" class="btn btn-sm btn-orange mb-0">Premium</a>
-                    </div>
-                    <!-- Divider -->
-                    <hr>
-
-                    <!-- Curriculum item -->
-                    <div class="d-sm-flex justify-content-sm-between align-items-center">
-                      <div class="d-flex">
-                        <a href="#" class="btn btn-light btn-round mb-0 flex-shrink-0"><i class="bi bi-lock-fill"></i></a>
-                        <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                          <h6 class="mb-0">How to Flip Features Into Benefits</h6>
-                          <p class="mb-2 mb-sm-0 small">18m 26s</p>
-                        </div>
-                      </div>
-                      <!-- Button -->
-                      <a href="#" class="btn btn-sm btn-orange mb-0">Premium</a>
-                    </div>
-                  </div>
-                  <!-- Lecture item END -->
-
-                  <!-- Lecture item START -->
-                  <div class="col-12">
-                    <!-- Curriculum item -->
-                    <h5 class="mb-4">What is Search Engine Optimization(SEO) (5 lectures)</h5>
-                    <div class="d-sm-flex justify-content-sm-between align-items-center">
-                      <div class="d-flex">
-                        <a href="#" class="btn btn-danger-soft btn-round mb-0 flex-shrink-0"><i class="fas fa-play"></i></a>
-                        <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                          <h6 class="mb-0">How to SEO Optimise Your Homepage</h6>
-                          <p class="mb-2 mb-sm-0 small">18m 21s</p>
-                        </div>
-                      </div>
-                      <!-- Button -->
-                      <a href="#" class="btn btn-sm btn-success mb-0">Play</a>
-                    </div>
-                    <!-- Divider -->
-                    <hr>
-
-                    <!-- Curriculum item -->
-                    <div class="d-sm-flex justify-content-sm-between align-items-center">
-                      <div class="d-flex">
-                        <a href="#" class="btn btn-danger-soft btn-round mb-0 flex-shrink-0"><i class="fas fa-play"></i></a>
-                        <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                          <h6 class="mb-0">How to Write Title Tags Search Engines Love</h6>
-                          <p class="mb-2 mb-sm-0 small">7m 30s</p>
-                        </div>
-                      </div>
-                      <!-- Button -->
-                      <a href="#" class="btn btn-sm btn-success mb-0">Play</a>
-                    </div>
-                    <!-- Divider -->
-                    <hr>
-
-                    <!-- Curriculum item -->
-                    <div class="d-sm-flex justify-content-sm-between align-items-center">
-                      <div class="d-flex">
-                        <a href="#" class="btn btn-danger-soft btn-round mb-0 flex-shrink-0"><i class="fas fa-play"></i></a>
-                        <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                          <h6 class="mb-0">SEO Keyword Planning</h6>
-                          <p class="mb-2 mb-sm-0 small">15m 32s</p>
-                        </div>
-                      </div>
-                      <!-- Button -->
-                      <a href="#" class="btn btn-sm btn-success mb-0">Play</a>
-                    </div>
-                    <!-- Divider -->
-                    <hr>
-
-                    <!-- Curriculum item -->
-                    <div class="d-sm-flex justify-content-sm-between align-items-center">
-                      <div class="d-flex">
-                        <a href="#" class="btn btn-danger-soft btn-round mb-0 flex-shrink-0"><i class="fas fa-play"></i></a>
-                        <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                          <h6 class="mb-0">Internal and External Links</h6>
-                          <p class="mb-2 mb-sm-0 small">17m 30s</p>
-                        </div>
-                      </div>
-                      <!-- Button -->
-                      <a href="#" class="btn btn-sm btn-success mb-0">Play</a>
-                    </div>
-                    <!-- Divider -->
-                    <hr>
-
-                    <!-- Curriculum item -->
-                    <div class="d-sm-flex justify-content-sm-between align-items-center">
-                      <div class="d-flex">
-                        <a href="#" class="btn btn-danger-soft btn-round mb-0 flex-shrink-0"><i class="fas fa-play"></i></a>
-                        <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                          <h6 class="mb-0">Measuring SEO Effectiveness</h6>
-                          <p class="mb-2 mb-sm-0 small">25m 30s</p>
-                        </div>
-                      </div>
-                      <!-- Button -->
-                      <a href="#" class="btn btn-sm btn-success mb-0">Play</a>
-                    </div>
-                  </div>
-                  <!-- Lecture item END -->
-
-                  <!-- Collapse body START -->
-                  <div class="collapse mt-0" id="collapseCourse">
-                    <!-- Lecture item START -->
-                    <div class="col-12 mt-5">
-                      <!-- Curriculum item -->
-                      <h5 class="mb-4">YouTube Marketing (5 lectures)</h5>
-                      <div class="d-sm-flex justify-content-sm-between align-items-center">
-                        <div class="d-flex">
-                          <a href="#" class="btn btn-danger-soft btn-round mb-0 flex-shrink-0"><i class="fas fa-play"></i></a>
-                          <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                            <h6 class="mb-0">Video Flow</h6>
-                            <p class="mb-2 mb-sm-0 small">25m 20s</p>
+                  <?php foreach ($course['lectures'] as $lecture): ?>
+                    <div class="col-12">
+                      <h5 class="mb-4"><?= $lecture['title'] ?> (<?= count($lecture['topics']) ?> lectures)</h5>
+                      <?php foreach ($lecture['topics'] as $index => $topic): ?>
+                        <div class="d-sm-flex justify-content-sm-between align-items-center">
+                          <div class="d-flex">
+                            <a href="#" class="btn btn-danger-soft btn-round mb-0"><i class="fas fa-play"></i></a>
+                            <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
+                              <h6 class="mb-0"><?= $topic['title'] ?></h6>
+                              <p class="mb-2 mb-sm-0 small">10m 56s</p>
+                            </div>
                           </div>
+                          <!-- <a href="#" class="btn btn-sm btn-success mb-0">Play</a> -->
                         </div>
-                        <!-- Button -->
-                        <a href="#" class="btn btn-sm btn-success mb-0">Play</a>
-                      </div>
-                      <!-- Divider -->
-                      <hr>
-
-                      <!-- Curriculum item -->
-                      <div class="d-sm-flex justify-content-sm-between align-items-center">
-                        <div class="d-flex">
-                          <a href="#" class="btn btn-danger-soft btn-round mb-0 flex-shrink-0"><i class="fas fa-play"></i></a>
-                          <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                            <h6 class="mb-0">Webmaster Tool</h6>
-                            <p class="mb-2 mb-sm-0 small">15m 20s</p>
-                          </div>
-                        </div>
-                        <!-- Button -->
-                        <a href="#" class="btn btn-sm btn-success mb-0">Play</a>
-                      </div>
-                      <!-- Divider -->
-                      <hr>
-
-                      <!-- Curriculum item -->
-                      <div class="d-sm-flex justify-content-sm-between align-items-center">
-                        <div class="d-flex">
-                          <a href="#" class="btn btn-light btn-round mb-0 flex-shrink-0"><i class="bi bi-lock-fill"></i></a>
-                          <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                            <h6 class="mb-0">Featured Contents on Channel</h6>
-                            <p class="mb-2 mb-sm-0 small">32m 26s</p>
-                          </div>
-                        </div>
-                        <!-- Button -->
-                        <a href="#" class="btn btn-sm btn-orange mb-0">Premium</a>
-                      </div>
-                      <!-- Divider -->
-                      <hr>
-
-                      <!-- Curriculum item -->
-                      <div class="d-sm-flex justify-content-sm-between align-items-center">
-                        <div class="d-flex">
-                          <a href="#" class="btn btn-light btn-round mb-0 flex-shrink-0"><i class="bi bi-lock-fill"></i></a>
-                          <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                            <h6 class="mb-0">Channel Analytics</h6>
-                            <p class="mb-2 mb-sm-0 small">18m 20s</p>
-                          </div>
-                        </div>
-                        <!-- Button -->
-                        <a href="#" class="btn btn-sm btn-orange mb-0">Premium</a>
-                      </div>
-                      <!-- Divider -->
-                      <hr>
-
-                      <!-- Curriculum item -->
-                      <div class="d-sm-flex justify-content-sm-between align-items-center">
-                        <div class="d-flex">
-                          <a href="#" class="btn btn-light btn-round mb-0 flex-shrink-0"><i class="bi bi-lock-fill"></i></a>
-                          <div class="ms-2 ms-sm-3 mt-1 mt-sm-0">
-                            <h6 class="mb-0">Managing Comments</h6>
-                            <p class="mb-2 mb-sm-0 small">20m 20s</p>
-                          </div>
-                        </div>
-                        <!-- Button -->
-                        <a href="#" class="btn btn-sm btn-orange mb-0">Premium</a>
-                      </div>
+                        <?php if ($index !== array_key_last($lecture['topics'])): ?>
+                          <hr>
+                        <?php endif; ?>
+                      <?php endforeach ?>
                     </div>
-                    <!-- Lecture item END -->
-                  </div>
-                  <!-- Collapse body END -->
-
+                  <?php endforeach ?>
                   <!-- Collapse button -->
                   <a class="mb-0 mt-4 btn-more d-flex align-items-center justify-content-center" data-bs-toggle="collapse" href="#collapseCourse" role="button" aria-expanded="false" aria-controls="collapseCourse">
                     See <span class="see-more mx-1">more</span><span class="see-less mx-1">less</span> video<i class="fas fa-angle-down ms-2"></i>
@@ -493,11 +205,11 @@ ob_start();
                 <ul class="list-group list-group-borderless border-0">
                   <li class="list-group-item px-0 d-flex justify-content-between">
                     <span class="h6 fw-light mb-0"><i class="fas fa-fw fa-book-open text-primary"></i>Lectures</span>
-                    <span>30</span>
+                    <span><?= get_total_lectures($course) ?></span>
                   </li>
                   <li class="list-group-item px-0 d-flex justify-content-between">
                     <span class="h6 fw-light mb-0"><i class="fas fa-fw fa-clock text-primary"></i>Duration</span>
-                    <span>4h 50m</span>
+                    <span><?= $course['duration'] ?></span>
                   </li>
                   <li class="list-group-item px-0 d-flex justify-content-between">
                     <span class="h6 fw-light mb-0"><i class="fas fa-fw fa-signal text-primary"></i>Skills</span>
@@ -505,11 +217,7 @@ ob_start();
                   </li>
                   <li class="list-group-item px-0 d-flex justify-content-between">
                     <span class="h6 fw-light mb-0"><i class="fas fa-fw fa-globe text-primary"></i>Language</span>
-                    <span>English</span>
-                  </li>
-                  <li class="list-group-item px-0 d-flex justify-content-between">
-                    <span class="h6 fw-light mb-0"><i class="fas fa-fw fa-user-clock text-primary"></i>Deadline</span>
-                    <span>Nov 30 2021</span>
+                    <span><?= $course['language'] ?></span>
                   </li>
                   <li class="list-group-item px-0 d-flex justify-content-between">
                     <span class="h6 fw-light mb-0"><i class="fas fa-fw fa-medal text-primary"></i>Certificate</span>
@@ -522,51 +230,45 @@ ob_start();
                 <!-- Instructor info -->
                 <div class="d-sm-flex align-items-center">
                   <!-- Avatar image -->
-                  <div class="avatar avatar-xl">
-                    <img class="avatar-img rounded-circle" src="assets/images/avatar/05.jpg" alt="avatar">
+                  <div class="avatar avatar">
+                    <img class="avatar-img rounded-circle" src="./uploads/img/instructors/instructor-02.png" alt="avatar">
                   </div>
                   <div class="ms-sm-3 mt-2 mt-sm-0">
-                    <h5 class="mb-0"><a href="#">By Jacqueline Miller</a></h5>
-                    <p class="mb-0 small">Founder Eduport company</p>
+                    <h5 class="mb-0"><a href="#">By Md. Sharif Ahmed </a></h5>
+                    <p class="mb-0 small">Founder & Instructor</p>
                   </div>
-                </div>
-
-                <!-- Rating and follow -->
-                <div class="d-sm-flex justify-content-sm-between align-items-center mt-0 mt-sm-2">
-                  <!-- Rating star -->
-                  <ul class="list-inline mb-0">
-                    <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                    <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                    <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                    <li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-                    <li class="list-inline-item me-0 small"><i class="fas fa-star-half-alt text-warning"></i></li>
-                    <li class="list-inline-item ms-2 h6 fw-light mb-0">4.5/5.0</li>
-                  </ul>
-
-                  <!-- button -->
-                  <button class="btn btn-sm btn-primary mb-0 mt-2 mt-sm-0">Follow</button>
                 </div>
               </div>
               <!-- Course info END -->
             </div>
 
-            <!-- Tags START -->
+            <!-- Requirements START -->
             <div class="col-md-6 col-xl-12">
               <div class="card card-body border p-4">
-                <h4 class="mb-3">Popular Tags</h4>
-                <ul class="list-inline mb-0">
-                  <li class="list-inline-item"> <a class="btn btn-outline-light btn-sm" href="#">blog</a> </li>
-                  <li class="list-inline-item"> <a class="btn btn-outline-light btn-sm" href="#">business</a> </li>
-                  <li class="list-inline-item"> <a class="btn btn-outline-light btn-sm" href="#">theme</a> </li>
-                  <li class="list-inline-item"> <a class="btn btn-outline-light btn-sm" href="#">bootstrap</a> </li>
-                  <li class="list-inline-item"> <a class="btn btn-outline-light btn-sm" href="#">data science</a> </li>
-                  <li class="list-inline-item"> <a class="btn btn-outline-light btn-sm" href="#">web development</a> </li>
-                  <li class="list-inline-item"> <a class="btn btn-outline-light btn-sm" href="#">tips</a> </li>
-                  <li class="list-inline-item"> <a class="btn btn-outline-light btn-sm" href="#">machine learning</a> </li>
+                <h4 class="mb-3">Requirements</h4>
+                <ul class="list-group list-group-borderless pt-3">
+                  <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-info-circle text-primary me-2"></i>Need a Computer/Laptop/Mobile</li>
+                  <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-info-circle text-primary me-2"></i>Good Internet Connection</li>
+                  <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-info-circle text-primary me-2"></i>Concept in RC Building Design</li>
+                  <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-info-circle text-primary me-2"></i>Concept in Structural Analysis</li>
                 </ul>
               </div>
             </div>
-            <!-- Tags END -->
+
+            <!-- Audience START -->
+            <div class="col-md-6 col-xl-12">
+              <div class="card card-body border p-4">
+                <h4 class="mb-3">Audience</h4>
+                <ul class="list-group list-group-borderless pt-3">
+                  <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-info-circle text-primary me-2"></i>B.Sc. In Civil Engineering Student</li>
+                  <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-info-circle text-primary me-2"></i>Diploma In Engineering (Civil) Student</li>
+                  <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-info-circle text-primary me-2"></i>Civil Engineering Job Holder</li>
+                  <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-info-circle text-primary me-2"></i>Who want to learn Structural Design</li>
+                  <li class="list-group-item h6 fw-light d-flex mb-0"><i class="fas fa-info-circle text-primary me-2"></i>Who want to learn Complete Etabs</li>
+                </ul>
+              </div>
+            </div>
+
           </div><!-- Row End -->
         </div>
       </div>

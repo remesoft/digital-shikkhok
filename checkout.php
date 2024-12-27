@@ -4,10 +4,10 @@ include('includes/db.php');
 include('includes/get_user_by_email.php');
 $user = get_user($conn, $_SESSION['user_email']);
 if (isset($_GET['id'])) {
-    $course_id = $_GET['id'];
+	$course_id = $_GET['id'];
 } else {
-    // Handle the error (e.g., redirect or show an error message)
-    $course_id= null;
+	// Handle the error (e.g., redirect or show an error message)
+	$course_id = null;
 }
 $pageTitle = "Home";
 ob_start();
@@ -17,8 +17,7 @@ ob_start();
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
 
-	<!-- =======================
-Page Banner START -->
+	<!-- Page Banner START -->
 	<section class="py-0">
 		<div class="container">
 			<div class="row">
@@ -41,8 +40,7 @@ Page Banner START -->
 			</div>
 		</div>
 	</section>
-	<!-- =======================
-Page Banner END -->
+	<!-- Page Banner END -->
 
 	<!-- =======================
 Page content START -->
@@ -53,7 +51,7 @@ Page content START -->
 				<!-- Main content START -->
 				<div class="col-xl-8 mb-4 mb-sm-0">
 					<!-- Alert -->
-					 <?php if(!isset($_SESSION['user_email'])) { 
+					<?php if (!isset($_SESSION['user_email'])) {
 						echo '<div class="alert alert-danger alert-dismissible d-flex justify-content-between align-items-center fade show py-2 pe-2" role="alert">
 							<div>
 								<i class="bi bi-exclamation-octagon-fill me-2"></i>
@@ -62,27 +60,26 @@ Page content START -->
 							<button type="button" class="btn btn-link mb-0 text-primary-hover text-end" data-bs-dismiss="alert" aria-label="Close"><i class="bi bi-x-lg"></i></button>
 						</div>';
 					}
-						?>
-						<?php 
-						
-						if (isset($_SESSION['showAlert'])) {
-							echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+					?>
+					<?php
+
+					if (isset($_SESSION['showAlert'])) {
+						echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
 									 ' . $_SESSION['showAlert'] . '
 									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 								</div>';
-								unset($_SESSION['showAlert']);
-
-						}
-						if  (isset($_SESSION['showErr'])) {
-							echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+						unset($_SESSION['showAlert']);
+					}
+					if (isset($_SESSION['showErr'])) {
+						echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
 									<strong>Opps!</strong> ' . $_SESSION['showErr'] . '
 									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 								</div>';
-								unset($_SESSION['showErr']);
-						}
-						
-						?>
-					
+						unset($_SESSION['showErr']);
+					}
+
+					?>
+
 					<!-- Personal info START -->
 					<div class="card card-body shadow p-4">
 						<!-- Title -->
@@ -113,7 +110,7 @@ Page content START -->
 							</div>
 							<!-- Button -->
 							<div class="col-12 text-end">
-								<button type="submit" class="btn btn-primary mb-0">   Confirm Payment</button>
+								<button type="submit" class="btn btn-primary mb-0"> Confirm Payment</button>
 							</div>
 						</form>
 						<!-- Form END -->

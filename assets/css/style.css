@@ -22581,3 +22581,8 @@ html[dir=rtl] .choices__input {
 
 /*User CSS*/
 /*# sourceMappingURL=style.css.map */
+.navbar-logo{
+  height: 50px;
+  width: auto;
+  margin-right: 10px;
+}

@@ -81,7 +81,7 @@ ob_start();
                 <!-- Short description -->
                 <div class="col-12">
                   <label class="form-label">Short description</label>
-                  <textarea name="short_desc" class="form-control" rows="2" placeholder="Enter keywords" require>Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.
+                  <textarea name="short_desc" class="form-control" rows="4" placeholder="Enter keywords" require>Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.
 										</textarea>
                 </div>
 
@@ -95,6 +95,17 @@ ob_start();
                 <div class="col-md-6">
                   <label class="form-label">Course price</label>
                   <input name="price" type="text" class="form-control" placeholder="Enter course price" value="350" require>
+                </div>
+                <!-- Course price -->
+                <div class="col-md-6">
+                  <label class="form-label">Total Lectures</label>
+                  <input name="total_lectures" type="text" class="form-control" placeholder="Enter total lectures" value="27" require>
+                </div>
+
+                <!-- Course price -->
+                <div class="col-md-6">
+                  <label class="form-label">Course Language</label>
+                  <input name="language" type="text" class="form-control" placeholder="Enter course language" value="Bangla" require>
                 </div>
 
                 <!-- Course description -->
@@ -114,7 +125,7 @@ ob_start();
 
             <!-- Step 2 content START -->
             <div id="step-2" role="tabpanel" class="content fade" aria-labelledby="steppertrigger2">
-              <h4>Course Thumbnail</h4>
+              <h4>Course Media</h4>
               <hr>
               <div class="row">
                 <!-- Upload image START -->
@@ -134,6 +145,15 @@ ob_start();
                   </div>
                 </div>
                 <!-- Upload image END -->
+
+
+                <!-- Upload video START -->
+                <div class="col-12 mt-4">
+                  <h5>Introduction video URL</h5>
+                  <div class="col-12 mt-3">
+                    <input class="form-control" name="video" type="text" placeholder="Enter video url" value="https://www.youtube.com/embed/tXHviS-4ygo">
+                  </div>
+                </div>
 
 
                 <!-- Step 2 button -->
@@ -187,18 +207,20 @@ ob_start();
         <h5 class="modal-title text-white" id="addLectureLabel">Add Lecture</h5>
         <button type="button" class="btn btn-sm btn-light mb-0 ms-auto" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <form class="row text-start g-3">
-          <div class="col-12">
-            <label class="form-label">Lecture name <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" placeholder="Enter lecture name" id="lectureNameInput">
+      <form id="lectureForm">
+        <div class="modal-body">
+          <div class="row text-start g-3">
+            <div class="col-12">
+              <label class="form-label">Lecture name <span class="text-danger">*</span></label>
+              <input name="name" type="text" class="form-control" placeholder="Enter lecture name">
+            </div>
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger-soft my-0" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success my-0" data-bs-dismiss="modal" id="addLectureButton" onclick="addLecture()">Add Lecture</button>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger-soft my-0" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-success my-0" data-bs-dismiss="modal">Add Lecture</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
@@ -215,25 +237,24 @@ ob_start();
         <button type="button" class="btn btn-sm btn-light mb-0 ms-auto" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
       </div>
       <div class="modal-body">
-        <form class="row text-start g-3">
-          <!-- Topic name -->
+        <form id="topicForm" class="row text-start g-3">
           <div class="col-md-6">
             <label class="form-label">Topic name</label>
-            <input id="topicNameInput" class="form-control" type="text" placeholder="Enter topic name">
+            <input class="form-control" name="name" type="text" placeholder="Enter topic name">
           </div>
-          <!-- Video link -->
           <div class="col-md-6">
-            <label class="form-label">Video link</label>
-            <input id="topicUrlInput" class="form-control" type="text" placeholder="Enter Video link">
+            <label class="form-label">Video Duration</label>
+            <input class="form-control" name="duration" type="text" placeholder="12m 30s">
           </div>
-          <!-- Buttons -->
+          <div class="col-md-12">
+            <label class="form-label">Video link</label>
+            <input class="form-control" name="url" type="text" placeholder="Enter Video link">
+          </div>
           <div class="col-6 mt-3">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-              <!-- Free button -->
-              <input type="radio" class="btn-check" name="options" id="option1" checked="">
+              <input type="radio" class="btn-check" name="price" value="free" id="option1" checked="">
               <label class="btn btn-sm btn-light btn-primary-soft-check border-0 m-0" for="option1">Free</label>
-              <!-- Premium button -->
-              <input type="radio" class="btn-check" name="options" id="option2">
+              <input type="radio" class="btn-check" name="price" value="premium" id="option2">
               <label class="btn btn-sm btn-light btn-primary-soft-check border-0 m-0" for="option2">Premium</label>
             </div>
           </div>
@@ -241,11 +262,12 @@ ob_start();
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger-soft my-0" data-bs-dismiss="modal">Close</button>
-        <button type="button" onclick="addTopic()" class="btn btn-success my-0" data-bs-dismiss="modal">Save topic</button>
+        <button type="submit" class="btn btn-success my-0" form="topicForm" data-bs-dismiss="modal">Save topic</button>
       </div>
     </div>
   </div>
 </div>
+
 
 
 <!-- ----------------------------------- -->
@@ -284,6 +306,17 @@ ob_start();
 <div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
 
 
+<script>
+  document.getElementById("lectureForm").addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent default form submission behavior
+    createLecture(this); // Call `createTopic` and pass the form element
+  });
+
+  document.getElementById("topicForm").addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent default form submission behavior
+    createTopic(this); // Call `createTopic` and pass the form element
+  });
+</script>
 
 <?php
 $content = ob_get_clean();

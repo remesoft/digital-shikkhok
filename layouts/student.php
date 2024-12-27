@@ -80,10 +80,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&amp;family=Roboto:wght@400;500;700&amp;display=swap">
 
     <!-- Plugins CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="assets/vendor/choices/css/choices.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/vendor/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/font-awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/choices/css/choices.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/aos/aos.css">
 
     <!-- Theme CSS -->
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
@@ -590,9 +590,9 @@
     <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Vendors -->
-    <script src="assets/vendor/choices/js/choices.min.js"></script>
-    <script src="assets/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="../assets/vendor/choices/js/choices.min.js"></script>
+    <script src="../assets/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
+    <script src="../assets/vendor/aos/aos.js"></script>
 
     <!-- Template Functions -->
     <script src="../assets/js/functions.js"></script>
