@@ -4,6 +4,18 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != '1') {
     header('Location: ../sign_in.php');
     exit();
 }
+$user_id = $_SESSION['user_id'];
+include '../includes/db.php';
+$sql = "SELECT courses.* FROM enrollments JOIN courses ON enrollments.course_id = courses.id WHERE enrollments.user_id = $user_id AND enrollments.confirm = '1'";
+$result = $conn->query($sql);
+
+$courses = [];
+
+if ($result->num_rows > 0) {
+    $courses = $result->fetch_all(MYSQLI_ASSOC);
+} else {
+    $courses = [];
+}
 $pageTitle = "Student Dashboard";
 ob_start();
 ?>
@@ -106,184 +118,40 @@ ob_start();
 
                     <!-- Table body START -->
                     <tbody>
-                        <!-- Table item -->
-                        <tr>
-                            <!-- Table data -->
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <!-- Image -->
-                                    <div class="w-100px">
-                                        <img src="assets/images/courses/4by3/08.jpg" class="rounded" alt="">
-                                    </div>
-                                    <div class="mb-0 ms-2">
-                                        <!-- Title -->
-                                        <h6><a href="#">Building Scalable APIs with GraphQL</a></h6>
-                                        <!-- Info -->
-                                        <div class="overflow-hidden">
-                                            <h6 class="mb-0 text-end">85%</h6>
-                                            <div class="progress progress-sm bg-primary bg-opacity-10">
-                                                <div class="progress-bar bg-primary aos" role="progressbar" data-aos="slide-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                        <?php foreach ($courses as $course): ?>
+                            <tr>
+                                <!-- Table data -->
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <!-- Image -->
+                                        <div class="w-100px">
+                                            <img src="../uploads/img/thumbnails/<?= $course['thumbnail'] ?>" class="rounded" alt="">
+                                        </div>
+                                        <div class="mb-0 ms-2">
+                                            <!-- Title -->
+                                            <h6 class="table-responsive-title"><a href="#"><?= htmlspecialchars($course['title']) ?></a></h6>
+                                            <!-- Info -->
+                                            <div class="overflow-hidden">
+                                                <h6 class="mb-0 text-end">100%</h6>
+                                                <div class="progress progress-sm bg-primary bg-opacity-10">
+                                                    <div class="progress-bar bg-primary aos" role="progressbar" data-aos="slide-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
+                                </td>
+                                <td>10</td>
+                                <td>10</td>
+                                <!-- Table data -->
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-play-circle me-1"></i>Continue</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
 
-                            <!-- Table data -->
-                            <td>56</td>
 
-                            <!-- Table data -->
-                            <td>40</td>
 
-                            <!-- Table data -->
-                            <td>
-                                <a href="#" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-play-circle me-1"></i>Continue</a>
-                            </td>
-                        </tr>
-
-                        <!-- Table item -->
-                        <tr>
-                            <!-- Table data -->
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <!-- Image -->
-                                    <div class="w-100px">
-                                        <img src="assets/images/courses/4by3/03.jpg" class="rounded" alt="">
-                                    </div>
-                                    <div class="mb-0 ms-2">
-                                        <!-- Title -->
-                                        <h6><a href="#">Create a Design System in Figma</a></h6>
-                                        <!-- Info -->
-                                        <div class="overflow-hidden">
-                                            <h6 class="mb-0 text-end">100%</h6>
-                                            <div class="progress progress-sm bg-primary bg-opacity-10">
-                                                <div class="progress-bar bg-primary aos" role="progressbar" data-aos="slide-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-
-                            <!-- Table data -->
-                            <td>42</td>
-
-                            <!-- Table data -->
-                            <td>42</td>
-
-                            <!-- Table data -->
-                            <td>
-                                <button class="btn btn-sm btn-success me-1 mb-1 mb-x;-0 disabled"><i class="bi bi-check me-1"></i>Complete</button>
-                                <a href="#" class="btn btn-sm btn-light me-1"><i class="bi bi-arrow-repeat me-1"></i>Restart</a>
-                            </td>
-                        </tr>
-
-                        <!-- Table item -->
-                        <tr>
-                            <!-- Table data -->
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <!-- Image -->
-                                    <div class="w-100px">
-                                        <img src="assets/images/courses/4by3/05.jpg" class="rounded" alt="">
-                                    </div>
-                                    <div class="mb-0 ms-2">
-                                        <!-- Title -->
-                                        <h6><a href="#">The Complete Web Development in python</a></h6>
-                                        <!-- Info -->
-                                        <div class="overflow-hidden">
-                                            <h6 class="mb-0 text-end">60%</h6>
-                                            <div class="progress progress-sm bg-primary bg-opacity-10">
-                                                <div class="progress-bar bg-primary aos" role="progressbar" data-aos="slide-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-
-                            <!-- Table data -->
-                            <td>28</td>
-
-                            <!-- Table data -->
-                            <td>12</td>
-
-                            <!-- Table data -->
-                            <td>
-                                <a href="#" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-play-circle me-1"></i>Continue</a>
-                            </td>
-                        </tr>
-
-                        <!-- Table item -->
-                        <tr>
-                            <!-- Table data -->
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <!-- Image -->
-                                    <div class="w-100px">
-                                        <img src="assets/images/courses/4by3/01.jpg" class="rounded" alt="">
-                                    </div>
-                                    <div class="mb-0 ms-2">
-                                        <!-- Title -->
-                                        <h6><a href="#">Digital Marketing Masterclass</a></h6>
-                                        <!-- Info -->
-                                        <div class="overflow-hidden">
-                                            <h6 class="mb-0 text-end">40%</h6>
-                                            <div class="progress progress-sm bg-primary bg-opacity-10">
-                                                <div class="progress-bar bg-primary aos" role="progressbar" data-aos="slide-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <!-- Table data -->
-                            <td>32</td>
-
-                            <!-- Table data -->
-                            <td>18</td>
-
-                            <!-- Table data -->
-                            <td>
-                                <a href="#" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-play-circle me-1"></i>Continue</a>
-                            </td>
-                        </tr>
-
-                        <!-- Table item -->
-                        <tr>
-                            <!-- Table data -->
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <!-- Image -->
-                                    <div class="w-100px">
-                                        <img src="assets/images/courses/4by3/02.jpg" class="rounded" alt="">
-                                    </div>
-                                    <div class="mb-0 ms-2">
-                                        <!-- Title -->
-                                        <h6><a href="#">Graphic Design Masterclass</a></h6>
-                                        <!-- Info -->
-                                        <div class="overflow-hidden">
-                                            <h6 class="mb-0 text-end">90%</h6>
-                                            <div class="progress progress-sm bg-primary bg-opacity-10">
-                                                <div class="progress-bar bg-primary aos" role="progressbar" data-aos="slide-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <!-- Table data -->
-                            <td>16</td>
-
-                            <!-- Table data -->
-                            <td>14</td>
-
-                            <!-- Table data -->
-                            <td>
-                                <a href="#" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-play-circle me-1"></i>Continue</a>
-                            </td>
-                        </tr>
                     </tbody>
                     <!-- Table body END -->
                 </table>

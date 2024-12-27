@@ -80,10 +80,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&amp;family=Roboto:wght@400;500;700&amp;display=swap">
 
     <!-- Plugins CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="assets/vendor/choices/css/choices.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/vendor/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/font-awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/choices/css/choices.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/vendor/aos/aos.css">
 
     <!-- Theme CSS -->
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
@@ -99,8 +99,8 @@
             <div class="container">
                 <!-- Logo START -->
                 <a class="navbar-brand" href="../index.php">
-                    <img class="light-mode-item navbar-brand-item" src="assets/images/logo.svg" alt="logo">
-                    <img class="dark-mode-item navbar-brand-item" src="assets/images/logo-light.svg" alt="logo">
+                    <img class="light-mode-item navbar-brand-item" src="../assets/images/logo.svg" alt="logo">
+                    <img class="dark-mode-item navbar-brand-item" src="../assets/images/logo-light.svg" alt="logo">
                 </a>
                 <!-- Logo END -->
 
@@ -126,13 +126,6 @@
                                 <li> <a class="dropdown-item" href="index-3.html">Home Education</a></li>
                                 <li> <a class="dropdown-item" href="index-4.html">Home Academy</a></li>
                                 <li> <a class="dropdown-item" href="index-5.html">Home Course</a></li>
-                                <li> <a class="dropdown-item" href="index-6.html">Home University</a></li>
-                                <li> <a class="dropdown-item" href="index-7.html">Home Kindergarten</a></li>
-                                <li> <a class="dropdown-item" href="index-8.html">Home Landing</a></li>
-                                <li> <a class="dropdown-item" href="index-9.html">Home Tutor</a></li>
-                                <li> <a class="dropdown-item" href="index-10.html">Home School</a></li>
-                                <li> <a class="dropdown-item" href="index-11.html">Home Abroad</a></li>
-                                <li> <a class="dropdown-item" href="index-12.html">Home Workshop</a></li>
                             </ul>
                         </li>
 
@@ -153,16 +146,6 @@
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li> <a class="dropdown-item" href="course-list.html">Course List Classic</a></li>
-                                        <li> <a class="dropdown-item" href="course-list-2.html">Course List Minimal</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li> <a class="dropdown-item" href="course-detail.html">Course Detail Classic</a></li>
-                                        <li> <a class="dropdown-item" href="course-detail-min.html">Course Detail Minimal</a></li>
-                                        <li> <a class="dropdown-item" href="course-detail-adv.html">Course Detail Advance</a></li>
-                                        <li> <a class="dropdown-item" href="course-detail-module.html">Course Detail Module</a></li>
-                                        <li> <a class="dropdown-item" href="course-video-player.html">Course Full Screen Video</a></li>
                                     </ul>
                                 </li>
 
@@ -607,9 +590,9 @@
     <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Vendors -->
-    <script src="assets/vendor/choices/js/choices.min.js"></script>
-    <script src="assets/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="../assets/vendor/choices/js/choices.min.js"></script>
+    <script src="../assets/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
+    <script src="../assets/vendor/aos/aos.js"></script>
 
     <!-- Template Functions -->
     <script src="../assets/js/functions.js"></script>
