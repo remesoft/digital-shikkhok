@@ -29,3 +29,25 @@ function upload_image($path, $field)
     echo "Error: There was an error uploading your file.";
   }
 }
+
+function get_checkout_link($course_id)
+{
+  if (isset($_SESSION['user_email'])) {
+    return "./checkout.php?id=$course_id";
+  } else {
+    $message = "Please log in or sign up to checkout this course.";
+    $_SESSION['error_message'] = $message;
+    return "./sign_up.php";
+  }
+}
+
+
+
+// include('includes/get_user_by_email.php');
+// $user = get_user($conn, $_SESSION['user_email']);
+// if (isset($_GET['id'])) {
+// 	$course_id = $_GET['id'];
+// } else {
+// 	// Handle the error (e.g., redirect or show an error message)
+// 	$course_id = null;
+// }

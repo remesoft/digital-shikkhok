@@ -1,9 +1,10 @@
 <?php
 session_start();
 include('includes/db.php');
+include('includes/helpers.php');
 include('includes/get_course_by_id.php');
 $pageTitle = "Course Details";
-$course = get_course_by_id($conn, $_GET['id']);
+$course = get_detailed_course($conn, $_GET['id']);
 ob_start();
 ?>
 
@@ -194,8 +195,13 @@ ob_start();
 
                 <!-- Buttons -->
                 <div class="mt-3 d-grid">
+                  <?php
+
+
+                  ?>
+
                   <a href="./checkout.php?id=<?= $course['id'] ?>" class="btn btn-outline-primary">Add to cart</a>
-                  <a href="./checkout.php?id=<?= $course['id'] ?>" class="btn btn-success">Buy now</a>
+                  <a href="<?= get_checkout_link($course['id']) ?>" class="btn btn-success">Buy now</a>
                 </div>
                 <!-- Divider -->
                 <hr>

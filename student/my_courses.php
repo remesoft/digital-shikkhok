@@ -4,6 +4,10 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != '1') {
     header('Location: ../sign_in.php');
     exit();
 }
+include '../includes/db.php';
+$sql = "SELECT courses.* FROM enrollments JOIN courses ON enrollments.course_id = courses.id WHERE enrollments.user_id = $userid AND enrollments.confirm = '1'";
+
+
 $pageTitle = "Student Dashboard";
 ob_start();
 ?>
