@@ -1,5 +1,41 @@
 <?php
-function get_course_by_id($conn, $course_id)
+function get_course($conn, $course_id)
+{
+  // Sanitize the course ID to prevent SQL injection
+  $course_id = mysqli_real_escape_string($conn, $course_id);
+  $sql = "SELECT * FROM courses WHERE id = '$course_id'";
+
+  // Execute the query
+  $result = mysqli_query($conn, $sql);
+
+  // Check for query errors
+  if (!$result) {
+    $_SESSION['error_message'] = "Error: " . mysqli_error($conn);
+    if (isset($_SERVER['HTTP_REFERER'])) {
+      header("Location: " . $_SERVER['HTTP_REFERER']);
+    } else {
+      header("Location: ../our_courses.php");
+    }
+    exit;
+  }
+
+  // Fetch the course
+  $course = mysqli_fetch_assoc($result);
+
+  // If no course is found, redirect to 404
+  if (!$course) {
+    http_response_code(404);
+    header("Location: ../404.php");
+    exit;
+  }
+
+  // Return the course if found
+  return $course;
+}
+
+
+
+function get_detailed_course($conn, $course_id)
 {
   $sql = "
         SELECT 
