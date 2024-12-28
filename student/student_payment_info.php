@@ -5,16 +5,10 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != '1') {
 	exit();
 }
 include '../includes/db.php';
+include	'../includes/helpers.php';
+include '../includes/get_course_by_id.php';
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM enrollments WHERE user_id = $user_id";
-$result = $conn->query($sql);
-$records = [];
-if ($result->num_rows > 0) {
-
-	$records = $result->fetch_all(MYSQLI_ASSOC);
-} else {
-	$records = [];
-}
+$records = get_payment_records($user_id, $conn);
 $pageTitle = "Student Dashboard";
 ob_start();
 ?>
@@ -68,7 +62,7 @@ ob_start();
 						<tr>
 							<th scope="col" class="border-0 rounded-start">Date</th>
 							<th scope="col" class="border-0">Course name</th>
-							<th scope="col" class="border-0">Payment method</th>
+							<th scope="col" class="border-0">Payment Number</th>
 							<th scope="col" class="border-0">Status</th>
 							<th scope="col" class="border-0">Total</th>
 							<th scope="col" class="border-0 rounded-end">Action</th>
@@ -77,6 +71,11 @@ ob_start();
 					<!-- Table body -->
 					<tbody>
 						<!-- Table item -->
+						<?php if (empty($records)) { ?>
+							<tr>
+								<td colspan="6" class="text-center">No records found</td>
+							</tr>
+						<?php }else{?>
 						<?php foreach ($records as $info) { ?>
 							<tr>
 								<!-- Date item -->
@@ -84,7 +83,8 @@ ob_start();
 
 								<!-- Title item -->
 								<td>
-									<h6 class="mt-2 mt-lg-0 mb-0"><a href="#"><?php echo $info['course_id']; ?></a></h6>
+									<?php $course = get_course($conn, $info['course_id']); ?>
+									<h6 class="mt-2 mt-lg-0 mb-0"><a href="#"><?php echo $course['title']; ?></a></h6>
 								</td>
 
 								<!-- Payment method item -->
@@ -92,16 +92,16 @@ ob_start();
 
 								<!-- Status item -->
 								<td>
-									<span class="badge bg-gray bg-opacity-10 text-black"><?php echo $info['confirm']; ?></span>
+									<span class="badge bg-gray bg-opacity-10 text-black"><?php if ($info['confirm'] == 1) echo "Paid"; else echo "Pending"; ?></span>
 								</td>
 								<!-- Total item -->
-								<td>350tk</td>
+								<td><?php echo $course['price'];?> BDT</td>
 								<!-- Action item -->
 								<td>
 									<a href="#" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-printer me-1"></i>Receipt</a>
 								</td>
 							</tr>
-						<?php }?>
+						<?php } }?>
 					</tbody>
 				</table>
 			</div>

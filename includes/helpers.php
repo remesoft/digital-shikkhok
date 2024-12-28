@@ -41,8 +41,39 @@ function get_checkout_link($course_id)
   }
 }
 
+// Get payment History of a user
+function get_payment_records($user_id, $conn)
+{
+  $sql = "SELECT * FROM enrollments WHERE user_id = $user_id";
+  $result = $conn->query($sql);
+  $records = [];
+  if ($result->num_rows > 0) {
+
+    $records = $result->fetch_all(MYSQLI_ASSOC);
+  } else {
+    $records = [];
+  }
+
+  return $records;
+}
 
 
+// Get the erolled courses
+function get_enrolled_course($conn, $user_id)
+{
+  $sql = "SELECT courses.* FROM enrollments JOIN courses ON enrollments.course_id = courses.id WHERE enrollments.user_id = $user_id AND enrollments.confirm = '1'";
+  $result = $conn->query($sql);
+
+$courses = [];
+
+if ($result->num_rows > 0) {
+    $courses = $result->fetch_all(MYSQLI_ASSOC);
+} else {
+    $courses = [];
+}
+
+return $courses;
+}
 // include('includes/get_user_by_email.php');
 // $user = get_user($conn, $_SESSION['user_email']);
 // if (isset($_GET['id'])) {

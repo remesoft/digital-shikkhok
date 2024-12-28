@@ -7,16 +7,9 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != '1') {
 
 $user_id = $_SESSION['user_id'];
 include '../includes/db.php';
-$sql = "SELECT courses.* FROM enrollments JOIN courses ON enrollments.course_id = courses.id WHERE enrollments.user_id = $user_id AND enrollments.confirm = '1'";
-$result = $conn->query($sql);
+include	'../includes/helpers.php';
 
-$courses = [];
-
-if ($result->num_rows > 0) {
-    $courses = $result->fetch_all(MYSQLI_ASSOC);
-} else {
-    $courses = [];
-}
+$courses = get_enrolled_course($conn, $user_id);
 
 
 
@@ -80,6 +73,11 @@ ob_start();
 
                     <!-- Table body START -->
                     <tbody>
+                        <?php if (empty($courses)) { ?>
+                            <tr>
+                                <td colspan="4" class="text-center">No courses found</td>
+                            </tr>
+                        <?php }else{ ?>
                         <?php foreach ($courses as $course): ?>
                             <tr>
                                 <!-- Table data -->
@@ -110,7 +108,7 @@ ob_start();
                                     <a href="#" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-play-circle me-1"></i>Continue</a>
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
+                        <?php endforeach; } ?>
 
 
 

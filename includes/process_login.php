@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_email'] = $user['email'];
             $_SESSION['user_role'] = $user['role'];
             $_SESSION['showAlert'] = "Login successful!";
-            header("Location: ../student/profile.php");
+            header("Location: ../student/student_dashboard.php");
             exit();
         }else if($user && password_verify($password, $user['password']) && $user['role'] == '2'){
             // Successful admin login

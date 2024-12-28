@@ -528,11 +528,11 @@
                                         <a class="list-group-item" href="../student/my_courses.php"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
                                         <!-- <a class="list-group-item" href="student-quiz.html"><i class="bi bi-question-diamond fa-fw me-2"></i>Quiz</a> -->
                                         <a class="list-group-item" href="../student/student_payment_info.php"><i class="bi bi-credit-card-2-front fa-fw me-2"></i>Payment Info</a>
-                                        <a class="list-group-item" href="../student/student_wishlist.php"><i class="bi bi-cart-check fa-fw me-2"></i>Wishlist</a>
+                                        <!-- <a class="list-group-item" href="../student/student_wishlist.php"><i class="bi bi-cart-check fa-fw me-2"></i>Wishlist</a> -->
                                         <a class="list-group-item" href="../student/student_edit_profile.php"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
                                         <!-- <a class="list-group-item" href="instructor-setting.html"><i class="bi bi-gear fa-fw me-2"></i>Settings</a> -->
-                                        <a class="list-group-item" href="instructor-delete-account.html"><i class="bi bi-trash fa-fw me-2"></i>Delete Profile</a>
-                                        <a class="list-group-item text-danger bg-danger-soft-hover" href="#"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</a>
+                                        <!-- <a class="list-group-item" href="instructor-delete-account.html"><i class="bi bi-trash fa-fw me-2"></i>Delete Profile</a> -->
+                                        <a class="list-group-item text-danger bg-danger-soft-hover" href="../includes/logout.php"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</a>
                                     </div>
                                 </div>
                             </div>
@@ -558,13 +558,13 @@
                 <!-- Widget -->
                 <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
                     <!-- Logo START -->
-                    <a href="index-2.html"> <img class="h-20px" src="assets/images/logo-light.svg" alt="logo"> </a>
+                    <a href="../index.php"> <img class="h-50px" src="../assets/images/logo.png" alt="logo"> </a>
                 </div>
 
                 <!-- Widget -->
                 <div class="col-md-4 mb-3 mb-md-0">
                     <div class="text-center text-white text-primary-hover">
-                        Copyrights ©2024 Eduport. Build by <a href="https://www.webestica.com/" target="_blank" class="text-white">Webestica</a>.
+                        Copyrights ©2024 Digital-Shikkhok.com . Build by <a href="https://www.github.com/anikdey13" target="_blank" ">Anik Dey</a> and <a href="https://www.github.com/remesoft" target="_blank" >Dwip Sarker</a>
                     </div>
                 </div>
                 <!-- Widget -->
