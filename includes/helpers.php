@@ -40,6 +40,8 @@ function get_checkout_link($course_id)
     return "./sign_up.php";
   }
 }
+
+
 function get_status_classes($status)
 {
   $classes = [
@@ -51,12 +53,8 @@ function get_status_classes($status)
   return $classes[$status] ?? 'bg-gray';
 }
 
-
-// include('includes/get_user_by_email.php');
-// $user = get_user($conn, $_SESSION['user_email']);
-// if (isset($_GET['id'])) {
-// 	$course_id = $_GET['id'];
-// } else {
-// 	// Handle the error (e.g., redirect or show an error message)
-// 	$course_id = null;
-// }
+function is_active_page($page)
+{
+  $current_page = basename($_SERVER['PHP_SELF']);
+  return  $current_page == $page ? 'active' : '';
+}

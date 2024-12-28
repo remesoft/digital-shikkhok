@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php
+session_start();
+include_once '../includes/helpers.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +9,7 @@
 <!-- Mirrored from eduport.webestica.com/admin-edit-course-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Dec 2024 08:17:27 GMT -->
 
 <head>
-    <title>Eduport- LMS, Education and Course Theme</title>
+    <title></title>
 
     <!-- Meta Tags -->
     <meta charset="utf-8">
@@ -129,33 +132,23 @@
                             </a>
                             <!-- Submenu -->
                             <ul class="nav collapse flex-column show" id="collapsepage" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link active" href="../admin/all_courses.php">All Courses</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="admin-course-category.html">Course Category</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="admin-course-detail.html">Course Detail</a></li>
+                                <li class="nav-item"> <a class="nav-link <?= is_active_page('all_courses.php') ?>" href="../admin/all_courses.php">All Courses</a></li>
+                                <li class="nav-item"> <a class="nav-link <?= is_active_page('create_course.php') ?>" href="../admin/create_course.php">Create Course</a></li>
                             </ul>
                         </li>
-                        <!-- Course menu END -->
 
-                        <!-- Student menu -->
-                        <li class="nav-item"> <a class="nav-link" href="admin-student-list.html"><i class="fas fa-user-graduate fa-fw me-2"></i>Students</a></li>
-
-                        <!-- Instructors menu item -->
+                        <!-- Student Menu Item -->
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#collapseinstructors" role="button" aria-expanded="false" aria-controls="collapseinstructors">
-                                <i class="fas fa-user-tie fa-fw me-2"></i>Instructors
+                            <a class="nav-link" data-bs-toggle="collapse" href="#collapsestudent" role="button" aria-expanded="false" aria-controls="collapsestudent">
+                                <i class="fas fa-user-tie fa-fw me-2"></i>Students
                             </a>
                             <!-- Submenu -->
-                            <ul class="nav collapse flex-column" id="collapseinstructors" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link" href="admin-instructor-list.html">Instructors</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="admin-instructor-detail.html">Instructor Detail</a></li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="admin-instructor-request.html">Instructor requests
-                                        <span class="badge text-bg-success rounded-circle ms-2">2</span>
-                                    </a>
-                                </li>
+                            <ul class="nav collapse flex-column" id="collapsestudent" data-bs-parent="#navbar-sidebar">
+                                <li class="nav-item"> <a class="nav-link" href="admin-instructor-list.html">All Students</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../admin/enrollments.php">Enrollments</a></li>
                             </ul>
                         </li>
-                        <!-- Instructors menu END -->
+
 
                         <!-- Review menu -->
                         <li class="nav-item"> <a class="nav-link" href="admin-review.html"><i class="far fa-comment-dots fa-fw me-2"></i>Reviews</a></li>

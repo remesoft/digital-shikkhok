@@ -4,7 +4,7 @@
 <!-- Mirrored from eduport.webestica.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Dec 2024 08:12:55 GMT -->
 
 <head>
-    <title>Eduport - LMS, Education and Course Theme</title>
+    <title><?= $page_title ?? 'Digital Shikkhok' ?></title>
 
     <!-- Meta Tags -->
     <meta charset="utf-8">
@@ -132,15 +132,20 @@
 
                     <!-- Main navbar START -->
                     <div class="navbar-collapse w-100 collapse " id="navbarCollapse">
-
-                        <!-- Nav category menu START -->
-                        <ul class="navbar-nav navbar-nav-scroll me-auto">
-
-                        </ul>
-                        <!-- Nav category menu END -->
+                        <ul class="navbar-nav navbar-nav-scroll me-auto"></ul>
 
                         <!-- Nav Main menu START -->
                         <ul class="navbar-nav navbar-nav-scroll me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/digital-shikkhok/about_us.php">
+                                    Home
+                                </a>
+                            </li>
+
+
+
+
+
                             <!-- Nav item 1 Demos -->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle active" href="#" id="demoMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
@@ -210,20 +215,6 @@
                                 </ul>
                             </li>
                         </ul>
-                        <!-- Nav Main menu END -->
-
-                        <!-- Nav Search START -->
-                        <div class="nav my-3 my-xl-0 px-4 flex-nowrap align-items-center">
-                            <div class="nav-item w-100">
-                                <form class="position-relative">
-                                    <input class="form-control pe-5 bg-transparent" type="search" placeholder="Search" aria-label="Search">
-                                    <button class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset" type="submit">
-                                        <i class="fas fa-search fs-6 "></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- Nav Search END -->
                     </div>
                     <!-- Main navbar END -->
 
@@ -312,10 +303,10 @@
                 <div class="col-lg-3">
                     <!-- logo -->
                     <a class="me-0" href="index-2.html">
-                        <img class="light-mode-item h-40px" src="assets/images/logo.svg" alt="logo">
+                        <img class="light-mode-item h-60px" src="assets/images/logo.png" alt="logo">
                         <img class="dark-mode-item h-40px" src="assets/images/logo-light.svg" alt="logo">
                     </a>
-                    <p class="my-3">Eduport education theme, built specifically for the education centers which is dedicated to teaching and involve learners.</p>
+                    <p class="my-3">Digital Shikkhok is a platform where student can learn diploma in engineering form us.</p>
                     <!-- Social media icon -->
                     <ul class="list-inline mb-0 mt-3">
                         <li class="list-inline-item"> <a class="btn btn-white btn-sm shadow px-2 text-facebook" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> </li>
@@ -398,7 +389,7 @@
                 <div class="container px-0">
                     <div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-md-left">
                         <!-- copyright text -->
-                        <div class="text-body text-primary-hover"> Copyrights ©2024 Eduport. Build by <a href="https://www.webestica.com/" target="_blank" class="text-body">Webestica</a></div>
+                        <div class="text-body text-primary-hover"> Copyrights ©2024 Digital Shikkhok. Developed by <a href="https://www.github.com/remesoft/" target="_blank" class="text-body">Remesoft</a> and Anik Dey</div>
                         <!-- copyright links-->
                         <div class="justify-content-center mt-3 mt-lg-0">
                             <ul class="nav list-inline justify-content-center mb-0">

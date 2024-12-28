@@ -27,10 +27,10 @@ ob_start();
         <thead>
           <tr>
             <th scope="col" class="border-0 px-3 rounded-start" style="width: 30%;">Course Name</th>
-            <th scope="col" class="border-0 px-3" style="width: 20%;">Instructor</th>
-            <th scope="col" class="border-0 px-3" style="width: 10%;">Price</th>
-            <th scope="col" class="border-0 px-3" style="width: 10%;">Enrolled</th>
-            <th scope="col" class="border-0 px-3 rounded-end text-end">Action</th>
+            <th scope="col" class="border-0 ">Instructor</th>
+            <th scope="col" class="border-0 text-center">Price</th>
+            <th scope="col" class="border-0 text-center">Enrolled</th>
+            <th scope="col" class="border-0 px-3 text-end">Action</th>
           </tr>
         </thead>
 
@@ -59,20 +59,20 @@ ob_start();
                 <div class="d-flex align-items-center">
                   <!-- Avatar -->
                   <div class="avatar avatar-xs flex-shrink-0">
-                    <img class="avatar-img rounded-circle" src="../assets/images/avatar/08.jpg" alt="avatar">
+                    <img class="avatar-img rounded-circle" src="../uploads/img/instructors/instructor-02.png" alt="avatar">
                   </div>
                   <!-- Info -->
                   <div class="ms-2">
-                    <h6 class="mb-0 fw-light">Dwip Sarker</h6>
+                    <h6 class="mb-0 fw-light">Md. Sharif Ahmed</h6>
                   </div>
                 </div>
               </td>
 
               <!-- Table data -->
-              <td><?= htmlspecialchars($course['price']) ?></td>
-              <td> 15,567</td>
+              <td class="text-center"><?= htmlspecialchars($course['price']) ?></td>
+              <td class="text-center"> 15,567</td>
               <td class="d-flex justify-content-end">
-                <a href="#" class="btn btn-sm btn-success me-1 mb-1 mb-md-0">Edit</a>
+                <a href="update_course.php?id=<?= $course['id'] ?>" class="btn btn-sm btn-success me-1 mb-1 mb-md-0">Edit</a>
                 <button class="btn btn-sm btn-danger mb-0">Delete</button>
               </td>
             </tr>
