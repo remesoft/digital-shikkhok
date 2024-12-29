@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 $showAlert = isset($_SESSION['showAlert']) ? $_SESSION['showAlert'] : false;
@@ -9,7 +8,7 @@ ob_start();
 
 
 <section class="p-0 d-flex align-items-center position-relative overflow-hidden">
-	
+
     <div class="container-fluid">
         <div class="row">
             <!-- left -->
@@ -54,19 +53,19 @@ ob_start();
                         <h1 class="fs-2">Login into Eduport!</h1>
                         <p class="lead mb-4">Nice to see you! Please log in with your account.</p>
                         <?php
-							if ($showAlert) {
-								echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        if ($showAlert) {
+                            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
 										<strong>Success!</strong> Your account has been created successfully.Now you can login!
 										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									</div>';
-							}
-							if ($showErr) {
-								echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        }
+                        if ($showErr) {
+                            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
 										<strong>Opps!</strong> ' . $showErr . '
 										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 									</div>';
-							}
-							?>
+                        }
+                        ?>
                         <!-- Form START -->
                         <form action="./includes/process_login.php" method="POST">
                             <!-- Email -->
@@ -85,7 +84,7 @@ ob_start();
                                     <input type="password" class="form-control border-0 bg-light rounded-end ps-1" placeholder="password" id="pass" name="pass" required>
                                 </div>
                                 <div id="passwordHelpBlock" class="form-text">
-                                    Your password must be 8 characters at least 
+                                    Your password must be 8 characters at least
                                 </div>
                             </div>
                             <!-- Check box -->
