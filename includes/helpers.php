@@ -64,15 +64,15 @@ function get_enrolled_course($conn, $user_id)
   $sql = "SELECT courses.* FROM enrollments JOIN courses ON enrollments.course_id = courses.id WHERE enrollments.user_id = $user_id AND enrollments.confirm = '1'";
   $result = $conn->query($sql);
 
-$courses = [];
+  $courses = [];
 
-if ($result->num_rows > 0) {
+  if ($result->num_rows > 0) {
     $courses = $result->fetch_all(MYSQLI_ASSOC);
-} else {
+  } else {
     $courses = [];
-}
+  }
 
-return $courses;
+  return $courses;
 }
 // include('includes/get_user_by_email.php');
 // $user = get_user($conn, $_SESSION['user_email']);
@@ -82,3 +82,20 @@ return $courses;
 // 	// Handle the error (e.g., redirect or show an error message)
 // 	$course_id = null;
 // }
+
+function get_status_classes($status)
+{
+  $classes = [
+    'success' => 'bg-success text-success',
+    'pending' => 'bg-orange text-orange',
+    'cancel'  => 'bg-danger text-danger'
+  ];
+
+  return $classes[$status] ?? 'bg-gray';
+}
+
+function is_active_page($page)
+{
+  $current_page = basename($_SERVER['PHP_SELF']);
+  return  $current_page == $page ? 'active' : '';
+}

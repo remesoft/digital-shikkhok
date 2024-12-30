@@ -1,10 +1,17 @@
+<?
+
+session_start();
+include_once('./includes/helpers.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <!-- Mirrored from eduport.webestica.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Dec 2024 08:12:55 GMT -->
 
 <head>
-    <title>Eduport - LMS, Education and Course Theme</title>
+    <title><?= $page_title ?? 'Digital Shikkhok' ?></title>
 
     <!-- Meta Tags -->
     <meta charset="utf-8">
@@ -78,6 +85,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&amp;family=Roboto:wght@400;500;700&amp;display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Plugins CSS -->
     <link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css">
@@ -100,7 +108,6 @@
 
         gtag('config', 'G-7N7LGGGWT1');
     </script>
-
 </head>
 
 <body>
@@ -108,17 +115,12 @@
     <!-- ----------------------------------- -->
     <!--         Header Start                -->
     <!-- ----------------------------------- -->
-    <header class="navbar-light navbar-sticky header-static py-2">
+    <header class="navbar-light navbar-sticky header-static py-3 mb-2">
         <div class="container">
-            <!-- Nav START -->
             <nav class="navbar navbar-expand-xl">
                 <div class="container-fluid" style="padding: 0;">
                     <!-- Logo START -->
                     <a href="/"><img class="navbar-logo" src="assets/images/logo.png" alt="logo"></a>
-                    <!-- <a class="navbar-brand" href="/digital-shikkhok">
-                    <img class="light-mode-item navbar-brand-item" src="assets/images/logo.png" alt="logo">
-                    <img class="dark-mode-item navbar-brand-item" src="assets/images/logo-light.svg" alt="logo">
-                </a> -->
                     <!-- Logo END -->
 
                     <!-- Responsive navbar toggler -->
@@ -131,99 +133,44 @@
                     </button>
 
                     <!-- Main navbar START -->
-                    <div class="navbar-collapse w-100 collapse " id="navbarCollapse">
-
-                        <!-- Nav category menu START -->
-                        <ul class="navbar-nav navbar-nav-scroll me-auto">
-
-                        </ul>
-                        <!-- Nav category menu END -->
+                    <div class="navbar-collapse w-100 collapse" id="navbarCollapse">
+                        <ul class="navbar-nav navbar-nav-scroll me-auto"></ul>
 
                         <!-- Nav Main menu START -->
-                        <ul class="navbar-nav navbar-nav-scroll me-auto">
-                            <!-- Nav item 1 Demos -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle active" href="#" id="demoMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-                                <ul class="dropdown-menu" aria-labelledby="demoMenu">
-                                    <li> <a class="dropdown-item" href="instructor-list.html">Instructor List</a></li>
-                                    <li> <a class="dropdown-item" href="index-3.html">Reviews</a></li>
-                                    <li> <a class="dropdown-item" href="index-4.html">Home Academy</a></li>
-                                    <li> <a class="dropdown-item" href="index-5.html">Home Course</a></li>
-                                </ul>
-                            </li>
-
-                            <!-- Nav item 2 Pages -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courses</a>
-                                <ul class="dropdown-menu" aria-labelledby="pagesMenu">
-                                    <li> <a class="dropdown-item" href="/digital-shikkhok/our_courses.php">All Courses</a></li>
-                                    <li> <a class="dropdown-item" href="/digital-shikkhok/our_courses.php">Free Course</a></li>
-                                    <li> <a class="dropdown-item" href="/digital-shikkhok/our_courses.php">Paid Course</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="nav-item"> <a class="nav-link" href="/digital-shikkhok/about_us.php">About Us</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="/digital-shikkhok/contact_us.php">Contact Us</a></li>
-
-                            <!-- Nav item 5 link-->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link" href="#" id="advanceMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-h"></i>
+                        <ul class="navbar-nav navbar-nav-scroll me-auto" style="font-size: 17px;">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php">
+                                    হোম
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end min-w-auto" data-bs-popper="none">
-                                    <li>
-                                        <a class="dropdown-item" href="https://support.webestica.com/" target="_blank">
-                                            <i class="text-warning fa-fw bi bi-life-preserver me-2"></i>Support
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="docs/index.html" target="_blank">
-                                            <i class="text-danger fa-fw bi bi-card-text me-2"></i>Documentation
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="rtl/index.html" target="_blank">
-                                            <i class="text-info fa-fw bi bi-toggle-off me-2"></i>RTL demo
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="https://themes.getbootstrap.com/store/webestica/" target="_blank">
-                                            <i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>Buy Eduport!
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="docs/alerts.html" target="_blank">
-                                            <i class="text-orange fa-fw bi bi-puzzle-fill me-2"></i>Components
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="docs/snippets.html">
-                                            <i class="text-purple fa-fw bi bi-stickies-fill me-2"></i>Snippets
-                                        </a>
-                                    </li>
-                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="our_courses.php">
+                                    ফ্রি কোর্স
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="our_courses.php">
+                                    পেইড কোর্স
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="about_us.php">
+                                    আমাদের সম্পর্কে
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="our_courses.php">
+                                    শিক্ষকগণ
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact_us.php">
+                                    যোগাযোগ
+                                </a>
                             </li>
                         </ul>
-                        <!-- Nav Main menu END -->
-
-                        <!-- Nav Search START -->
-                        <div class="nav my-3 my-xl-0 px-4 flex-nowrap align-items-center">
-                            <div class="nav-item w-100">
-                                <form class="position-relative">
-                                    <input class="form-control pe-5 bg-transparent" type="search" placeholder="Search" aria-label="Search">
-                                    <button class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset" type="submit">
-                                        <i class="fas fa-search fs-6 "></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- Nav Search END -->
                     </div>
                     <!-- Main navbar END -->
 
@@ -287,9 +234,7 @@
                     <!-- Profile START -->
                 </div>
             </nav>
-            <!-- Nav END -->
         </div>
-
     </header>
 
 
@@ -312,10 +257,11 @@
                 <div class="col-lg-3">
                     <!-- logo -->
                     <a class="me-0" href="index-2.html">
-                        <img class="light-mode-item h-40px" src="assets/images/logo.svg" alt="logo">
+                        <img class="light-mode-item h-60px" src="assets/images/logo.png" alt="logo">
                         <img class="dark-mode-item h-40px" src="assets/images/logo-light.svg" alt="logo">
                     </a>
-                    <p class="my-3">Eduport education theme, built specifically for the education centers which is dedicated to teaching and involve learners.</p>
+                    <p class="my-3">
+                        ডিজিটাল শিক্ষক এমন একটি প্ল্যাটফর্ম যেখানে শিক্ষার্থীরা ডিপ্লোমা ইন ইঞ্জিনিয়ারিং কোর্স সহজে ও দক্ষতার সাথে শিখতে পারে।।</p>
                     <!-- Social media icon -->
                     <ul class="list-inline mb-0 mt-3">
                         <li class="list-inline-item"> <a class="btn btn-white btn-sm shadow px-2 text-facebook" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> </li>
@@ -331,34 +277,34 @@
                     <div class="row g-4">
                         <!-- Link block -->
                         <div class="col-6 col-md-4">
-                            <h5 class="mb-2 mb-md-4">Company</h5>
-                            <ul class="nav flex-column">
-                                <li class="nav-item"><a class="nav-link" href="#">About us</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Contact us</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">News and Blogs</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Library</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Career</a></li>
+                            <h5 class="mb-2 mb-md-4">কোম্পানি</h5>
+                            <ul class="nav flex-column ">
+                                <li class="nav-item"><a class="nav-link" href="about_us.php">আমাদের সম্পর্কে</a></li>
+                                <li class="nav-item"><a class="nav-link" href="contact_us.php">যোগাযোগ করুন</a></li>
+                                <li class="nav-item"><a class="nav-link" href="coming_soon.php">সংবাদ এবং ব্লগ</a></li>
+                                <li class="nav-item"><a class="nav-link" href="coming_soon.php">লাইব্রেরি</a></li>
+                                <li class="nav-item"><a class="nav-link" href="">ক্যারিয়ার</a></li>
                             </ul>
                         </div>
 
                         <!-- Link block -->
                         <div class="col-6 col-md-4">
-                            <h5 class="mb-2 mb-md-4">Community</h5>
+                            <h5 class="mb-2 mb-md-4">কমিউনিটি</h5>
                             <ul class="nav flex-column">
-                                <li class="nav-item"><a class="nav-link" href="#">Documentation</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Faq</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Forum</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Sitemap</a></li>
+                                <li class="nav-item"><a class="nav-link" href="http://facebook.com/">ফেসবুক</a></li>
+                                <li class="nav-item"><a class="nav-link" href="https://web.whatsapp.com/">ওয়াটসঅ্যাপ</a></li>
+                                <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/">ইনস্টাগ্রাম</a></li>
+                                <li class="nav-item"><a class="nav-link" href="http://youtube.com/">ইউটিউব</a></li>
                             </ul>
                         </div>
 
                         <!-- Link block -->
                         <div class="col-6 col-md-4">
-                            <h5 class="mb-2 mb-md-4">Teaching</h5>
+                            <h5 class="mb-2 mb-md-4">শিক্ষাদান</h5>
                             <ul class="nav flex-column">
-                                <li class="nav-item"><a class="nav-link" href="#">Become a teacher</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">How to guide</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Terms &amp; Conditions</a></li>
+                                <li class="nav-item"><a class="nav-link" href="coming_soon.php">শিক্ষক হন</a></li>
+                                <li class="nav-item"><a class="nav-link" href="coming_soon.php">গাইড করার পদ্ধতি</a></li>
+                                <li class="nav-item"><a class="nav-link" href="coming_soon.php">শর্তাবলি &amp; প্রাইভেসি পলিসি</a></li>
                             </ul>
                         </div>
                     </div>
@@ -370,20 +316,20 @@
                     <h5 class="mb-2 mb-md-4">Contact</h5>
                     <!-- Time -->
                     <p class="mb-2">
-                        Toll free:<span class="h6 fw-light ms-2">+1234 568 963</span>
-                        <span class="d-block small">(9:AM to 8:PM IST)</span>
+                        ফোন নম্বর :<span class="h6 fw-light ms-2">+880 1771868382</span>
+                        <span class="d-block small">(9:30 AM to 8:30 BST)</span>
                     </p>
 
-                    <p class="mb-0">Email:<span class="h6 fw-light ms-2">example@gmail.com</span></p>
+                    <p class="mb-0">ইমেইল :<span class="h6 fw-light ms-2">email.dwip@gmail.com</span></p>
 
                     <div class="row g-2 mt-2">
                         <!-- Google play store button -->
                         <div class="col-6 col-sm-4 col-md-3 col-lg-6">
-                            <a href="#"> <img src="assets/images/client/google-play.svg" alt=""> </a>
+                            <a href="coming_soon.php"> <img src="assets/images/client/google-play.svg" alt=""> </a>
                         </div>
                         <!-- App store button -->
                         <div class="col-6 col-sm-4 col-md-3 col-lg-6">
-                            <a href="#"> <img src="assets/images/client/app-store.svg" alt="app-store"> </a>
+                            <a href="coming_soon.php"> <img src="assets/images/client/app-store.svg" alt="app-store"> </a>
                         </div>
                     </div> <!-- Row END -->
                 </div>
@@ -398,7 +344,7 @@
                 <div class="container px-0">
                     <div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-md-left">
                         <!-- copyright text -->
-                        <div class="text-body text-primary-hover"> Copyrights ©2024 Eduport. Build by <a href="https://www.webestica.com/" target="_blank" class="text-body">Webestica</a></div>
+                        <div class="text-body text-primary-hover">কপিরাইট ©2024 ডিজিটাল শিক্ষক, সর্বস্বত্ব সংরক্ষিত।. Developed by <a href="https://www.github.com/remesoft/" target="_blank" class="text-body">Remesoft</a> and <a href="https://github.com/anikdey13" class="text-body">Anik Dey.</a></div>
                         <!-- copyright links-->
                         <div class="justify-content-center mt-3 mt-lg-0">
                             <ul class="nav list-inline justify-content-center mb-0">
@@ -406,17 +352,17 @@
                                     <!-- Language selector -->
                                     <div class="dropup mt-0 text-center text-sm-end">
                                         <a class="dropdown-toggle nav-link" href="#" role="button" id="languageSwitcher" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fas fa-globe me-2"></i>Language
+                                            <i class="fas fa-globe me-2"></i>ভাষা
                                         </a>
                                         <ul class="dropdown-menu min-w-auto" aria-labelledby="languageSwitcher">
-                                            <li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="assets/images/flags/uk.svg" alt="">English</a></li>
-                                            <li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="assets/images/flags/gr.svg" alt="">German </a></li>
-                                            <li><a class="dropdown-item me-4" href="#"><img class="fa-fw me-2" src="assets/images/flags/sp.svg" alt="">French</a></li>
+                                            <li><a class="dropdown-item me-4" href="coming_soon.php"><img class="fa-fw me-2" src="assets/images/flags/uk.svg" alt="">English</a></li>
+                                            <li><a class="dropdown-item me-4" href="coming_soon.php"><img class="fa-fw me-2" src="assets/images/flags/gr.svg" alt="">German </a></li>
+                                            <li><a class="dropdown-item me-4" href="coming_soon.php"><img class="fa-fw me-2" src="assets/images/flags/sp.svg" alt="">French</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li class="list-inline-item"><a class="nav-link" href="#">Terms of use</a></li>
-                                <li class="list-inline-item"><a class="nav-link pe-0" href="#">Privacy policy</a></li>
+                                <li class="list-inline-item"><a class="nav-link" href="coming_soon.php">ব্যবহারের শর্তাবলী</a></li>
+                                <li class="list-inline-item"><a class="nav-link pe-0" href="coming_soon.php">গোপনীয়তা নীতি</a></li>
                             </ul>
                         </div>
                     </div>

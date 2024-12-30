@@ -1,6 +1,8 @@
 <?php
 include('../includes/db.php');
-include('../includes/get_courses.php');
+include('../includes/helpers.php');
+include('../includes/get_course_by_id.php');
+include('../includes/enroll_functionality.php');
 $pageTitle = "Manage Courses";
 ob_start();
 ?>
@@ -12,8 +14,16 @@ ob_start();
   <!-- Title -->
   <div class="row mb-3">
     <div class="col-12 d-sm-flex justify-content-between align-items-center">
-      <h1 class="h3 mb-2 mb-sm-0">Total Courses <span class="badge bg-orange bg-opacity-10 text-orange">15</span></h1>
-      <a href="create_course.php" class="btn btn-sm btn-primary mb-0">Create a Course</a>
+      <h4 class=" mb-2 mb-sm-0">Total Courses <span class="badge bg-orange bg-opacity-10 text-orange">15</span></h4>
+      <div class="nav my-3 my-xl-0 flex-nowrap align-items-center">
+        <div class="nav-item w-100">
+          <form class="position-relative">
+            <input class="form-control pe-5 bg-secondary bg-opacity-10 border-0" type="search" placeholder="Mobile number..." aria-label="Search">
+            <button class="bg-transparent px-2 py-0 border-0 position-absolute top-50 end-0 translate-middle-y" type="submit"><i class="fas fa-search fs-6 text-primary"></i></button>
+          </form>
+        </div>
+      </div>
+      <!-- <a href="create_course.php" class="btn btn-sm btn-primary mb-0">Create a Course</a> -->
     </div>
   </div>
 
@@ -27,18 +37,20 @@ ob_start();
         <thead>
           <tr>
             <th scope="col" class="border-0 px-3 rounded-start" style="width: 30%;">Course Name</th>
-            <th scope="col" class="border-0 ">Instructor</th>
-            <th scope="col" class="border-0 text-center">Price</th>
-            <th scope="col" class="border-0 text-center">Enrolled</th>
-            <th scope="col" class="border-0 px-3 text-end">Action</th>
+            <th scope="col" class="border-0">Price</th>
+            <th scope="col" class="border-0 text-center">Status</th>
+            <th scope="col" class="border-0">Mobile Number</th>
+            <th scope="col" class="border-0 px-3 text-center">TNX Number</th>
+            <th scope="col" class="border-0 px-3 rounded-end text-end">Action</th>
           </tr>
         </thead>
 
         <!-- Table body START -->
         <tbody>
           <?php
-          $courses = get_courses($conn);
-          foreach ($courses as $course): ?>
+          $enrollments = get_enrollments($conn);
+          foreach ($enrollments as $enroll):
+            $course = get_course($conn, $enroll['course_id']) ?>
             <tr>
               <!-- Table data -->
               <td>
@@ -54,26 +66,22 @@ ob_start();
                 </div>
               </td>
 
-              <!-- Table data -->
-              <td>
-                <div class="d-flex align-items-center">
-                  <!-- Avatar -->
-                  <div class="avatar avatar-xs flex-shrink-0">
-                    <img class="avatar-img rounded-circle" src="../uploads/img/instructors/instructor-02.png" alt="avatar">
-                  </div>
-                  <!-- Info -->
-                  <div class="ms-2">
-                    <h6 class="mb-0 fw-light">Md. Sharif Ahmed</h6>
-                  </div>
-                </div>
-              </td>
 
               <!-- Table data -->
-              <td class="text-center"><?= htmlspecialchars($course['price']) ?></td>
-              <td class="text-center"> 15,567</td>
-              <td class="d-flex justify-content-end">
-                <a href="update_course.php?id=<?= $course['id'] ?>" class="btn btn-sm btn-success me-1 mb-1 mb-md-0">Edit</a>
-                <button class="btn btn-sm btn-danger mb-0">Delete</button>
+              <td><?= $course['price'] ?></td>
+              <td class="text-center">
+                <div class="badge <?= get_status_classes($enroll['status']) ?> bg-opacity-10">
+                  <?= $enroll['status'] ?>
+                </div>
+              </td>
+              <td><?= $enroll['phone'] ?></td>
+              <td class="text-center"><?= $enroll['tnx_id'] ?></td>
+              <td class="d-flex justify-content-end gap-2">
+                <form method="post" action="../includes/process_enroll_update_status.php">
+                  <input type="hidden" name="id" value="<?= $enroll['id'] ?>">
+                  <button class="btn btn-sm btn-danger mb-0" name="action" value="delete">Cancel</button>
+                  <button class="btn btn-sm btn-success me-1 mb-1 mb-md-0" name="action" value="approve">Approve</button>
+                </form>
               </td>
             </tr>
           <?php endforeach; ?>

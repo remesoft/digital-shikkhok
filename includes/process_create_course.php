@@ -2,7 +2,7 @@
 session_start(); // Start the session
 include '../includes/db.php';
 include '../includes/auth.php';
-include '../includes/helpers.php';
+include_once '../includes/helpers.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   try {
@@ -57,9 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   $topic_price = $topic['price'] ?? '';
 
                   // Insert topic
-                  $topic_sql = "INSERT INTO `topics` (`lecture_id`, `title`, `video`, `duration`, `price`) VALUES (?, ?, ?, ?, ?)";
+                  $topic_sql = "INSERT INTO `topics` (`lecture_id`,`course_id`, `title`, `video`, `duration`, `price`) VALUES (?, ?, ?, ?, ?, ?)";
                   if ($topicStmt = $conn->prepare($topic_sql)) {
-                    $topicStmt->bind_param("issss", $lecture_db_id, $topic_title, $video_url, $topic_duration, $topic_price);
+                    $topicStmt->bind_param("isssss", $lecture_db_id, $course_id, $topic_title, $video_url, $topic_duration, $topic_price);
 
                     if (!$topicStmt->execute()) {
                       throw new Exception("Error inserting topic: " . $topicStmt->error);

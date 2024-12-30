@@ -1,9 +1,7 @@
 <?php
-
-// if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
-//     header('Location: login.php');
-//     exit();
-// }
+include('../includes/db.php');
+include '../includes/get_course_by_id.php';
+$course = get_detailed_course($conn, $_GET['id']);
 $pageTitle = "Admin Panel";
 ob_start();
 ?>
@@ -14,7 +12,7 @@ ob_start();
 <!-- ----------------------------------- -->
 
 <div class="page-content-wrapper border">
-  <h1 class="h3 mb-3">New Course</h1>
+  <h1 class="h3 mb-3">Update Course</h1>
 
   <!-- Card START -->
   <div class="card border rounded-3 mb-5">
@@ -61,7 +59,8 @@ ob_start();
       <div class="card-body px-1 px-sm-4">
         <!-- Step content START -->
         <div class="bs-stepper-content">
-          <form action="../includes/process_create_course.php" method="post" enctype="multipart/form-data">
+          <form action="../includes/process_update_course.php" method="post" enctype="multipart/form-data">
+            <input type="text" name="course_id" value="<?= $course['id'] ?>" hidden>
 
             <!-- Step 1 content START -->
             <div id="step-1" role="tabpanel" class="content fade" aria-labelledby="steppertrigger1">
@@ -75,44 +74,42 @@ ob_start();
                 <!-- Course title -->
                 <div class="col-12">
                   <label class="form-label">Course title</label>
-                  <input name="title" class="form-control" type="text" placeholder="Enter course title" value="The Complete Digital Marketing Course - 12 Courses in 1" require>
+                  <input name="title" class="form-control" type="text" placeholder="Enter course title" value="<?= $course['title'] ?>" require>
                 </div>
 
                 <!-- Short description -->
                 <div class="col-12">
                   <label class="form-label">Short description</label>
-                  <textarea name="short_desc" class="form-control" rows="4" placeholder="Enter keywords" require>Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.
-										</textarea>
+                  <textarea name="short_desc" class="form-control" rows="4" placeholder="Enter keywords" require><?= $course['short_desc'] ?></textarea>
                 </div>
 
                 <!-- Course time -->
                 <div class="col-md-6">
                   <label class="form-label">Course time</label>
-                  <input name="duration" class="form-control" type="text" placeholder="Enter course time" value="12h 30m" require>
+                  <input name="duration" class="form-control" type="text" placeholder="Enter course time" value="<?= $course['duration'] ?>" require>
                 </div>
 
                 <!-- Course price -->
                 <div class="col-md-6">
                   <label class="form-label">Course price</label>
-                  <input name="price" type="text" class="form-control" placeholder="Enter course price" value="350" require>
+                  <input name="price" type="text" class="form-control" placeholder="Enter course price" value="<?= $course['price'] ?>" require>
                 </div>
                 <!-- Course price -->
                 <div class="col-md-6">
                   <label class="form-label">Total Lectures</label>
-                  <input name="total_lectures" type="text" class="form-control" placeholder="Enter total lectures" value="27" require>
+                  <input name="total_lectures" type="text" class="form-control" placeholder="Enter total lectures" value="<?= $course['total_lectures'] ?>" require>
                 </div>
 
                 <!-- Course price -->
                 <div class="col-md-6">
                   <label class="form-label">Course Language</label>
-                  <input name="language" type="text" class="form-control" placeholder="Enter course language" value="Bangla" require>
+                  <input name="language" type="text" class="form-control" placeholder="Enter course language" value="<?= $course['language'] ?>" require>
                 </div>
 
                 <!-- Course description -->
                 <div class="col-md-12">
                   <label class="form-label">Add description</label>
-                  <textarea name="description" class="form-control" rows="5" placeholder="Enter course description..." require>Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.
-                  </textarea>
+                  <textarea name="description" class="form-control" rows="5" placeholder="Enter course description..." require><?= $course['description'] ?></textarea>
                 </div>
 
                 <!-- Step 1 button -->
@@ -137,7 +134,7 @@ ob_start();
                       <h6 class="my-2">Upload course thumbnail here, or<a href="#!" class="text-primary"> Browse</a></h6>
                       <label style="cursor:pointer;">
                         <span>
-                          <input name="thumbnail" class="form-control stretched-link" type="file" id="image" accept="image/gif, image/jpeg, image/png" required />
+                          <input name="thumbnail" class="form-control stretched-link" type="file" id="image" accept="image/gif, image/jpeg, image/png" require />
                         </span>
                       </label>
                       <p class="small mb-0 mt-2"><b>Note:</b> Only JPG, JPEG and PNG. Our suggested dimensions are 600px * 450px. Larger image will be cropped to 4:3 to fit our thumbnails/previews.</p>
@@ -151,7 +148,7 @@ ob_start();
                 <div class="col-12 mt-4">
                   <h5>Introduction video URL</h5>
                   <div class="col-12 mt-3">
-                    <input class="form-control" name="video" type="text" placeholder="Enter video url" value="https://www.youtube.com/embed/tXHviS-4ygo">
+                    <input class="form-control" name="video" type="text" placeholder="Enter video url" value="<?= $course['video'] ?>">
                   </div>
                 </div>
 
@@ -176,17 +173,63 @@ ob_start();
                 </div>
 
                 <!-- Edit lecture START -->
-                <div class="accordion accordion-icon accordion-bg-light" id="lectureContainer"></div>
-                <div class="d-md-flex justify-content-between align-items-start mt-4">
-                  <button type="button" class="btn btn-secondary prev-btn mb-2 mb-md-0">Previous</button>
-                  <button type="button" class="btn btn-light me-auto ms-md-2 mb-2 mb-md-0">Preview Course</button>
-                  <div class="text-md-end">
-                    <button class="btn btn-success mb-2 mb-sm-0">Submit a Course</button>
-                    <p class="mb-0 small mt-1">Once you click "Submit a Course", your course will be uploaded and marked as pending for review.</p>
+                <div class="accordion accordion-icon accordion-bg-light" id="lectureContainer">
+                  <div class="accordion-item mb-3">
+                    <?php foreach ($course['lectures'] as $lecture): ?>
+                      <div class="accordion-item mb-3">
+                        <!-- Lecture Title Start -->
+                        <h6 class="accordion-header font-base">
+                          <button
+                            type="button"
+                            class="accordion-button fw-bold rounded d-inline-block collapsed d-block pe-5"
+                            data-bs-toggle="collapse"
+                            data-bs-target="lecture<?= $lecture['id'] ?>"
+                            aria-expanded="false"
+                            aria-controls="lecture<?= $lecture['id'] ?>">
+                            <?= $lecture['title'] ?>
+                          </button>
+                        </h6>
+
+                        <!-- Lecture Topics Start -->
+                        <div id="lecture<?= $lecture['id'] ?>" class="accordion-collapse collapse show" data-bs-parent="#accordionExample2">
+                          <div class="accordion-body mt-3">
+                            <div id="topic-<?= $lecture['id'] ?>">
+                              <?php foreach ($lecture['topics'] as $index => $topic): ?>
+                                <div class="d-flex justify-content-between align-items-center">
+                                  <div class="position-relative">
+                                    <a href="#" target="_blank" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static"><i class="fas fa-play"></i></a>
+                                    <span class="ms-2 mb-0 h6 fw-light"><?= $topic['title'] ?></span>
+                                  </div>
+                                  <div>
+                                    <input type="hidden" name="lectures[<?= $lecture['id'] ?>][topics][<?= $topic['id'] ?>][name]" value="<?= $topic['title'] ?>">
+                                    <input type="hidden" name="lectures[<?= $lecture['id'] ?>][topics][<?= $topic['id'] ?>][duration]" value="<?= $topic['duration'] ?>">
+                                    <input type="hidden" name="lectures[<?= $lecture['id'] ?>][topics][<?= $topic['id'] ?>][url]" value="<?= $topic['video'] ?>">
+                                    <input type="hidden" name="lectures[<?= $lecture['id'] ?>][topics][<?= $topic['id'] ?>][price]" value="<?= $topic['price'] ?>">
+                                    <a href="#" class="btn btn-sm btn-success-soft btn-round me-1 mb-1 mb-md-0"><i class="far fa-fw fa-edit"></i></a>
+                                    <button onclick="removeTopic(this)" class="btn btn-sm btn-danger-soft btn-round mb-0"><i class="fas fa-fw fa-times"></i></button>
+                                  </div>
+                                </div>
+                                <hr>
+                              <?php endforeach ?>
+                            </div>
+                            <input type="hidden" name="lectures[<?= $lecture['id'] ?>][name]" value="${data.name}">
+                            <a href="#" onclick="setCurrentLecture('<?= $lecture['id'] ?>')" class="btn btn-sm btn-dark mb-0" data-bs-toggle="modal" data-bs-target="#addTopic"><i class="bi bi-plus-circle me-2"></i>Add topic</a>
+                            <button type="button" onclick="removeLecture('<?= $lecture['id'] ?>')" class="btn btn-sm btn-danger-soft mb-0 mt-1 mt-sm-0">Delete this Lecture</button>
+                          </div>
+                        </div>
+                      </div>
+                    <?php endforeach ?>
+                  </div>
+                  <div class="d-md-flex justify-content-between align-items-start mt-4">
+                    <button class="btn btn-secondary prev-btn mb-2 mb-md-0">Previous</button>
+                    <button class="btn btn-light me-auto ms-md-2 mb-2 mb-md-0">Preview Course</button>
+                    <div class="text-md-end">
+                      <button class="btn btn-success mb-2 mb-sm-0">Confirm Update</button>
+                      <p class="mb-0 small mt-1">Once you click "Submit a Course", your course will be uploaded and marked as pending for review.</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
           </form>
         </div>
       </div>
