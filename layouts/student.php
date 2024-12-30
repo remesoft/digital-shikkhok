@@ -1,7 +1,12 @@
+<?php
+if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 'student') {
+    header('Location: ../sign_in.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from eduport.webestica.com/student-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Dec 2024 08:14:43 GMT -->
 
 <head>
     <title>Eduport - LMS, Education and Course Theme</title>

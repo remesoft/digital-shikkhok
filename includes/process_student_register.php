@@ -2,83 +2,78 @@
 session_start();
 include_once "db.php";
 
-// Initialize variables for feedback messages
-$showAlert = false;
-$showErr = false;
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $fname = htmlspecialchars(trim($_POST['fname']));
-    $lname = htmlspecialchars(trim($_POST['lname']));
+    // Sanitize and trim user inputs
+    $first_name = htmlspecialchars(trim($_POST['fname']));
+    $last_name = htmlspecialchars(trim($_POST['lname']));
     $email = htmlspecialchars(trim($_POST['email']));
     $phone = htmlspecialchars(trim($_POST['phone']));
-    $pass = trim($_POST['pass']);
-    $cpass = trim($_POST['cpass']);
+    $password = trim($_POST['pass']);
+    $confirm_password = trim($_POST['cpass']);
 
-    // Check if all required fields are filled
-    if (empty($fname) || empty($lname) || empty($email) || empty($pass) || empty($cpass)) {
-        $_SESSION['showErr'] = "All input fields are required!";
-        header("location: ../sign_up.php");
+    // Validate required fields
+    if (empty($first_name) || empty($last_name) || empty($email) || empty($password) || empty($confirm_password)) {
+        $_SESSION['error_message'] = "All fields are required!";
+        header("Location: ../sign_up.php");
         exit();
     }
 
-    // Check if email is valid
+    // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['showErr'] = "Invalid email format!";
-        header("location: ../sign_up.php");
+        $_SESSION['error_message'] = "Invalid email format!";
+        header("Location: ../sign_up.php");
         exit();
     }
 
-    // Check if passwords match
-    if ($pass !== $cpass) {
-        $_SESSION['showErr'] = "Passwords do not match!";
-        header("location: ../sign_up.php");
+    // Validate password match
+    if ($password !== $confirm_password) {
+        $_SESSION['error_message'] = "Passwords do not match!";
+        header("Location: ../sign_up.php");
         exit();
     }
 
-    // Check password strength (example: minimum 8 characters, at least one letter and one number)
-    if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $pass)) {
-        $_SESSION['showErr'] = "Password must be at least 8 characters long and include at least one letter and one number.";
-        header("location: ../sign_up.php");
+    // Validate password strength
+    if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $password)) {
+        $_SESSION['error_message'] = "Password must be at least 8 characters long and include at least one letter and one number.";
+        header("Location: ../sign_up.php");
         exit();
     }
 
-    // Check if the user already exists
-    $existSql = "SELECT id FROM `users` WHERE email = ?";
-    $stmt = $conn->prepare($existSql);
+    // Check if user already exists
+    $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $_SESSION['showErr'] = "User already exists with this email!";
+        $_SESSION['error_message'] = "User already exists with this email!";
         $stmt->close();
-        header("location: ../sign_up.php");
+        header("Location: ../sign_up.php");
         exit();
     }
     $stmt->close();
 
     // Hash the password
-    $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Insert user into the database
-    $sql = "INSERT INTO users (first_name, last_name, email, phone, password) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss", $fname, $lname, $email, $phone, $hashed_pass);
+    // Insert new user into the database
+    $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, phone, password) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $first_name, $last_name, $email, $phone, $hashed_password);
 
     if ($stmt->execute()) {
-        $_SESSION['showAlert'] = "Registration successful! Please log in.";
-        $_SESSION['showErr'] = null;
+        $_SESSION['success_message'] = "Registration successful! Welcome, $first_name.";
+        $_SESSION['user_id'] = $stmt->insert_id;
+        $_SESSION['user_email'] = $email;
+        $_SESSION['user_role'] = 'student';
         $stmt->close();
         $conn->close();
-        header("location: ../sign_up.php");
+        header("Location: ../student/student_dashboard.php");
         exit();
     } else {
-        $_SESSION['showErr'] = "Registration failed. Please try again.";
+        $_SESSION['error_message'] = "Registration failed. Please try again.";
         $stmt->close();
         $conn->close();
-        header("location: ../sign_up.php");
+        header("Location: ../sign_up.php");
         exit();
     }
 }
-?>
-

@@ -1,5 +1,4 @@
 <?
-
 session_start();
 include_once('./includes/helpers.php');
 ?>
@@ -187,14 +186,12 @@ include_once('./includes/helpers.php');
                     </div>
 
                     <!-- Sign up Button -->
-                    <a href="sign_in.php" class="px-4 py-2 bg-success d-inline-block rounded-4 shadow-lg text-white"
+                    <a href="sign_in.php" class="px-4 py-2 bg-success d-inline-block rounded-5 shadow-lg text-white"
                         style="
-                  background: url(assets/images/pattern/01.png) no-repeat center
-                    center;
-                  background-size: cover;
-                  z-index: 20;
-                  white-space: nowrap;
-                ">Sign In</a>
+                        background: url(assets/images/pattern/01.png) no-repeat center center;
+                        background-size: cover;
+                        z-index: 20;
+                        white-space: nowrap;">Sign In</a>
                 </div>
             </nav>
         </div>
@@ -276,7 +273,7 @@ include_once('./includes/helpers.php');
 
                 <!-- Widget 3 START -->
                 <div class="col-lg-3">
-                    <h5 class="mb-2 mb-md-4">Contact</h5>
+                    <h5 class="mb-2 mb-md-4">যোগাযোগ করুন</h5>
                     <!-- Time -->
                     <p class="mb-2">
                         ফোন নম্বর :<span class="h6 fw-light ms-2">+880 1771868382</span>
