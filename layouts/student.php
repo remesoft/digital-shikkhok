@@ -87,6 +87,22 @@
 
     <!-- Theme CSS -->
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        span,
+        p {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+    </style>
 
 </head>
 
@@ -540,7 +556,7 @@
                         <!-- Responsive offcanvas body END -->
                     </div>
                     <!-- Left sidebar END -->
-                        <?php echo $content; ?>
+                    <?php echo $content; ?>
                 </div><!-- Row END -->
             </div>
         </section>
@@ -564,7 +580,7 @@
                 <!-- Widget -->
                 <div class="col-md-4 mb-3 mb-md-0">
                     <div class="text-center text-white text-primary-hover">
-                        Copyrights ©2024 Digital-Shikkhok.com . Build by <a href="https://www.github.com/anikdey13" target="_blank" ">Anik Dey</a> and <a href="https://www.github.com/remesoft" target="_blank" >Dwip Sarker</a>
+                        Copyrights ©2024 Digital-Shikkhok.com . Build by <a href="https://www.github.com/anikdey13" target="_blank" ">Anik Dey</a> and <a href=" https://www.github.com/remesoft" target="_blank">Dwip Sarker</a>
                     </div>
                 </div>
                 <!-- Widget -->
