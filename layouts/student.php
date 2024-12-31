@@ -3,6 +3,12 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 'student') {
     header('Location: ../sign_in.php');
     exit();
 }
+include '../includes/db.php';
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT * FROM users WHERE id = $user_id";
+$result = $conn->query($sql);
+
+$user = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -234,7 +240,7 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 'student') {
                 <!-- Profile START -->
                 <div class="dropdown ms-1 ms-lg-0">
                     <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="avatar-img rounded-circle" src="assets/images/avatar/01.jpg" alt="avatar">
+                        <img class="avatar-img rounded-circle" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
                     </a>
                     <ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
                         <!-- Profile info -->
@@ -242,11 +248,11 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 'student') {
                             <div class="d-flex align-items-center">
                                 <!-- Avatar -->
                                 <div class="avatar me-3">
-                                    <img class="avatar-img rounded-circle shadow" src="assets/images/avatar/01.jpg" alt="avatar">
+                                    <img class="avatar-img rounded-circle shadow" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
                                 </div>
                                 <div>
-                                    <a class="h6" href="#">Lori Ferguson</a>
-                                    <p class="small m-0">example@gmail.com</p>
+                                    <a class="h6" href="../student/student_dashboard.php"><?php echo $user['first_name']; ?> <?php echo $user['last_name']; ?></a>
+                                    <p class="small m-0"><?php echo $user['email']; ?></p>
                                 </div>
                             </div>
                         </li>
@@ -254,10 +260,10 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 'student') {
                             <hr class="dropdown-divider">
                         </li>
                         <!-- Links -->
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
-                        <li><a class="dropdown-item bg-danger-soft-hover" href="#"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
+                        <li><a class="dropdown-item" href="../student/student_edit_profile.php"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
+                        <!-- <li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li> -->
+                        <li><a class="dropdown-item" href="../404.php"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
+                        <li><a class="dropdown-item bg-danger-soft-hover" href="../includes/logout.php"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -309,19 +315,15 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 'student') {
                             <!-- Avatar -->
                             <div class="col-auto">
                                 <div class="avatar avatar-xxl position-relative mt-n3">
-                                    <img class="avatar-img rounded-circle border border-white border-3 shadow" src="assets/images/avatar/09.jpg" alt="">
+                                    <img class="avatar-img rounded-circle border border-white border-3 shadow" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="">
                                     <span class="badge text-bg-success rounded-pill position-absolute top-50 start-100 translate-middle mt-4 mt-md-5 ms-n3 px-md-3">Pro</span>
                                 </div>
                             </div>
                             <!-- Profile info -->
                             <div class="col d-sm-flex justify-content-between align-items-center">
                                 <div>
-                                    <h1 class="my-1 fs-4">Lori Stevens</h1>
-                                    <ul class="list-inline mb-0">
-                                        <li class="list-inline-item me-3 mb-1 mb-sm-0">
-                                            <span class="h6">255</span>
-                                            <span class="text-body fw-light">points</span>
-                                        </li>
+                                    <h1 class="my-1 fs-4"><?php echo $user['first_name']; ?> <?php echo $user['last_name']; ?></h1>
+                                    <!-- <ul class="list-inline mb-0">
                                         <li class="list-inline-item me-3 mb-1 mb-sm-0">
                                             <span class="h6">7</span>
                                             <span class="text-body fw-light">Completed courses</span>
@@ -330,7 +332,7 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 'student') {
                                             <span class="h6">52</span>
                                             <span class="text-body fw-light">Completed lessons</span>
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                 </div>
                                 <!-- Button -->
                                 <div class="mt-2 mt-sm-0">

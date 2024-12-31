@@ -2,7 +2,7 @@
 
 
 session_start();
-if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != '1') {
+if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 'student') {
 	header('Location: ../sign_in.php');
 	exit();
 }
@@ -51,17 +51,14 @@ ob_start();
 							<button type="button" class="uploadremove"><i class="bi bi-x text-white"></i></button>
 						</label>
 						<!-- Upload button -->
-						<label class="btn btn-primary-soft mb-0 d-block" for="uploadfile-1">Change profile
-							</label>
-							<br>
-							
+						<label class="btn btn-primary-soft mb-0 d-block" for="uploadfile-1">
+							Change profile
+							<input id="uploadfile-1" type="file" name="avatar" class="d-none">
+						</label>
+													
 						
 
 					</div>
-					<div class="d-block mt-3">
-
-								<input id="avatar" class="display-none" type="file" name="avatar">
-							</div>
 				</div>
 
 				<!-- Full name -->
