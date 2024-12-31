@@ -1,12 +1,5 @@
 <?php
 session_start();
-// Redirect already signed-in users
-if (isset($_SESSION['user_email'])) {
-    $redirect_page = ($_SESSION['user_role'] == 'student') ? 'student/student_dashboard.php' : 'admin/dashboard.php';
-    header("Location: $redirect_page");
-    exit();
-}
-
 $pageTitle = "Home";
 ob_start();
 ?>

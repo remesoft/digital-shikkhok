@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_role'] = $user['role'];
         $_SESSION['success_message'] = "Welcome " . $user['first_name'] . ". Your login was successful!";
 
+        echo "User id: " . $user['id'];
         // Redirect based on role
         $redirect_page = ($user['role'] == 'student') ? '../student/student_dashboard.php' : '../admin/dashboard.php';
         header("Location: $redirect_page");
