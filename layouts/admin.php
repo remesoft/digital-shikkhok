@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['user_email']) || $_SESSION['user_role'] != 'admin') {
+    header('Location: ../sign_in.php');
+    exit();
+}
 include_once '../includes/helpers.php';
 ?>
 
@@ -107,8 +112,9 @@ include_once '../includes/helpers.php';
 
             <!-- Navbar brand for xl START -->
             <div class="d-flex align-items-center">
-                <a class="navbar-brand" href="index-2.html">
-                    <img class="navbar-brand-item" src="../assets/images/logo-light.svg" alt="">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="index-2.html">
+                    <img class="navbar-brand-item" src="../assets/images/logo.png" alt="">
+                    <h5 class="text-white mb-0"><span style="color:rgb(250, 70, 82)">Digital</span> Shikkhok</h5>
                 </a>
             </div>
             <!-- Navbar brand for xl END -->

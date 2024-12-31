@@ -1,7 +1,12 @@
 <?php
 session_start();
-$showAlert = isset($_SESSION['showAlert']) ? $_SESSION['showAlert'] : false;
-$showErr = isset($_SESSION['showErr']) ? $_SESSION['showErr'] : '';
+// Redirect already signed-in users
+if (isset($_SESSION['user_email'])) {
+    $redirect_page = ($_SESSION['user_role'] == 'student') ? 'student/student_dashboard.php' : 'admin/dashboard.php';
+    header("Location: $redirect_page");
+    exit();
+}
+
 $pageTitle = "Home";
 ob_start();
 ?>
@@ -12,12 +17,12 @@ ob_start();
     <div class="container-fluid">
         <div class="row">
             <!-- left -->
-            <div class="col-12 col-lg-6 d-md-flex align-items-center justify-content-center bg-primary bg-opacity-10 vh-lg-100">
+            <div class="col-12 col-lg-6 d-md-flex align-items-center justify-content-center bg-primary bg-opacity-10">
                 <div class="p-3 p-lg-5">
                     <!-- Title -->
                     <div class="text-center">
-                        <h2 class="fw-bold">Welcome to our largest community</h2>
-                        <p class="mb-0 h6 fw-light">Let's learn something new today!</p>
+                        <h2 class="fw-bold">আমাদের বৃহত্তম কমিউনিটিতে আপনাকে স্বাগতম।</h2>
+                        <p class="mb-0 h6 fw-light">চলুন আজ কিছু নতুন শিখি!</p>
                     </div>
                     <!-- SVG Image -->
                     <img src="assets/images/element/02.svg" class="mt-5" alt="">
@@ -39,70 +44,75 @@ ob_start();
                             </li>
                         </ul>
                         <!-- Content -->
-                        <p class="mb-0 h6 fw-light ms-0 ms-sm-3">4k+ Students joined us, now it's your turn.</p>
+                        <p class="mb-0 h6 fw-light ms-0 ms-sm-3">৪,০০০+ শিক্ষার্থী যুক্ত হয়েছে, এখন আপনার পালা।</p>
                     </div>
                 </div>
             </div>
 
             <!-- Right -->
             <div class="col-12 col-lg-6 m-auto">
+                <!-- ----------------------------------- -->
+                <!--         Alert Dialog                -->
+                <!-- ----------------------------------- -->
+                <?php
+                if (isset($_SESSION['error_message']) || isset($_SESSION['success_message'])) {
+                    $alert_type = isset($_SESSION['error_message']) ? 'warning' : 'success';
+                    $message = isset($_SESSION['error_message']) ? $_SESSION['error_message'] : $_SESSION['success_message'];
+                ?>
+                    <div class="alert alert-<?= $alert_type ?> alert-dismissible fade show" role="alert">
+                        <strong><?= $alert_type === 'warning' ? 'Error:' : 'Success:' ?></strong> <?= htmlspecialchars($message) ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php
+                    if ($alert_type === 'warning') {
+                        unset($_SESSION['error_message']);
+                    } else {
+                        unset($_SESSION['success_message']);
+                    }
+                }
+                ?>
                 <div class="row my-5">
                     <div class="col-sm-10 col-xl-8 m-auto">
-                        <!-- Title -->
                         <span class="mb-0 fs-1">👋</span>
-                        <h1 class="fs-2">Login into Eduport!</h1>
-                        <p class="lead mb-4">Nice to see you! Please log in with your account.</p>
-                        <?php
-                        if ($showAlert) {
-                            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-										<strong>Success!</strong> Your account has been created successfully.Now you can login!
-										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-									</div>';
-                        }
-                        if ($showErr) {
-                            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-										<strong>Opps!</strong> ' . $showErr . '
-										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-									</div>';
-                        }
-                        ?>
+                        <h1 class="fs-2">লগইন করুন।</h1>
+                        <p class="lead mb-4">আপনার ইমেইল এবং পাসওয়ার্ড দিয়ে লগইন করুন।</p>
                         <!-- Form START -->
                         <form action="./includes/process_login.php" method="POST">
                             <!-- Email -->
                             <div class="mb-4">
-                                <label for="exampleInputEmail1" class="form-label">Email address *</label>
+                                <label for="exampleInputEmail1" class="form-label">আপনার ইমেইল অ্যাড্রেস দিন। *</label>
                                 <div class="input-group input-group-lg">
                                     <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="bi bi-envelope-fill"></i></span>
-                                    <input type="email" class="form-control border-0 bg-light rounded-end ps-1" placeholder="E-mail" id="email" name="email" required>
+                                    <input type="email" class="form-control border-0 bg-light rounded-end ps-1" placeholder="name@domain.com" id="email" name="email" required>
                                 </div>
                             </div>
                             <!-- Password -->
                             <div class="mb-4">
-                                <label for="inputPassword5" class="form-label">Password *</label>
+                                <label for="inputPassword5" class="form-label">আপনার পাসওয়ার্ড দিন। *</label>
                                 <div class="input-group input-group-lg">
                                     <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="fas fa-lock"></i></span>
-                                    <input type="password" class="form-control border-0 bg-light rounded-end ps-1" placeholder="password" id="pass" name="pass" required>
+                                    <input type="password" class="form-control border-0 bg-light rounded-end ps-1" placeholder="●●●●●●●●●" id="pass" name="pass" required>
                                 </div>
                                 <div id="passwordHelpBlock" class="form-text">
-                                    Your password must be 8 characters at least
+                                    আপনার পাসওয়ার্ড কমপক্ষে ৮টি অক্ষর হতে হবে।
                                 </div>
                             </div>
                             <!-- Check box -->
                             <div class="mb-4 d-flex justify-content-between">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                                    <label class="form-check-label" for="exampleCheck1">আমাকে মনে রাখুন</label>
                                 </div>
                                 <div class="text-primary-hover">
                                     <a href="forgot-password.html" class="text-secondary">
-                                        <u>Forgot password?</u>
+                                        <u>পাসওয়ার্ড ভুলে গেছেন?</u>
                                     </a>
                                 </div>
                             </div>
                             <!-- Button -->
                             <div class="align-items-center mt-0">
                                 <div class="d-grid">
-                                    <button class="btn btn-primary mb-0" type="submit">Login</button>
+                                    <button class="btn btn-primary mb-0" type="submit">লগইন করুন।</button>
                                 </div>
                             </div>
                         </form>
@@ -118,17 +128,18 @@ ob_start();
 
                             <!-- Social btn -->
                             <div class="col-xxl-6 d-grid">
-                                <a href="#" class="btn bg-google mb-2 mb-xxl-0"><i class="fab fa-fw fa-google text-white me-2"></i>Login with Google</a>
+                                <a href="coming_soon.php" class="btn bg-google mb-2 mb-xxl-0"><i class="fab fa-fw fa-google text-white me-2"></i>গুগল দিয়ে লগইন করুন।</a>
                             </div>
                             <!-- Social btn -->
                             <div class="col-xxl-6 d-grid">
-                                <a href="#" class="btn bg-facebook mb-0"><i class="fab fa-fw fa-facebook-f me-2"></i>Login with Facebook</a>
+                                <a href="coming_soon.php" class="btn bg-facebook mb-0"><i class="fab fa-fw fa-facebook-f me-2"></i>
+                                    ফেসবুক দিয়ে লগইন করুন।</a>
                             </div>
                         </div>
 
                         <!-- Sign up link -->
                         <div class="mt-4 text-center">
-                            <span>Don't have an account? <a href="sign_up.php">Sign Up here</a></span>
+                            <span>আপনার অ্যাকাউন্ট নেই? <a href="sign_up.php">সাইন আপ করুন।</a></span>
                         </div>
                     </div>
                 </div> <!-- Row END -->
