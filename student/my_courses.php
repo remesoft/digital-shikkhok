@@ -1,19 +1,14 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != '1') {
-    header('Location: ../sign_in.php');
-    exit();
-}
+// include essential files
+include('../includes/db.php');
+include('../includes/session.php');
+include('../includes/helpers.php');
+include('../includes/get_courses.php');
 
+// variables
+$page_title = "My Course | Student Panel | Digital Shikkhok";
 $user_id = $_SESSION['user_id'];
-include '../includes/db.php';
-include	'../includes/helpers.php';
-
 $courses = get_enrolled_course($conn, $user_id);
-
-
-
-$pageTitle = "Student Dashboard";
 ob_start();
 ?>
 
@@ -77,38 +72,39 @@ ob_start();
                             <tr>
                                 <td colspan="4" class="text-center">No courses found</td>
                             </tr>
-                        <?php }else{ ?>
-                        <?php foreach ($courses as $course): ?>
-                            <tr>
-                                <!-- Table data -->
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <!-- Image -->
-                                        <div class="w-100px">
-                                            <img src="../uploads/img/thumbnails/<?= $course['thumbnail'] ?>" class="rounded" alt="">
-                                        </div>
-                                        <div class="mb-0 ms-2">
-                                            <!-- Title -->
-                                            <h6 class="table-responsive-title"><a href="#"><?= htmlspecialchars($course['title']) ?></a></h6>
-                                            <!-- Info -->
-                                            <div class="overflow-hidden">
-                                                <h6 class="mb-0 text-end">100%</h6>
-                                                <div class="progress progress-sm bg-primary bg-opacity-10">
-                                                    <div class="progress-bar bg-primary aos" role="progressbar" data-aos="slide-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                        <?php } else { ?>
+                            <?php foreach ($courses as $course): ?>
+                                <tr>
+                                    <!-- Table data -->
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <!-- Image -->
+                                            <div class="w-100px">
+                                                <img src="../uploads/img/thumbnails/<?= $course['thumbnail'] ?>" class="rounded" alt="">
+                                            </div>
+                                            <div class="mb-0 ms-2">
+                                                <!-- Title -->
+                                                <h6 class="table-responsive-title"><a href="#"><?= htmlspecialchars($course['title']) ?></a></h6>
+                                                <!-- Info -->
+                                                <div class="overflow-hidden">
+                                                    <h6 class="mb-0 text-end">100%</h6>
+                                                    <div class="progress progress-sm bg-primary bg-opacity-10">
+                                                        <div class="progress-bar bg-primary aos" role="progressbar" data-aos="slide-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>10</td>
-                                <td>10</td>
-                                <!-- Table data -->
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-play-circle me-1"></i>Continue</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; } ?>
+                                    </td>
+                                    <td>10</td>
+                                    <td>10</td>
+                                    <!-- Table data -->
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-play-circle me-1"></i>Continue</a>
+                                    </td>
+                                </tr>
+                        <?php endforeach;
+                        } ?>
 
 
 

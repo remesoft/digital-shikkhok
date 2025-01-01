@@ -1,10 +1,15 @@
 <?php
-session_start();
-include '../includes/db.php';
+// include essential files
+include('../includes/db.php');
+include('../includes/session.php');
+include('../includes/helpers.php');
+include('../includes/get_courses.php');
 include	'../includes/get_user_by_id.php';
+
+// variables
 $user_id = $_SESSION['user_id'];
 $user = get_user($conn, $user_id);
-$pageTitle = "Student Dashboard";
+$page_title = "Edit Profile | Student Panel | Digital Shikkhok";
 ob_start();
 ?>
 

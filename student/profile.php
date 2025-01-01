@@ -1,10 +1,12 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != '1') {
-    header('Location: ../sign_in.php');
-    exit();
-}
-$pageTitle = "Student Dashboard";
+// include essential files
+include('../includes/db.php');
+include('../includes/session.php');
+include('../includes/helpers.php');
+include('../includes/get_courses.php');
+
+// variables
+$page_title = "Student Profile | Student Panel | Digital Shikkhok";
 ob_start();
 ?>
 
