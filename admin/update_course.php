@@ -1,8 +1,12 @@
 <?php
+// include essential files
 include('../includes/db.php');
-include '../includes/get_course_by_id.php';
+include('../includes/session.php');
+include('../includes/get_course_by_id.php');
+
+// variables
+$page_title = "Update Course | Admin Panel | Digital Shikkhok";
 $course = get_detailed_course($conn, $_GET['id']);
-$pageTitle = "Admin Panel";
 ob_start();
 ?>
 

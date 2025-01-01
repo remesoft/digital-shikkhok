@@ -1,9 +1,13 @@
 <?php
+// include essential files
 include('../includes/db.php');
+include('../includes/session.php');
 include('../includes/helpers.php');
 include('../includes/get_course_by_id.php');
 include('../includes/enroll_functionality.php');
-$pageTitle = "Manage Courses";
+
+// variables
+$page_title = "Enrollments | Admin Panel | Digital Shikkhok";
 ob_start();
 ?>
 

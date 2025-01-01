@@ -1,11 +1,5 @@
 <?php
-
-
 session_start();
-if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != '1') {
-	header('Location: ../sign_in.php');
-	exit();
-}
 include '../includes/db.php';
 include	'../includes/get_user_by_id.php';
 $user_id = $_SESSION['user_id'];
@@ -52,16 +46,16 @@ ob_start();
 						</label>
 						<!-- Upload button -->
 						<label class="btn btn-primary-soft mb-0 d-block" for="uploadfile-1">Change profile
-							</label>
-							<br>
-							
-						
+						</label>
+						<br>
+
+
 
 					</div>
 					<div class="d-block mt-3">
 
-								<input id="avatar" class="display-none" type="file" name="avatar">
-							</div>
+						<input id="avatar" class="display-none" type="file" name="avatar">
+					</div>
 				</div>
 
 				<!-- Full name -->

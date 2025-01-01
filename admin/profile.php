@@ -1,9 +1,11 @@
 <?php
-// Start the session
-session_start();
-$page_title = "Profile | Admin Panel | Digital Shikkhok";
+// include essential files
 include '../includes/db.php';
+include('../includes/session.php');
 include '../includes/get_user_by_id.php';
+
+// variables
+$page_title = "Profile | Admin Panel | Digital Shikkhok";
 $user = get_user($conn, $_SESSION['user_id']);
 ob_start();
 ?>

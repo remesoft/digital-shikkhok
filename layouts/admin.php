@@ -1,15 +1,16 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_email']) || $_SESSION['user_role'] != 'admin') {
-    header('Location: ../sign_in.php');
-    exit();
-}
-include_once '../includes/db.php';
-include_once '../includes/helpers.php';
-include_once '../includes/get_user_by_id.php';
-$page_title = "Admin Panel";
-$user = get_user($conn, $_SESSION['user_id']);
+// include essentials files
+include_once('../includes/db.php');
+include_once('../includes/session.php');
+include_once('../includes/helpers.php');
+include_once('../includes/get_user_by_id.php');
 
+// protection
+protected_for('admin');
+
+// variables
+$user_id = $_SESSION['user_id'];
+$user = get_user($conn, $user_id);
 ?>
 
 <!DOCTYPE html>
@@ -21,8 +22,8 @@ $user = get_user($conn, $_SESSION['user_id']);
     <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Webestica.com">
-    <meta name="description" content="Eduport- LMS, Education and Course Theme">
+    <meta name="author" content="Md. Sharif Ahmed">
+    <meta name="description" content="Digital Shikkhok - Online Learning Platform">
 
     <!-- Dark mode -->
     <script>
