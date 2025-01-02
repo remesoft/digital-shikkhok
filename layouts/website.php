@@ -2,7 +2,7 @@
 session_start();
 include_once('./includes/helpers.php');
 include_once('./includes/db.php');
-
+include_once('./includes/get_user_by_id.php');
 
 
 ?>
@@ -137,7 +137,7 @@ include_once('./includes/db.php');
             <nav class="navbar navbar-expand-xl">
                 <div class="container-fluid" style="padding: 0;">
                     <!-- logo start -->
-                    <a href="/"><img class="navbar-logo" src="assets/images/logo.png" alt="logo"></a>
+                    <a href="/digital-shikkhok"><img class="navbar-logo" src="assets/images/logo.png" alt="logo"></a>
 
                     <!-- Responsive navbar toggler -->
                     <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -189,6 +189,7 @@ include_once('./includes/db.php');
 
             <?php if (isset($_SESSION['user_id']) && $_SESSION['user_role'] == 'student') { 
                 include	'includes/get_user_by_id.php';
+                include    'includes/db.php';
                 $user_id = $_SESSION['user_id'];
                 $user = get_user($conn, $user_id);
                 ?>
