@@ -70,7 +70,7 @@ ob_start();
 
 									<!-- Status item -->
 									<td>
-										<span class="badge bg-gray bg-opacity-10 text-black"><?php if ($info['confirm'] == 1) echo "Paid";
+										<span class="badge bg-gray bg-opacity-10 text-black"><?php if ($info['status'] == "success") echo "Paid";
 																																					else echo "Pending"; ?></span>
 									</td>
 									<!-- Total item -->
