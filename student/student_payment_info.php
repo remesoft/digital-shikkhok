@@ -1,15 +1,15 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 'student') {
-	header('Location: ../sign_in.php');
-	exit();
-}
-include '../includes/db.php';
-include	'../includes/helpers.php';
+// include essential files
+include('../includes/db.php');
+include('../includes/session.php');
+include('../includes/helpers.php');
 include '../includes/get_course_by_id.php';
+include	'../includes/get_user_by_id.php';
+
+// variables
 $user_id = $_SESSION['user_id'];
 $records = get_payment_records($user_id, $conn);
-$pageTitle = "Student Dashboard";
+$page_title = "Payments | Student Panel | Digital Shikkhok";
 ob_start();
 ?>
 
@@ -75,33 +75,35 @@ ob_start();
 							<tr>
 								<td colspan="6" class="text-center">No records found</td>
 							</tr>
-						<?php }else{?>
-						<?php foreach ($records as $info) { ?>
-							<tr>
-								<!-- Date item -->
-								<td><?php echo $info['created_at']; ?></td>
+						<?php } else { ?>
+							<?php foreach ($records as $info) { ?>
+								<tr>
+									<!-- Date item -->
+									<td><?php echo $info['created_at']; ?></td>
 
-								<!-- Title item -->
-								<td>
-									<?php $course = get_course($conn, $info['course_id']); ?>
-									<h6 class="mt-2 mt-lg-0 mb-0"><a href="#"><?php echo $course['title']; ?></a></h6>
-								</td>
+									<!-- Title item -->
+									<td>
+										<?php $course = get_course($conn, $info['course_id']); ?>
+										<h6 class="mt-2 mt-lg-0 mb-0"><a href="#"><?php echo $course['title']; ?></a></h6>
+									</td>
 
-								<!-- Payment method item -->
-								<td class="h-40px" alt=""><span class="ms-2"><?php echo $info['phone']; ?></span></td>
+									<!-- Payment method item -->
+									<td class="h-40px" alt=""><span class="ms-2"><?php echo $info['phone']; ?></span></td>
 
-								<!-- Status item -->
-								<td>
-									<span class="badge bg-gray bg-opacity-10 text-black"><?php if ($info['confirm'] == 1) echo "Paid"; else echo "Pending"; ?></span>
-								</td>
-								<!-- Total item -->
-								<td><?php echo $course['price'];?> BDT</td>
-								<!-- Action item -->
-								<td>
-									<a href="#" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-printer me-1"></i>Receipt</a>
-								</td>
-							</tr>
-						<?php } }?>
+									<!-- Status item -->
+									<td>
+										<span class="badge bg-gray bg-opacity-10 text-black"><?php if ($info['confirm'] == 1) echo "Paid";
+																																					else echo "Pending"; ?></span>
+									</td>
+									<!-- Total item -->
+									<td><?php echo $course['price']; ?> BDT</td>
+									<!-- Action item -->
+									<td>
+										<a href="#" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-printer me-1"></i>Receipt</a>
+									</td>
+								</tr>
+						<?php }
+						} ?>
 					</tbody>
 				</table>
 			</div>

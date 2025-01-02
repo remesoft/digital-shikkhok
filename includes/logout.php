@@ -1,11 +1,6 @@
-<?php 
+<?php
 session_start();
-
-if (isset($_SESSION['user_id']) && $_SESSION['user_email'] && $_SESSION['user_role'] = true) {
-
-    session_unset();
-    session_destroy();
-    header("location: ../index.php");
-}
-
-?>
+$_SESSION = array();
+session_destroy();
+header("Location: ../index.php");
+exit();

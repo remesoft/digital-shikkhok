@@ -74,14 +74,7 @@ function get_enrolled_course($conn, $user_id)
 
   return $courses;
 }
-// include('includes/get_user_by_email.php');
-// $user = get_user($conn, $_SESSION['user_email']);
-// if (isset($_GET['id'])) {
-// 	$course_id = $_GET['id'];
-// } else {
-// 	// Handle the error (e.g., redirect or show an error message)
-// 	$course_id = null;
-// }
+
 
 function get_status_classes($status)
 {
@@ -98,4 +91,13 @@ function is_active_page($page)
 {
   $current_page = basename($_SERVER['PHP_SELF']);
   return  $current_page == $page ? 'active' : '';
+}
+
+
+function protected_for($required_role)
+{
+  if (!isset($_SESSION['user_email']) || $_SESSION['user_role'] !== $required_role) {
+    header('Location: ../sign_in.php');
+    exit();
+  }
 }

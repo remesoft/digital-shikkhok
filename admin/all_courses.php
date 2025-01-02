@@ -1,7 +1,11 @@
 <?php
+// include essential files
 include('../includes/db.php');
+include('../includes/session.php');
 include('../includes/get_courses.php');
-$pageTitle = "Manage Courses";
+
+// variables
+$page_title = "All Courses | Admin Panel | Digital Shikkhok";
 ob_start();
 ?>
 

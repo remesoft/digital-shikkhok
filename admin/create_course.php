@@ -1,10 +1,9 @@
 <?php
+// include essential files
+require_once('../includes/session.php');
 
-// if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
-//     header('Location: login.php');
-//     exit();
-// }
-$pageTitle = "Admin Panel";
+// variables
+$page_title = "Create Course | Admin Panel | Digital Shikkhok";
 ob_start();
 ?>
 

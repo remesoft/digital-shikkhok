@@ -1,16 +1,15 @@
 <?php
-
-
-session_start();
-if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 'student') {
-	header('Location: ../sign_in.php');
-	exit();
-}
-include '../includes/db.php';
+// include essential files
+include('../includes/db.php');
+include('../includes/session.php');
+include('../includes/helpers.php');
+include('../includes/get_courses.php');
 include	'../includes/get_user_by_id.php';
+
+// variables
 $user_id = $_SESSION['user_id'];
 $user = get_user($conn, $user_id);
-$pageTitle = "Student Dashboard";
+$page_title = "Edit Profile | Student Panel | Digital Shikkhok";
 ob_start();
 ?>
 
@@ -51,13 +50,16 @@ ob_start();
 							<button type="button" class="uploadremove"><i class="bi bi-x text-white"></i></button>
 						</label>
 						<!-- Upload button -->
-						<label class="btn btn-primary-soft mb-0 d-block" for="uploadfile-1">
-							Change profile
-							<input id="uploadfile-1" type="file" name="avatar" class="d-none">
+						<label class="btn btn-primary-soft mb-0 d-block" for="uploadfile-1">Change profile
 						</label>
-													
-						
+						<br>
 
+
+
+					</div>
+					<div class="d-block mt-3">
+
+						<input id="avatar" class="display-none" type="file" name="avatar">
 					</div>
 				</div>
 

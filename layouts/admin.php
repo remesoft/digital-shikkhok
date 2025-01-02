@@ -1,26 +1,29 @@
 <?php
-session_start();
+// include essentials files
+include_once('../includes/db.php');
+include_once('../includes/session.php');
+include_once('../includes/helpers.php');
+include_once('../includes/get_user_by_id.php');
 
-if (!isset($_SESSION['user_email']) || $_SESSION['user_role'] != 'admin') {
-    header('Location: ../sign_in.php');
-    exit();
-}
-include_once '../includes/helpers.php';
+// protection
+protected_for('admin');
+
+// variables
+$user_id = $_SESSION['user_id'];
+$user = get_user($conn, $user_id);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from eduport.webestica.com/admin-edit-course-detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Dec 2024 08:17:27 GMT -->
-
 <head>
-    <title></title>
+    <title><?= $page_title ?></title>
 
     <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Webestica.com">
-    <meta name="description" content="Eduport- LMS, Education and Course Theme">
+    <meta name="author" content="Md. Sharif Ahmed">
+    <meta name="description" content="Digital Shikkhok - Online Learning Platform">
 
     <!-- Dark mode -->
     <script>
@@ -366,7 +369,7 @@ include_once '../includes/helpers.php';
                                 <!-- Profile dropdown START -->
                                 <li class="nav-item ms-2 ms-md-3 dropdown">
                                     <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img class="avatar-img rounded-circle" src="../assets/images/avatar/01.jpg" alt="avatar">
+                                        <img class="avatar-img rounded-circle" src="../uploads/img/users/<?= $user['avatar'] ?>" alt="avatar">
                                     </a>
 
                                     <!-- Profile dropdown START -->
@@ -376,11 +379,11 @@ include_once '../includes/helpers.php';
                                             <div class="d-flex align-items-center">
                                                 <!-- Avatar -->
                                                 <div class="avatar me-3">
-                                                    <img class="avatar-img rounded-circle shadow" src="../assets/images/avatar/01.jpg" alt="avatar">
+                                                    <img class="avatar-img rounded-circle shadow" src="../uploads/img/users/<?= $user['avatar'] ?>" alt="avatar">
                                                 </div>
                                                 <div>
-                                                    <a class="h6 mt-2 mt-sm-0" href="#">Lori Ferguson</a>
-                                                    <p class="small m-0">example@gmail.com</p>
+                                                    <a class="h6 mt-2 mt-sm-0" href="#"><?= $user['first_name'] ?> <?= $user['last_name'] ?></a>
+                                                    <p class="small m-0"><?= $user['email'] ?></p>
                                                 </div>
                                             </div>
                                             <hr>
@@ -389,7 +392,7 @@ include_once '../includes/helpers.php';
                                         <li><a class="dropdown-item" href="#"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
                                         <li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
                                         <li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
-                                        <li><a class="dropdown-item bg-danger-soft-hover" href="#"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
+                                        <li><a class="dropdown-item bg-danger-soft-hover" href="../includes/logout.php"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>

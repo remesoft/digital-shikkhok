@@ -1,8 +1,12 @@
 <?php
-$pageTitle = "Admin Panel";
+// include essential files
 include '../includes/db.php';
+include('../includes/session.php');
 include '../includes/get_user_by_id.php';
-// $user = get_user($conn, $_SESSION['user_id']);
+
+// variables
+$page_title = "Profile | Admin Panel | Digital Shikkhok";
+$user = get_user($conn, $_SESSION['user_id']);
 ob_start();
 ?>
 
@@ -50,63 +54,66 @@ ob_start();
 
             <!-- Card body START -->
             <div class="card-body">
-              <form class="row g-4 align-items-top">
-                <!-- Profile picture -->
-                <div class="col-12 justify-content-center align-items-center">
-                  <label class="form-label">Profile picture</label>
-                  <div class="d-flex align-items-center">
-                    <label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
-                      <!-- Avatar place holder -->
-                      <span class="avatar avatar-xl">
-                        <img id="uploadfile-1-preview" class="avatar-img rounded-circle border border-white border-3 shadow" src="assets/images/avatar/07.jpg" alt="">
-                      </span>
-                      <!-- Remove btn -->
-                      <button type="button" class="uploadremove"><i class="bi bi-x text-white"></i></button>
-                    </label>
-                    <!-- Upload button -->
-                    <label class="btn btn-primary-soft mb-0" for="uploadfile-1">Change</label>
-                    <input id="uploadfile-1" class="form-control d-none" type="file">
+              <form class="row g-4 align-items-top" action="../includes/process_update_admin_profile.php" method="POST" enctype="multipart/form-data">
+                <!-- Upload image START -->
+                <div class="col-12">
+                  <div class="text-center justify-content-center align-items-center p-4 p-sm-5 border border-2 border-dashed position-relative rounded-3">
+                    <!-- Image -->
+                    <img src="../assets/images/element/gallery.svg" class="h-50px" alt="">
+                    <div>
+                      <h6 class="my-2">Upload course profile picture here, or<a href="#!" class="text-primary"> Browse</a></h6>
+                      <label style="cursor:pointer;">
+                        <span>
+                          <input name="profile" class="form-control stretched-link" type="file" id="image" accept="image/gif, image/jpeg, image/png" />
+                        </span>
+                      </label>
+                      <p class="small mb-0 mt-2"><b>Note:</b> Only JPG, JPEG and PNG. Our suggested dimensions are 450px * 450px. Larger image will be cropped to 1:1 to fit our profile/previews.</p>
+                    </div>
                   </div>
                 </div>
-
+                <!-- Upload image END -->
 
 
                 <!-- Input item -->
                 <div class="col-lg-6">
                   <label class="form-label">First Name</label>
-                  <input type="text" class="form-control" placeholder="Enter your first name.">
+                  <input type="text" name="fname" class="form-control" placeholder="Enter your first name." value="<?= $user['first_name'] ?>" required>
                 </div>
 
                 <!-- Input item -->
                 <div class="col-lg-6">
                   <label class="form-label">Last Name</label>
-                  <input type="text" class="form-control" placeholder="Enter your last name.">
+                  <input type="text" name="lname" class="form-control" placeholder="Enter your last name." value="<?= $user['last_name'] ?>" required>
                 </div>
 
-                <!-- Username -->
+                <!-- Email -->
+                <div class="col-lg-6">
+                  <label class="form-label">Your email address</label>
+                  <input type="text" name="email" class="form-control" placeholder="Enter your last name." value="<?= $user['email'] ?>" required>
+                </div>
+
+                <!-- Phone -->
+                <div class="col-lg-6">
+                  <label class="form-label">Your mobile number</label>
+                  <input type="text" name="phone" class="form-control" placeholder="Enter your last name." value="<?= $user['phone'] ?>" required>
+                </div>
+
+                <!-- Password -->
                 <div class="col-md-6">
-                  <label class="form-label">Username</label>
+                  <label class="form-label">Change password</label>
                   <div class="input-group">
-                    <span class="input-group-text">Eduport.com</span>
-                    <input type="text" class="form-control" value="" placeholder="username">
+                    <span class="input-group-text">Password</span>
+                    <input name="password" type="password" class="form-control" placeholder="●●●●●●●●●">
                   </div>
                 </div>
 
-                <!-- Input item -->
-                <div class="col-lg-6">
-                  <label class="form-label">Site Email</label>
-                  <input type="email" class="form-control" placeholder="Enter your email address.">
-                </div>
-
-
                 <!-- Save button -->
                 <div class="d-sm-flex justify-content-end">
-                  <button type="button" class="btn btn-primary mb-0">Update</button>
+                  <button type="submit" class="btn btn-primary mb-0">Update</button>
                 </div>
               </form>
             </div>
             <!-- Card body END -->
-
           </div>
         </div>
         <!-- Personal Information content END -->
