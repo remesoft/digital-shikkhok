@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($stmt->execute()) {
         $_SESSION['success_message'] = "Congratulations 🎉🎉. Your enrollment is successful!";
         $_SESSION['success_type'] = "alert-success";
-        header("Location: ../student/profile.php");
+        header("Location: ../student/student_dashboard.php");
         exit;
     } else {
         $_SESSION['error_message'] = "Error enrolling: " . $stmt->error;

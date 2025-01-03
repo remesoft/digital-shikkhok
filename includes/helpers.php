@@ -61,7 +61,7 @@ function get_payment_records($user_id, $conn)
 // Get the erolled courses
 function get_enrolled_course($conn, $user_id)
 {
-  $sql = "SELECT courses.* FROM enrollments JOIN courses ON enrollments.course_id = courses.id WHERE enrollments.user_id = $user_id AND enrollments.confirm = '1'";
+  $sql = "SELECT courses.* FROM enrollments JOIN courses ON enrollments.course_id = courses.id WHERE enrollments.user_id = $user_id AND enrollments.status = 'success'";
   $result = $conn->query($sql);
 
   $courses = [];
