@@ -50,16 +50,14 @@ ob_start();
 							<button type="button" class="uploadremove"><i class="bi bi-x text-white"></i></button>
 						</label>
 						<!-- Upload button -->
-						<label class="btn btn-primary-soft mb-0 d-block" for="uploadfile-1">Change profile
+						<label class="btn btn-primary-soft mb-0 d-block" for="uploadfile-1">
+							Change profile
+							<input id="uploadfile-1" type="file" name="avatar" class="d-none">
 						</label>
-						<br>
 
 
 
-					</div>
-					<div class="d-block mt-3">
 
-						<input id="avatar" class="display-none" type="file" name="avatar">
 					</div>
 				</div>
 

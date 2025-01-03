@@ -26,31 +26,6 @@ ob_start();
         <div class="card-body">
 
             <!-- Search and select START -->
-            <div class="row g-3 align-items-center justify-content-between mb-4">
-                <!-- Content -->
-                <div class="col-md-8">
-                    <form class="rounded position-relative">
-                        <input class="form-control pe-5 bg-transparent" type="search" placeholder="Search" aria-label="Search">
-                        <button class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset" type="submit">
-                            <i class="fas fa-search fs-6 "></i>
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Select option -->
-                <div class="col-md-3">
-                    <!-- Short by filter -->
-                    <form>
-                        <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm">
-                            <option value="">Sort by</option>
-                            <option>Free</option>
-                            <option>Newest</option>
-                            <option>Most popular</option>
-                            <option>Most Viewed</option>
-                        </select>
-                    </form>
-                </div>
-            </div>
             <!-- Search and select END -->
 
             <!-- Course list table START -->
@@ -100,7 +75,7 @@ ob_start();
                                     <td>10</td>
                                     <!-- Table data -->
                                     <td>
-                                        <a href="#" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-play-circle me-1"></i>Continue</a>
+                                        <a href="watch_course.php" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-play-circle me-1"></i>Continue</a>
                                     </td>
                                 </tr>
                         <?php endforeach;

@@ -128,7 +128,7 @@ $user = get_user($conn, $user_id);
             <nav class="navbar navbar-expand-xl">
                 <div class="container-fluid" style="padding: 0;">
                     <!-- logo start -->
-                    <a href="/"><img class="navbar-logo" src="../assets/images/logo.png" alt="logo"></a>
+                    <a href="/digital-shikkhok"><img class="navbar-logo" src="../assets/images/logo.png" alt="logo"></a>
 
                     <!-- Responsive navbar toggler -->
                     <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -144,34 +144,34 @@ $user = get_user($conn, $user_id);
                         <ul class="navbar-nav navbar-nav-scroll me-auto"></ul>
                         <ul class="navbar-nav navbar-nav-scroll me-auto" style="font-size: 17px;">
                             <li class="nav-item">
-                                <a class="nav-link" href="index.php">
+                                <a class="nav-link" href="../index.php">
                                     হোম
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="our_courses.php">
+                                <a class="nav-link" href="../our_courses.php">
                                     ফ্রি কোর্স
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="our_courses.php">
+                                <a class="nav-link" href="../our_courses.php">
                                     পেইড কোর্স
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="about_us.php">
+                                <a class="nav-link" href="../about_us.php">
                                     আমাদের সম্পর্কে
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="our_courses.php">
+                                <a class="nav-link" href="../our_courses.php">
                                     শিক্ষকগণ
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contact_us.php">
+                                <a class="nav-link" href="../contact_us.php">
                                     যোগাযোগ
                                 </a>
                             </li>
@@ -269,7 +269,7 @@ $user = get_user($conn, $user_id);
                                         <li class="list-inline-item me-3 mb-1 mb-sm-0">
                                             <span class="text-body fw-light">Enrolled <span class="h6">7</span> courses</span>
                                         </li>
-                                    </ul>
+                                    </ul> 
                                 </div>
                                 <!-- Button -->
                                 <div class="mt-2 mt-sm-0">
