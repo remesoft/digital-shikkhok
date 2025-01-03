@@ -13,7 +13,7 @@ ob_start();
     <div class="row">
       <div class="col-12">
         <div class="bg-light p-4 text-center rounded-3">
-          <h1 class="m-0">Explore Our Courses</h1>
+          <h1 class="m-0">কোর্সগুলো এক্সপ্লোর করুন</h1>
           <!-- Breadcrumb -->
           <div class="d-flex justify-content-center">
             <nav aria-label="breadcrumb">

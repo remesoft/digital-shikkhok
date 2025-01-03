@@ -3,6 +3,7 @@
 include_once('../includes/db.php');
 include_once('../includes/session.php');
 include_once('../includes/helpers.php');
+include_once('../includes/get_user_by_id.php');
 
 // functionality
 protected_for('student');
