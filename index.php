@@ -665,8 +665,9 @@ Trending courses START -->
     <!-- Title -->
     <div class="row mb-4">
       <div class="col-lg-8 mx-auto text-center">
-        <h2 class="fs-1">Our Trending Courses</h2>
-        <p class="mb-0">Check out most 🔥 courses in the market</p>
+        <h2 class="fs-1">আমাদের আপকামিং কোর্স</h2>
+        <p class="mb-0">
+          কোর্সগুলোতে শীগ্রই আপনারা ভর্তি হতে পারবেন।</p>
       </div>
     </div>
     <div class="row">

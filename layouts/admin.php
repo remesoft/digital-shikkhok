@@ -129,7 +129,7 @@ $user = get_user($conn, $user_id);
                     <ul class="navbar-nav flex-column" id="navbar-sidebar">
 
                         <!-- Dashboard menu item -->
-                        <li class="nav-item"><a href="admin-dashboard.html" class="nav-link"><i class="bi bi-house fa-fw me-2"></i>Dashboard</a></li>
+                        <li class="nav-item"><a href="dashboard.php" class="nav-link"><i class="bi bi-house fa-fw me-2"></i>Dashboard</a></li>
 
                         <!-- Title -->
                         <li class="nav-item ms-2 my-2">Pages</li>
@@ -153,7 +153,7 @@ $user = get_user($conn, $user_id);
                             </a>
                             <!-- Submenu -->
                             <ul class="nav collapse flex-column" id="collapsestudent" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link" href="admin-instructor-list.html">All Students</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../admin/all_students.php">All Students</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="../admin/enrollments.php">Enrollments</a></li>
                             </ul>
                         </li>
@@ -470,9 +470,10 @@ $user = get_user($conn, $user_id);
     <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Vendors -->
+    <script src="../assets/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
     <script src="../assets/vendor/choices/js/choices.min.js"></script>
     <script src="../assets/vendor/glightbox/js/glightbox.js"></script>
-    <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+    <script src="../https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
     <script src="../assets/vendor/stepper/js/bs-stepper.min.js"></script>
     <script src="../assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js"></script>
 

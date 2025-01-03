@@ -13,13 +13,13 @@ ob_start();
     <div class="row">
       <div class="col-12">
         <div class="bg-light p-4 text-center rounded-3">
-          <h1 class="m-0">Explore Our Courses</h1>
+          <h1 class="m-0">কোর্সগুলো এক্সপ্লোর করুন</h1>
           <!-- Breadcrumb -->
           <div class="d-flex justify-content-center">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb breadcrumb-dots mb-0">
-                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Our Courses</li>
+                <li class="breadcrumb-item"><a href="index.php">হোম</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><?= $_GET['type'] == 'free' ? 'ফ্রি কোর্স' : 'পেইড কোর্স' ?></li>
               </ol>
             </nav>
           </div>
@@ -166,14 +166,14 @@ ob_start();
           <div class="row align-items-center">
             <!-- Title -->
             <div class="col-lg-6">
-              <h3 class="text-white mb-3 mb-lg-0">Are you ready for a more great Conversation?</h3>
+              <h3 class="text-white mb-3 mb-lg-0">আপনি কি আমাদের নতুন কোর্সের আপডেট পেতে চান?</h3>
             </div>
             <!-- Input item -->
             <div class="col-lg-6 text-lg-end">
               <form class="bg-body rounded p-2">
                 <div class="input-group">
                   <input class="form-control border-0 me-1" type="email" placeholder="Type your email here">
-                  <button type="button" class="btn btn-dark mb-0 rounded">Subscribe</button>
+                  <button type="button" class="btn btn-dark mb-0 rounded">সাবস্ক্রাইব করুন</button>
                 </div>
               </form>
             </div>

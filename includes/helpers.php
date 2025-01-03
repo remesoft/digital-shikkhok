@@ -101,3 +101,9 @@ function protected_for($required_role)
     exit();
   }
 }
+
+function format_date($date)
+{
+  $date_obj = new DateTime($date);
+  return $date_obj->format('d M Y');
+}

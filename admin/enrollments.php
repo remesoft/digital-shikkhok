@@ -4,9 +4,10 @@ include('../includes/db.php');
 include('../includes/session.php');
 include('../includes/helpers.php');
 include('../includes/get_course_by_id.php');
-include('../includes/enroll_functionality.php');
+include('../includes/get_records.php');
 
 // variables
+$enrollments = get_records($conn, 'enrollments');
 $page_title = "Enrollments | Admin Panel | Digital Shikkhok";
 ob_start();
 ?>
@@ -52,7 +53,6 @@ ob_start();
         <!-- Table body START -->
         <tbody>
           <?php
-          $enrollments = get_enrollments($conn);
           foreach ($enrollments as $enroll):
             $course = get_course($conn, $enroll['course_id']) ?>
             <tr>
