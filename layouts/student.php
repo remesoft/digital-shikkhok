@@ -387,6 +387,7 @@ $user = get_user($conn, $user_id);
     <script src="../assets/vendor/choices/js/choices.min.js"></script>
     <script src="../assets/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
     <script src="../assets/vendor/aos/aos.js"></script>
+    <script src="../assets/js/student_video_player.js"></script>
 
     <!-- Template Functions -->
     <script src="../assets/js/functions.js"></script>

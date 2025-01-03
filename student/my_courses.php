@@ -73,9 +73,11 @@ ob_start();
                                     </td>
                                     <td>10</td>
                                     <td>10</td>
+                                    
+                                   
                                     <!-- Table data -->
                                     <td>
-                                        <a href="watch_course.php" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-play-circle me-1"></i>Continue</a>
+                                        <a href="watch_course.php?course_id=<?= $course['id'] ?>" type="submit" class="btn btn-sm btn-primary-soft me-1 mb-1 mb-md-0"><i class="bi bi-play-circle me-1"></i>Continue</a>
                                     </td>
                                 </tr>
                         <?php endforeach;
