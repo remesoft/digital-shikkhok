@@ -19,7 +19,7 @@ ob_start();
   <!-- Title -->
   <div class="row mb-3">
     <div class="col-12 d-sm-flex justify-content-between align-items-center">
-      <h4 class="mb-2 mb-sm-0">Students Table</h4>
+      <h4 class=" mb-2 mb-sm-0">Instructors Table</h4>
       <div class="nav my-3 my-xl-0 flex-nowrap align-items-center">
         <div class="nav-item w-100">
           <form class="position-relative">
@@ -41,11 +41,9 @@ ob_start();
         <!-- Table head -->
         <thead>
           <tr>
-            <th scope="col" class="border-0 rounded-start">Student name</th>
+            <th scope="col" class="border-0 rounded-start">Instructors name</th>
             <th scope="col" class="border-0">Join date</th>
             <th scope="col" class="border-0">Email</th>
-            <th scope="col" class="border-0 text-center">Enrolled</th>
-            <th scope="col" class="border-0 text-center">Payments</th>
             <th scope="col" class="border-0 rounded-end text-end">Actions</th>
           </tr>
         </thead>
@@ -53,7 +51,7 @@ ob_start();
         <!-- Table body START -->
         <tbody>
           <?php
-          $users = get_records_by_conditions($conn, 'users', 'role = "student"');
+          $users = get_records_by_conditions($conn, 'users', 'role = "instructor"');
           foreach ($users as $user) : ?>
             <tr>
               <!-- Table data -->
@@ -86,12 +84,6 @@ ob_start();
               <td><?= $user['email'] ?></td>
 
               <!-- Table data -->
-              <td class="text-center"><?= total_course_enrolled($conn, $user['id']) ?></td>
-
-              <!-- Table data -->
-              <td class="text-center">৳ <?= total_payment($conn, $user['id']) ?></td>
-
-              <!-- Table data -->
               <td class="text-end">
                 <span class="dropdown text-end">
                   <a
@@ -110,10 +102,10 @@ ob_start();
                     <li>
                       <form method="POST" action="../includes/process_update_role.php">
                         <input type="hidden" name="id" value="<?= $user['id'] ?>">
-                        <input type="hidden" name="role" value="instructor">
+                        <input type="hidden" name="role" value="student">
                         <button class="dropdown-item" type="submit">
-                          <i class="fab fa-ups fa-fw me-2"></i>
-                          Promote to Instructor</a>
+                          <i class="fas fa-angle-double-down me-2"></i>
+                          Demote to Student</a>
                         </button>
                       </form>
                     </li>
@@ -121,13 +113,15 @@ ob_start();
                       <form method="POST" action="../includes/process_delete_user.php">
                         <input type="hidden" name="id" value="<?= $user['id'] ?>">
                         <input type="hidden" name="table" value="users">
-                        <input type="hidden" name="page" value="students">
+                        <input type="hidden" name="page" value="instructor">
                         <button class="dropdown-item" type="submit">
                           <i class="bi bi-trash fa-fw me-2"></i>
                           Delete this account</a>
                         </button>
                       </form>
                     </li>
+
+
                   </ul>
                 </span>
                 <a href="mailto:<?= $user['email'] ?>" class="btn btn-light btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Message">

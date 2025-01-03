@@ -173,12 +173,6 @@ include_once('./includes/get_user_by_id.php');
                                     আমাদের সম্পর্কে
                                 </a>
                             </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="our_courses.php">
-                                    শিক্ষকগণ
-                                </a>
-                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="contact_us.php">
                                     যোগাযোগ
@@ -253,7 +247,7 @@ include_once('./includes/get_user_by_id.php');
                 background: url(assets/images/pattern/01.png) no-repeat center center;
                 background-size: cover;
                 z-index: 20;
-                white-space: nowrap;">Sign In</a>
+                white-space: nowrap;">লগিন/সাইনআপ</a>
                     <?php } ?>
             </nav>
         </div>

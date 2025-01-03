@@ -143,45 +143,33 @@ $user = get_user($conn, $user_id);
                             <ul class="nav collapse flex-column show" id="collapsepage" data-bs-parent="#navbar-sidebar">
                                 <li class="nav-item"> <a class="nav-link <?= is_active_page('all_courses.php') ?>" href="../admin/all_courses.php">All Courses</a></li>
                                 <li class="nav-item"> <a class="nav-link <?= is_active_page('create_course.php') ?>" href="../admin/create_course.php">Create Course</a></li>
+                                <li class="nav-item"> <a class="nav-link <?= is_active_page('enrollments.php') ?>" href="../admin/enrollments.php">Enrollments</a></li>
                             </ul>
                         </li>
-
-                        <!-- Student Menu Item -->
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#collapsestudent" role="button" aria-expanded="false" aria-controls="collapsestudent">
-                                <i class="fas fa-user-tie fa-fw me-2"></i>Students
+                            <a href="all_students.php" class="nav-link <?= is_active_page('all_students.php') ?>">
+                                <i class="fas fa-user-tie fa-fw me-2"></i>
+                                Students
                             </a>
-                            <!-- Submenu -->
-                            <ul class="nav collapse flex-column" id="collapsestudent" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link" href="../admin/all_students.php">All Students</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="../admin/enrollments.php">Enrollments</a></li>
-                            </ul>
                         </li>
-
-
-                        <!-- Review menu -->
-                        <li class="nav-item"> <a class="nav-link" href="admin-review.html"><i class="far fa-comment-dots fa-fw me-2"></i>Reviews</a></li>
-
-                        <!-- Earning menu -->
-                        <li class="nav-item"> <a class="nav-link" href="admin-earning.html"><i class="far fa-chart-bar fa-fw me-2"></i>Earnings</a></li>
-
-                        <!-- Admin setting menu -->
-                        <li class="nav-item"> <a class="nav-link" href="admin-setting.html"><i class="fas fa-user-cog fa-fw me-2"></i>Admin Settings</a></li>
-
-                        <!-- Authentication menu item -->
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#collapseauthentication" role="button" aria-expanded="false" aria-controls="collapseauthentication">
-                                <i class="bi bi-lock fa-fw me-2"></i>Authentication
+                            <a href="all_instructors.php" class="nav-link <?= is_active_page('all_instructors.php') ?>">
+                                <i class="fas fa-chalkboard-teacher fa-fw me-2"></i>
+                                Instructor
                             </a>
-                            <!-- Submenu -->
-                            <ul class="nav collapse flex-column" id="collapseauthentication" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link" href="sign-up.html">Sign Up</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="sign-in.html">Sign In</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="forgot-password.html">Forgot Password</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="admin-error-404.html">Error 404</a></li>
-                            </ul>
                         </li>
-                        <!-- Authentication menu END -->
+                        <li class="nav-item">
+                            <a class="nav-link <?= is_active_page('enrollments.php') ?>" href="enrollments.php">
+                                <i class="far fa-chart-bar fa-fw me-2"></i>
+                                Enrollments
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../admin/profile.php">
+                                <i class="fas fa-user-cog fa-fw me-2"></i>
+                                Admin Settings
+                            </a>
+                        </li>
 
                         <!-- Title -->
                         <li class="nav-item ms-2 my-2">Documentation</li>
@@ -194,13 +182,13 @@ $user = get_user($conn, $user_id);
                     <!-- Sidebar footer START -->
                     <div class="px-3 mt-auto pt-3">
                         <div class="d-flex align-items-center justify-content-between text-primary-hover">
-                            <a class="h5 mb-0 text-body" href="admin-setting.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Settings">
+                            <a class="h5 mb-0 text-body" href="profile.php" data-bs-toggle="tooltip" data-bs-placement="top" title="Settings">
                                 <i class="bi bi-gear-fill"></i>
                             </a>
                             <a class="h5 mb-0 text-body" href="index-2.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Home">
                                 <i class="bi bi-globe"></i>
                             </a>
-                            <a class="h5 mb-0 text-body" href="sign-in.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Sign out">
+                            <a class="h5 mb-0 text-body" href="../includes/logout.php" data-bs-toggle="tooltip" data-bs-placement="top" title="Sign out">
                                 <i class="bi bi-power"></i>
                             </a>
                         </div>
@@ -389,7 +377,7 @@ $user = get_user($conn, $user_id);
                                             <hr>
                                         </li>
                                         <!-- Links -->
-                                        <li><a class="dropdown-item" href="#"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
+                                        <li><a class="dropdown-item" href="../admin/profile.php"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
                                         <li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
                                         <li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
                                         <li><a class="dropdown-item bg-danger-soft-hover" href="../includes/logout.php"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
