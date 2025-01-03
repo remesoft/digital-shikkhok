@@ -31,3 +31,19 @@ function get_total_earnings($conn)
   $row = mysqli_fetch_assoc($result);
   return $row['total_earnings'] ?? 0;
 }
+
+function total_course_enrolled($conn, $user_id)
+{
+  $sql = "SELECT COUNT(*) AS count FROM enrollments WHERE user_id = $user_id AND status = 'success'";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+  return $row['count'] ?? 0;
+}
+
+function total_payment($conn, $user_id)
+{
+  $sql = "SELECT SUM(c.price) AS total_payment FROM enrollments e JOIN courses c ON e.course_id = c.id WHERE e.user_id = $user_id AND e.status = 'success'";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+  return $row['total_payment'] ?? 0;
+}

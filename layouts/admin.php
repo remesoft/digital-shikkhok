@@ -153,7 +153,7 @@ $user = get_user($conn, $user_id);
                             </a>
                             <!-- Submenu -->
                             <ul class="nav collapse flex-column" id="collapsestudent" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link" href="admin-instructor-list.html">All Students</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../admin/all_students.php">All Students</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="../admin/enrollments.php">Enrollments</a></li>
                             </ul>
                         </li>

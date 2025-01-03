@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2024 at 06:11 AM
+-- Generation Time: Jan 03, 2025 at 03:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -75,9 +75,7 @@ CREATE TABLE `enrollments` (
 --
 
 INSERT INTO `enrollments` (`id`, `course_id`, `user_id`, `phone`, `tnx_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 23, 7, '01771868382', 'sdjflkjsdlkfj', 'pending', '2024-12-30 09:15:36', '2024-12-30 09:15:36'),
-(2, 24, 7, '01771868382', 'sdfsdsdf', 'pending', '2024-12-30 09:45:12', '2024-12-30 09:45:12'),
-(3, 26, 7, '01578623545', 'sdfsdgewrewr', 'pending', '2024-12-30 09:45:34', '2024-12-30 09:45:34');
+(4, 23, 9, '01771867838', 'asareatrasfsde4', 'success', '2025-01-03 12:54:55', '2025-01-03 12:54:55');
 
 -- --------------------------------------------------------
 
@@ -138,7 +136,7 @@ INSERT INTO `topics` (`id`, `lecture_id`, `course_id`, `title`, `video`, `durati
 
 CREATE TABLE `users` (
   `id` int(255) NOT NULL,
-  `role` int(255) NOT NULL DEFAULT 1,
+  `role` enum('student','admin','instructor') NOT NULL DEFAULT 'student',
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
@@ -154,13 +152,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role`, `first_name`, `last_name`, `phone`, `email`, `password`, `avatar`, `created_at`, `updated_at`) VALUES
-(1, 1, 'anik', 'dey', '2324234', 'admin@gmail.com', '$2y$10$.IntuhYgsqFLpwcucwwa/utxuTX.2kfw/IukW.GugoiT2bZI/0iMa', '', '2024-12-24 22:04:18', '2024-12-24 22:04:18'),
-(2, 1, 'sdfdsf', 'sdfds', '343432', 'admin2@gmail.com', '$2y$10$ZgeShc89Hb7Tjz6i04lJke01p9mdCS6jWoiZfH.JCA/mafb6hakAm', '', '2024-12-24 22:39:25', '2024-12-24 22:39:25'),
-(3, 1, 'Dwip', 'Sarker', '23432423', 'dwipsarker@gmail.com', '$2y$10$ehiZWJVEqUEv4Fi9vMBW/OxqgiQ2iWhbBYI.QzOX9KmmxOxofHTfC', '', '2024-12-25 12:04:27', '2024-12-25 12:04:27'),
-(4, 2, 'Anik', 'Dey', '12345678', 'admin1@gmail.com', '$2y$10$MLzo7/QV/0xJZLyvinBureiGiLwIaEb0jTbJD3yhoeldnNucr./zi', '', '2024-12-25 16:26:26', '2024-12-25 16:26:26'),
-(5, 1, 'Dwip', 'Sarker', '01771868382', 'email.dwip@gmail.com', '$2y$10$Qu/0ClDCk35swhWIh4Zznebfk40DWOvKq6i8cWEshss.cMeAVLocG', '', '2024-12-27 12:25:30', '2024-12-27 12:25:30'),
-(6, 1, 'Dwip', 'Sarker', '01771868382', 'hello@gmail.com', '$2y$10$s0r6HDOZKFA..2VEmuvmWe5UEdA07PbD3I51NzZrmzXeCgoDECMJu', '', '2024-12-28 19:11:56', '2024-12-28 19:11:56'),
-(7, 1, 'Dwip', 'Sarker', '0177186852241', 'exist@gmail.com', '$2y$10$bXSYSSzUjQNwkyUY5BSJ4eBf8D8aNFKVeeTwhdzHPNnjgUaBhikLi', '', '2024-12-30 09:13:19', '2024-12-30 09:13:19');
+(9, 'student', 'Anik', 'Dey', '01985458545', 'anik@gmail.com', '$2y$10$Cp3aLWumX7fyZ.x05ECWreqPWhNkEsKmaRV6mN3JgsBXt2AsKjRzi', 'avatar_67778f76e5a377.50808343.jpg', '2024-12-30 22:57:14', '2024-12-30 22:57:14'),
+(10, 'admin', 'Dwip', 'Sarker', '01308676058', 'admin@gmail.com', '$2y$10$rpedTxsOKqxiIFtuHU4XEuJsMkzdYt0hIhYOHUuENGzY9EerMCo22', '1735886593_677787013aa6f.jpg', '2024-12-30 23:23:02', '2024-12-30 23:23:02'),
+(11, 'student', 'Sufian', 'Ahmed', '01772456987', 'sufian@gmail.com', '$2y$10$86Mgu6XHFcB2ZuGacoCjbe/jZYmS7bo2mFyODa1A4OFWkVLc6YFt6', 'avatar_6777a00fdad195.11763298.jpg', '2025-01-03 14:29:40', '2025-01-03 14:29:40'),
+(12, 'student', 'Abdul', 'Rokib', '01308676058', 'rokib@gmail.com', '$2y$10$GpdYw.jr2xvSte/1k1VDUO7aXHYTI6iC8SxphaGS41Qv4gkmmRuJm', '', '2025-01-03 19:39:53', '2025-01-03 19:39:53');
 
 --
 -- Indexes for dumped tables
@@ -212,7 +207,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `enrollments`
 --
 ALTER TABLE `enrollments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `lectures`
@@ -230,7 +225,7 @@ ALTER TABLE `topics`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
