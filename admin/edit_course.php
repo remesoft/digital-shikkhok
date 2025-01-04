@@ -139,6 +139,7 @@ ob_start();
                       <label style="cursor:pointer;">
                         <span>
                           <input name="thumbnail" class="form-control stretched-link" type="file" id="image" accept="image/gif, image/jpeg, image/png" require />
+                          <input name="old_thumbnail" value="<?= $course['thumbnail'] ?>" hidden>
                         </span>
                       </label>
                       <p class="small mb-0 mt-2"><b>Note:</b> Only JPG, JPEG and PNG. Our suggested dimensions are 600px * 450px. Larger image will be cropped to 4:3 to fit our thumbnails/previews.</p>
@@ -166,74 +167,111 @@ ob_start();
             </div>
 
             <!-- Step 3 content START -->
-            <div id="step-3" role="tabpanel" class="content fade" aria-labelledby="steppertrigger3">
+            <div
+              id="step-3"
+              role="tabpanel"
+              class="content fade"
+              aria-labelledby="steppertrigger3">
+              <!-- Title -->
               <h4>Curriculum</h4>
-              <hr>
+
+              <hr />
+              <!-- Divider -->
+
               <div class="row">
                 <!-- Add lecture Modal button -->
-                <div class="d-sm-flex justify-content-sm-between align-items-center mb-3">
+                <div
+                  class="d-sm-flex justify-content-sm-between align-items-center mb-3">
                   <h5 class="mb-2 mb-sm-0">Upload Lecture</h5>
-                  <a href="#" class="btn btn-sm btn-primary-soft mb-0" data-bs-toggle="modal" data-bs-target="#addLecture"><i class="bi bi-plus-circle me-2"></i>Add Lecture</a>
+                  <a
+                    href="#"
+                    class="btn btn-sm btn-primary-soft mb-0"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addLecture"><i class="bi bi-plus-circle me-2"></i>Add
+                    Lecture</a>
                 </div>
 
                 <!-- Edit lecture START -->
-                <div class="accordion accordion-icon accordion-bg-light" id="lectureContainer">
-                  <div class="accordion-item mb-3">
-                    <?php foreach ($course['lectures'] as $lecture): ?>
-                      <div class="accordion-item mb-3">
-                        <!-- Lecture Title Start -->
-                        <h6 class="accordion-header font-base">
-                          <button
-                            type="button"
-                            class="accordion-button fw-bold rounded d-inline-block collapsed d-block pe-5"
-                            data-bs-toggle="collapse"
-                            data-bs-target="lecture<?= $lecture['id'] ?>"
-                            aria-expanded="false"
-                            aria-controls="lecture<?= $lecture['id'] ?>">
-                            <?= $lecture['title'] ?>
-                          </button>
-                        </h6>
+                <div
+                  class="accordion accordion-icon accordion-bg-light"
+                  id="accordionExample2">
 
-                        <!-- Lecture Topics Start -->
-                        <div id="lecture<?= $lecture['id'] ?>" class="accordion-collapse collapse show" data-bs-parent="#accordionExample2">
-                          <div class="accordion-body mt-3">
-                            <div id="topic-<?= $lecture['id'] ?>">
-                              <?php foreach ($lecture['topics'] as $index => $topic): ?>
-                                <div class="d-flex justify-content-between align-items-center">
-                                  <div class="position-relative">
-                                    <a href="#" target="_blank" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static"><i class="fas fa-play"></i></a>
-                                    <span class="ms-2 mb-0 h6 fw-light"><?= $topic['title'] ?></span>
-                                  </div>
-                                  <div>
-                                    <input type="hidden" name="lectures[<?= $lecture['id'] ?>][topics][<?= $topic['id'] ?>][name]" value="<?= $topic['title'] ?>">
-                                    <input type="hidden" name="lectures[<?= $lecture['id'] ?>][topics][<?= $topic['id'] ?>][duration]" value="<?= $topic['duration'] ?>">
-                                    <input type="hidden" name="lectures[<?= $lecture['id'] ?>][topics][<?= $topic['id'] ?>][url]" value="<?= $topic['video'] ?>">
-                                    <input type="hidden" name="lectures[<?= $lecture['id'] ?>][topics][<?= $topic['id'] ?>][price]" value="<?= $topic['price'] ?>">
-                                    <a href="#" class="btn btn-sm btn-success-soft btn-round me-1 mb-1 mb-md-0"><i class="far fa-fw fa-edit"></i></a>
-                                    <button onclick="removeTopic(this)" class="btn btn-sm btn-danger-soft btn-round mb-0"><i class="fas fa-fw fa-times"></i></button>
-                                  </div>
-                                </div>
-                                <hr>
-                              <?php endforeach ?>
+                  <?php foreach ($course['lectures'] as $lecture): ?>
+
+                    <!-- Item START -->
+                    <div class="accordion-item mb-3">
+                      <h6
+                        class="accordion-header font-base"
+                        id="heading-1">
+                        <button
+                          class="accordion-button fw-bold rounded d-inline-block collapsed d-block pe-5"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapse-<?= $lecture['id'] ?>"
+                          aria-expanded="false"
+                          aria-controls="collapse-1">
+                          <?= $lecture['title'] ?>
+                        </button>
+                      </h6>
+
+                      <div
+                        id="collapse-<?= $lecture['id'] ?>"
+                        class="accordion-collapse collapse show"
+                        aria-labelledby="heading-1"
+                        data-bs-parent="#accordionExample2">
+                        <div class="accordion-body mt-3">
+                          <?php foreach ($lecture['topics'] as $index => $topic): ?>
+                            <div
+                              class="d-flex justify-content-between align-items-center">
+                              <div class="position-relative">
+                                <a
+                                  href="#"
+                                  class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static"><i class="fas fa-play"></i></a>
+                                <span class="ms-2 mb-0 h6 fw-light"><?= $topic['title'] ?></span>
+                              </div>
+                              <!-- Edit and cancel button -->
+                              <div>
+                                <a
+                                  href="#"
+                                  class="btn btn-sm btn-success-soft btn-round me-1 mb-1 mb-md-0"><i class="far fa-fw fa-edit"></i></a>
+                                <button
+                                  class="btn btn-sm btn-danger-soft btn-round mb-0">
+                                  <i class="fas fa-fw fa-times"></i>
+                                </button>
+                              </div>
                             </div>
-                            <input type="hidden" name="lectures[<?= $lecture['id'] ?>][name]" value="${data.name}">
-                            <a href="#" onclick="setCurrentLecture('<?= $lecture['id'] ?>')" class="btn btn-sm btn-dark mb-0" data-bs-toggle="modal" data-bs-target="#addTopic"><i class="bi bi-plus-circle me-2"></i>Add topic</a>
-                            <button type="button" onclick="removeLecture('<?= $lecture['id'] ?>')" class="btn btn-sm btn-danger-soft mb-0 mt-1 mt-sm-0">Delete this Lecture</button>
-                          </div>
+                            <hr />
+                          <?php endforeach; ?>
+                          <a
+                            href="#"
+                            class="btn btn-sm btn-dark mb-0"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addTopic"><i class="bi bi-plus-circle me-2"></i>Add
+                            topic</a>
+                          <a
+                            href="#"
+                            class="btn btn-sm btn-danger-soft mb-0 mt-1 mt-sm-0">Delete this Lecture</a>
                         </div>
+                        <!-- Topic END -->
                       </div>
-                    <?php endforeach ?>
-                  </div>
-                  <div class="d-md-flex justify-content-between align-items-start mt-4">
-                    <button class="btn btn-secondary prev-btn mb-2 mb-md-0">Previous</button>
-                    <button class="btn btn-light me-auto ms-md-2 mb-2 mb-md-0">Preview Course</button>
-                    <div class="text-md-end">
-                      <button class="btn btn-success mb-2 mb-sm-0">Confirm Update</button>
-                      <p class="mb-0 small mt-1">Once you click "Submit a Course", your course will be uploaded and marked as pending for review.</p>
                     </div>
-                  </div>
+                  <?php endforeach; ?>
+
+                </div>
+                <!-- Edit lecture END -->
+
+                <!-- Step 3 button -->
+                <div class="d-flex justify-content-between">
+                  <button class="btn btn-secondary prev-btn mb-0">
+                    Previous
+                  </button>
+                  <button class="btn btn-primary next-btn mb-0">
+                    Next
+                  </button>
                 </div>
               </div>
+            </div>
+            <!-- Step 3 content END -->
           </form>
         </div>
       </div>

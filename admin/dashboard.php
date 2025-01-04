@@ -51,8 +51,8 @@ ob_start();
 					<!-- Digit -->
 					<div>
 						<div class="d-flex">
+							<span class="mb-0 h2 me-1">৳</span>
 							<h2 class="purecounter mb-0 fw-bold" data-purecounter-start="0" data-purecounter-end="<?= $total_earnings ?>" data-purecounter-delay="200">0</h2>
-							<span class="mb-0 h2 ms-1">Taka</span>
 						</div>
 						<span class="mb-0 h6 fw-light">Total Earnings</span>
 					</div>

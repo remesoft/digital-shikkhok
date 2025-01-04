@@ -1,47 +1,91 @@
 <?php
-session_start(); // Start the session
+session_start();
 include '../includes/db.php';
 include '../includes/auth.php';
 include '../includes/helpers.php';
+include '../includes/file_manager.php';
 
 
+// Update course
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  try {
-    $course_id = $_POST['course_id'];
+  $course_id = $_POST['course_id'];
 
-    // Map form fields to database columns
-    $fields = [
-      'title' => $_POST['title'] ?? '',
-      'short_desc' => $_POST['short_desc'] ?? '',
-      'description' => $_POST['description'] ?? '',
-      'thumbnail' => upload_image("../uploads/img/thumbnails/", "thumbnail"),
-      'video' => $_POST['video'] ?? '',
-      'duration' => $_POST['duration'] ?? '',
-      'instructor' => 1,
-      'price' => $_POST['price'] ?? '',
-      'total_lectures' => $_POST['total_lectures'] ?? '',
-      'language' => $_POST['language'] ?? '',
-    ];
+  if (isset($_FILES['thumbnail'])) {
+    $thumbnail = upload_image("../uploads/img/thumbnails/", "thumbnail");
+    delete_file("../uploads/img/thumbnails/", $_POST['old_thumbnail']);
+  } else {
+    $thumbnail = $_POST['old_thumbnail'];
+  }
 
-    // Start building the query
-    $update_query = "UPDATE `courses` SET ";
-    $update_parts = [];
-    foreach ($fields as $column => $value) {
-      // Basic sanitization 
-      $sanitized_value = addslashes($value);
-      $update_parts[] = "`$column` = '$sanitized_value'";
-    }
+  // others data
+  $title = $_POST['title'];
+  $short_desc = $_POST['short_desc'];
+  $description = $_POST['description'];
+  $video = $_POST['video'];
+  $duration = $_POST['duration'];
+  $price = $_POST['price'];
+  $total_lectures = $_POST['total_lectures'];
+  $language = $_POST['language'];
 
-    // Join the parts and add a WHERE clause
-    $update_query .= implode(", ", $update_parts);
-    $update_query .= " WHERE `id` = " . intval($course_id);
+  // update course
+  $update_query = "UPDATE `courses` SET `title` = '$title', `short_desc` = '$short_desc', `description` = '$description', `thumbnail` = '$thumbnail', `video` = '$video', `duration` = '$duration', `price` = '$price', `total_lectures` = '$total_lectures', `language` = '$language' WHERE `id` = $course_id";
+
+  if (mysqli_query($conn, $update_query)) {
+    $_SESSION['success_message'] = "Course updated successfully!";
+  } else {
+    $_SESSION['error_message'] = "Error updating course: " . mysqli_error($conn);
+  }
+
+  // back to update course
+  header("Location: ../admin/edit_course.php?id=" . $course_id);
+  exit;
+}
 
 
-    if ($conn->query($update_query) === TRUE) {
-      echo "Record updated successfully";
-    } else {
-      echo "Error: " . $mysqli->error;
-    }
+
+
+
+
+
+
+
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//   try {
+//     $course_id = $_POST['course_id'];
+
+//     // Map form fields to database columns
+//     $fields = [
+//       'title' => $_POST['title'] ?? '',
+//       'short_desc' => $_POST['short_desc'] ?? '',
+//       'description' => $_POST['description'] ?? '',
+//       'thumbnail' => upload_image("../uploads/img/thumbnails/", "thumbnail"),
+//       'video' => $_POST['video'] ?? '',
+//       'duration' => $_POST['duration'] ?? '',
+//       'instructor' => 1,
+//       'price' => $_POST['price'] ?? '',
+//       'total_lectures' => $_POST['total_lectures'] ?? '',
+//       'language' => $_POST['language'] ?? '',
+//     ];
+
+//     // Start building the query
+//     $update_query = "UPDATE `courses` SET ";
+//     $update_parts = [];
+//     foreach ($fields as $column => $value) {
+//       // Basic sanitization 
+//       $sanitized_value = addslashes($value);
+//       $update_parts[] = "`$column` = '$sanitized_value'";
+//     }
+
+//     // Join the parts and add a WHERE clause
+//     $update_query .= implode(", ", $update_parts);
+//     $update_query .= " WHERE `id` = " . intval($course_id);
+
+
+//     if ($conn->query($update_query) === TRUE) {
+//       echo "Record updated successfully";
+//     } else {
+//       echo "Error: " . $mysqli->error;
+//     }
 
 
 
@@ -142,10 +186,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // } else {
     //   throw new Exception("Error preparing course update statement: " . $conn->error);
     // }
-  } catch (Exception $e) {
-    $_SESSION['error_message'] = $e->getMessage();
-  }
-}
+//   } catch (Exception $e) {
+//     $_SESSION['error_message'] = $e->getMessage();
+//   }
+// }
 
 // header("Location: ../admin/edit_course.php?id=" . ($course_id ?? ''));
 // exit;

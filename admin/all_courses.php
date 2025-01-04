@@ -77,7 +77,7 @@ ob_start();
               <td class="text-center">৳ <?= htmlspecialchars($course['price']) ?></td>
               <td class="text-center"> <?= total_enrolled($conn, $course['id']) ?></td>
               <td class="d-flex justify-content-end">
-                <a href="update_course.php?id=<?= $course['id'] ?>" class="btn btn-sm btn-success me-1 mb-1 mb-md-0">Edit</a>
+                <a href="edit_course.php?id=<?= $course['id'] ?>" class="btn btn-sm btn-success me-1 mb-1 mb-md-0">Edit</a>
                 <button class="btn btn-sm btn-danger mb-0">Delete</button>
               </td>
             </tr>
