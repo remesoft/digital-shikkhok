@@ -175,7 +175,7 @@ include_once('./includes/get_user_by_id.php');
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="our_courses.php">
+                                <a class="nav-link" href="our_courses.php?type=paid">
                                     শিক্ষকগণ
                                 </a>
                             </li>
@@ -195,15 +195,24 @@ include_once('./includes/get_user_by_id.php');
                     ?>
                         <div class="dropdown ms-1 ms-lg-0">
                             <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img class="avatar-img rounded-circle" src="uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
+                                <?php if ($user['avatar']) { ?>
+                                    <img class="avatar-img rounded-circle" src="uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
+                                <?php } else { ?>
+                                    <img class="avatar-img rounded-circle" src="uploads/img/users/blank.png" alt="avatar">
+                                <?php } ?>
                             </a>
+
                             <ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
                                 <!-- Profile info -->
                                 <li class="px-3 mb-3">
                                     <div class="d-flex align-items-center">
                                         <!-- Avatar -->
                                         <div class="avatar me-3">
-                                            <img class="avatar-img rounded-circle shadow" src="uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
+                                            <?php if ($user['avatar']) { ?>
+                                                <img class="avatar-img rounded-circle" src="uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
+                                            <?php } else { ?>
+                                                <img class="avatar-img rounded-circle" src="uploads/img/users/blank.png" alt="avatar">
+                                            <?php } ?>
                                         </div>
                                         <div>
                                             <a class="h6" href="student/student_dashboard.php"><?php echo $user['first_name']; ?> <?php echo $user['last_name']; ?></a>

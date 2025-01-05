@@ -44,7 +44,11 @@ ob_start();
 						<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
 							<!-- Avatar place holder -->
 							<span class="avatar avatar-xl">
-								<img id="uploadfile-1-preview" class="avatar-img rounded-circle border border-white border-3 shadow" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="">
+							<?php if ($user['avatar']) { ?>
+                                <img class="avatar-img rounded-circle" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
+                            <?php } else { ?>
+                                <img class="avatar-img rounded-circle" src="../uploads/img/users/blank.png" alt="avatar">
+                            <?php } ?>
 							</span>
 							<!-- Remove btn -->
 							<button type="button" class="uploadremove"><i class="bi bi-x text-white"></i></button>

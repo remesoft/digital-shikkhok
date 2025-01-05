@@ -182,15 +182,25 @@ $user = get_user($conn, $user_id);
                     <!-- Profile START -->
                     <div class="dropdown ms-1 ms-lg-0">
                         <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="avatar-img rounded-circle" src="../uploads/img/users/<?= $user['avatar'] ?>" alt="avatar">
+
+                            <?php if ($user['avatar']) { ?>
+                                <img class="avatar-img rounded-circle" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
+                            <?php } else { ?>
+                                <img class="avatar-img rounded-circle" src="../uploads/img/users/blank.png" alt="avatar">
+                            <?php } ?>
                         </a>
+
                         <ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
                             <!-- Profile info -->
                             <li class="px-3 mb-3">
                                 <div class="d-flex align-items-center">
                                     <!-- Avatar -->
                                     <div class="avatar me-3">
-                                        <img class="avatar-img rounded-circle shadow" src="../uploads/img/users/<?= $user['avatar'] ?>" alt="avatar">
+                                        <?php if ($user['avatar']) { ?>
+                                            <img class="avatar-img rounded-circle" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
+                                        <?php } else { ?>
+                                            <img class="avatar-img rounded-circle" src="../uploads/img/users/blank.png" alt="avatar">
+                                        <?php } ?>
                                     </div>
                                     <div>
                                         <a class="h6" href="#"><?= $user['first_name'] ?> <?= $user['last_name'] ?></a>
@@ -257,7 +267,11 @@ $user = get_user($conn, $user_id);
                             <!-- Avatar -->
                             <div class="col-auto">
                                 <div class="avatar avatar-xxl position-relative mt-n3">
-                                    <img class="avatar-img rounded-circle border border-white border-3 shadow" src="../uploads/img/users/<?= $user['avatar'] ?>" alt="">
+                                    <?php if ($user['avatar']) { ?>
+                                        <img class="avatar-img rounded-circle" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
+                                    <?php } else { ?>
+                                        <img class="avatar-img rounded-circle" src="../uploads/img/users/blank.png" alt="avatar">
+                                    <?php } ?>
                                     <span class="badge text-bg-success rounded-pill position-absolute top-50 start-100 translate-middle mt-4 mt-md-5 ms-n3 px-md-3">Pro</span>
                                 </div>
                             </div>
@@ -269,7 +283,7 @@ $user = get_user($conn, $user_id);
                                         <li class="list-inline-item me-3 mb-1 mb-sm-0">
                                             <span class="text-body fw-light">Enrolled <span class="h6">7</span> courses</span>
                                         </li>
-                                    </ul> 
+                                    </ul>
                                 </div>
                                 <!-- Button -->
                                 <div class="mt-2 mt-sm-0">
@@ -318,12 +332,12 @@ $user = get_user($conn, $user_id);
                                 <div class="bg-dark border rounded-3 p-3 w-100">
                                     <!-- Dashboard menu -->
                                     <div class="list-group list-group-dark list-group-borderless collapse-list">
-                                        <a class="list-group-item active" href="../student/student_dashboard.php"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
-                                        <a class="list-group-item" href="../student/my_courses.php"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
+                                        <a class="list-group-item <?= is_active_page('student_dashboard.php') ?>" href="../student/student_dashboard.php"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
+                                        <a class="list-group-item <?= is_active_page('my_courses.php') ?>" href="../student/my_courses.php"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
                                         <!-- <a class="list-group-item" href="student-quiz.html"><i class="bi bi-question-diamond fa-fw me-2"></i>Quiz</a> -->
-                                        <a class="list-group-item" href="../student/student_payment_info.php"><i class="bi bi-credit-card-2-front fa-fw me-2"></i>Payment Info</a>
+                                        <a class="list-group-item <?= is_active_page('student_payment_info.php') ?>" href="../student/student_payment_info.php"><i class="bi bi-credit-card-2-front fa-fw me-2"></i>Payment Info</a>
                                         <!-- <a class="list-group-item" href="../student/student_wishlist.php"><i class="bi bi-cart-check fa-fw me-2"></i>Wishlist</a> -->
-                                        <a class="list-group-item" href="../student/student_edit_profile.php"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
+                                        <a class="list-group-item <?= is_active_page('student_edit_profile.php') ?>" href="../student/student_edit_profile.php"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
                                         <!-- <a class="list-group-item" href="instructor-setting.html"><i class="bi bi-gear fa-fw me-2"></i>Settings</a> -->
                                         <!-- <a class="list-group-item" href="instructor-delete-account.html"><i class="bi bi-trash fa-fw me-2"></i>Delete Profile</a> -->
                                         <a class="list-group-item text-danger bg-danger-soft-hover" href="../includes/logout.php"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</a>
