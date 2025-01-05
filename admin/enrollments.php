@@ -19,7 +19,7 @@ ob_start();
   <!-- Title -->
   <div class="row mb-3">
     <div class="col-12 d-sm-flex justify-content-between align-items-center">
-      <h4 class=" mb-2 mb-sm-0">Total Courses <span class="badge bg-orange bg-opacity-10 text-orange">15</span></h4>
+      <h4 class="mb-2 mb-sm-0">Enrollments</h4>
       <div class="nav my-3 my-xl-0 flex-nowrap align-items-center">
         <div class="nav-item w-100">
           <form class="position-relative">

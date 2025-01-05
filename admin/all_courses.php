@@ -3,6 +3,7 @@
 include('../includes/db.php');
 include('../includes/session.php');
 include('../includes/get_courses.php');
+include('../includes/get_totals.php');
 
 // variables
 $page_title = "All Courses | Admin Panel | Digital Shikkhok";
@@ -16,7 +17,7 @@ ob_start();
   <!-- Title -->
   <div class="row mb-3">
     <div class="col-12 d-sm-flex justify-content-between align-items-center">
-      <h1 class="h3 mb-2 mb-sm-0">Total Courses <span class="badge bg-orange bg-opacity-10 text-orange">15</span></h1>
+      <h4 class=" mb-2 mb-sm-0">All Courses</h4>
       <a href="create_course.php" class="btn btn-sm btn-primary mb-0">Create a Course</a>
     </div>
   </div>
@@ -73,10 +74,10 @@ ob_start();
               </td>
 
               <!-- Table data -->
-              <td class="text-center"><?= htmlspecialchars($course['price']) ?></td>
-              <td class="text-center"> 15,567</td>
+              <td class="text-center">৳ <?= htmlspecialchars($course['price']) ?></td>
+              <td class="text-center"> <?= total_enrolled($conn, $course['id']) ?></td>
               <td class="d-flex justify-content-end">
-                <a href="update_course.php?id=<?= $course['id'] ?>" class="btn btn-sm btn-success me-1 mb-1 mb-md-0">Edit</a>
+                <a href="edit_course.php?id=<?= $course['id'] ?>" class="btn btn-sm btn-success me-1 mb-1 mb-md-0">Edit</a>
                 <button class="btn btn-sm btn-danger mb-0">Delete</button>
               </td>
             </tr>

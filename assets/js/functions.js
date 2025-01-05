@@ -1262,31 +1262,33 @@ function createLecture(form) {
     data[key] = value.trim();
   });
 
-  // generate unique id
-  const lectureId = `lecture-${Date.now()}`;
+  console(data);
 
-  const lecturesContainer = document.getElementById("lectureContainer");
-  lecturesContainer.insertAdjacentHTML(
-    "beforeend",
-    `<div class="accordion-item mb-3">
-      <!-- Lecture Title Start -->
-      <h6 class="accordion-header font-base">
-        <button class="accordion-button fw-bold rounded d-inline-block collapsed d-block pe-5" type="button" data-bs-toggle="collapse" data-bs-target="#${lectureId}" aria-expanded="false" aria-controls="${lectureId}">
-           ${data.name}
-        </button>
-      </h6>
-      
-      <!-- Lecture Topics Start -->
-      <div id="${lectureId}" class="accordion-collapse collapse show" data-bs-parent="#accordionExample2">
-      <div class="accordion-body mt-3">
-          <div id="topic-${lectureId}"></div>
-          <input type="hidden" name="lectures[${lectureId}][name]" value="${data.name}">
-          <a href="#" onclick="setCurrentLecture('${lectureId}')" class="btn btn-sm btn-dark mb-0" data-bs-toggle="modal" data-bs-target="#addTopic"><i class="bi bi-plus-circle me-2"></i>Add topic</a>
-          <button type="button" onclick="removeLecture('${lectureId}')" class="btn btn-sm btn-danger-soft mb-0 mt-1 mt-sm-0">Delete this Lecture</button>
-        </div>
-      </div>
-    </div>`
-  );
+  // // generate unique id
+  // const lectureId = `lecture-${Date.now()}`;
+
+  // const lecturesContainer = document.getElementById("lectureContainer");
+  // lecturesContainer.insertAdjacentHTML(
+  //   "beforeend",
+  //   `<div class="accordion-item mb-3">
+  //     <!-- Lecture Title Start -->
+  //     <h6 class="accordion-header font-base">
+  //       <button class="accordion-button fw-bold rounded d-inline-block collapsed d-block pe-5" type="button" data-bs-toggle="collapse" data-bs-target="#${lectureId}" aria-expanded="false" aria-controls="${lectureId}">
+  //          ${data.name}
+  //       </button>
+  //     </h6>
+
+  //     <!-- Lecture Topics Start -->
+  //     <div id="${lectureId}" class="accordion-collapse collapse show" data-bs-parent="#accordionExample2">
+  //     <div class="accordion-body mt-3">
+  //         <div id="topic-${lectureId}"></div>
+  //         <input type="hidden" name="lectures[${lectureId}][name]" value="${data.name}">
+  //         <a href="#" onclick="setCurrentLecture('${lectureId}')" class="btn btn-sm btn-dark mb-0" data-bs-toggle="modal" data-bs-target="#addTopic"><i class="bi bi-plus-circle me-2"></i>Add topic</a>
+  //         <button type="button" onclick="removeLecture('${lectureId}')" class="btn btn-sm btn-danger-soft mb-0 mt-1 mt-sm-0">Delete this Lecture</button>
+  //       </div>
+  //     </div>
+  //   </div>`
+  // );
 
   form.reset();
 }

@@ -13,7 +13,7 @@ ob_start();
 <!-- ----------------------------------- -->
 
 <div class="page-content-wrapper border">
-  <h1 class="h3 mb-3">New Course</h1>
+  <h1 class="h4 mb-3">New Course</h1>
 
   <!-- Card START -->
   <div class="card border rounded-3 mb-5">

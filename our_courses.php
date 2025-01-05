@@ -19,14 +19,23 @@ ob_start();
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb breadcrumb-dots mb-0">
                 <li class="breadcrumb-item"><a href="index.php">হোম</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><?= $_GET['type'] == 'free' ? 'ফ্রি কোর্স' : 'পেইড কোর্স' ?></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  <?php
+                  $type = $_GET['type'] ?? null;
+                  $type_labels = [
+                    'free' => 'ফ্রি কোর্স',
+                    'paid' => 'পেইড কোর্স',
+                  ];
+                  echo $type_labels[$type] ?? 'আমাদের কোর্সসমূহ';
+                  ?>
+                </li>
               </ol>
             </nav>
           </div>
-        </div>
+        </div
+          </div>
       </div>
     </div>
-  </div>
 </section>
 
 <!-- Page content START -->

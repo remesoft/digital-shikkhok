@@ -47,3 +47,11 @@ function total_payment($conn, $user_id)
   $row = mysqli_fetch_assoc($result);
   return $row['total_payment'] ?? 0;
 }
+
+function total_enrolled($conn, $course_id)
+{
+  $sql = "SELECT COUNT(*) AS count FROM enrollments WHERE course_id = $course_id AND status = 'success'";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+  return $row['count'] ?? 0;
+}
