@@ -1,9 +1,12 @@
 <?php
 // include essential files
-require_once('../includes/session.php');
+include('../includes/db.php');
+include('../includes/session.php');
+include('../includes/get_course_by_id.php');
 
 // variables
-$page_title = "Create Course | Admin Panel | Digital Shikkhok";
+$page_title = "Update Course | Admin Panel | Digital Shikkhok";
+$course = get_detailed_course($conn, $_GET['id']);
 ob_start();
 ?>
 
@@ -13,7 +16,7 @@ ob_start();
 <!-- ----------------------------------- -->
 
 <div class="page-content-wrapper border">
-  <h1 class="h4 mb-3">New Course</h1>
+  <h1 class="h3 mb-3">Update Course</h1>
 
   <!-- Card START -->
   <div class="card border rounded-3 mb-5">
@@ -60,7 +63,8 @@ ob_start();
       <div class="card-body px-1 px-sm-4">
         <!-- Step content START -->
         <div class="bs-stepper-content">
-          <form action="../includes/process_create_course.php" method="post" enctype="multipart/form-data">
+          <form action="../includes/process_update_course.php" method="post" enctype="multipart/form-data">
+            <input type="text" name="course_id" value="<?= $course['id'] ?>" hidden>
 
             <!-- Step 1 content START -->
             <div id="step-1" role="tabpanel" class="content fade" aria-labelledby="steppertrigger1">
@@ -74,44 +78,42 @@ ob_start();
                 <!-- Course title -->
                 <div class="col-12">
                   <label class="form-label">Course title</label>
-                  <input name="title" class="form-control" type="text" placeholder="Enter course title" value="The Complete Digital Marketing Course - 12 Courses in 1" require>
+                  <input name="title" class="form-control" type="text" placeholder="Enter course title" value="<?= $course['title'] ?>" require>
                 </div>
 
                 <!-- Short description -->
                 <div class="col-12">
                   <label class="form-label">Short description</label>
-                  <textarea name="short_desc" class="form-control" rows="4" placeholder="Enter keywords" require>Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.
-										</textarea>
+                  <textarea name="short_desc" class="form-control" rows="4" placeholder="Enter keywords" require><?= $course['short_desc'] ?></textarea>
                 </div>
 
                 <!-- Course time -->
                 <div class="col-md-6">
                   <label class="form-label">Course time</label>
-                  <input name="duration" class="form-control" type="text" placeholder="Enter course time" value="12h 30m" require>
+                  <input name="duration" class="form-control" type="text" placeholder="Enter course time" value="<?= $course['duration'] ?>" require>
                 </div>
 
                 <!-- Course price -->
                 <div class="col-md-6">
                   <label class="form-label">Course price</label>
-                  <input name="price" type="text" class="form-control" placeholder="Enter course price" value="350" require>
+                  <input name="price" type="text" class="form-control" placeholder="Enter course price" value="<?= $course['price'] ?>" require>
                 </div>
                 <!-- Course price -->
                 <div class="col-md-6">
                   <label class="form-label">Total Lectures</label>
-                  <input name="total_lectures" type="text" class="form-control" placeholder="Enter total lectures" value="27" require>
+                  <input name="total_lectures" type="text" class="form-control" placeholder="Enter total lectures" value="<?= $course['total_lectures'] ?>" require>
                 </div>
 
                 <!-- Course price -->
                 <div class="col-md-6">
                   <label class="form-label">Course Language</label>
-                  <input name="language" type="text" class="form-control" placeholder="Enter course language" value="Bangla" require>
+                  <input name="language" type="text" class="form-control" placeholder="Enter course language" value="<?= $course['language'] ?>" require>
                 </div>
 
                 <!-- Course description -->
                 <div class="col-md-12">
                   <label class="form-label">Add description</label>
-                  <textarea name="description" class="form-control" rows="5" placeholder="Enter course description..." require>Satisfied conveying a dependent contented he gentleman agreeable do be. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do.
-                  </textarea>
+                  <textarea name="description" class="form-control" rows="5" placeholder="Enter course description..." require><?= $course['description'] ?></textarea>
                 </div>
 
                 <!-- Step 1 button -->
@@ -136,7 +138,8 @@ ob_start();
                       <h6 class="my-2">Upload course thumbnail here, or<a href="#!" class="text-primary"> Browse</a></h6>
                       <label style="cursor:pointer;">
                         <span>
-                          <input name="thumbnail" class="form-control stretched-link" type="file" id="image" accept="image/gif, image/jpeg, image/png" required />
+                          <input name="thumbnail" class="form-control stretched-link" type="file" id="image" accept="image/gif, image/jpeg, image/png" require />
+                          <input name="old_thumbnail" value="<?= $course['thumbnail'] ?>" hidden>
                         </span>
                       </label>
                       <p class="small mb-0 mt-2"><b>Note:</b> Only JPG, JPEG and PNG. Our suggested dimensions are 600px * 450px. Larger image will be cropped to 4:3 to fit our thumbnails/previews.</p>
@@ -150,7 +153,7 @@ ob_start();
                 <div class="col-12 mt-4">
                   <h5>Introduction video URL</h5>
                   <div class="col-12 mt-3">
-                    <input class="form-control" name="video" type="text" placeholder="Enter video url" value="https://www.youtube.com/embed/tXHviS-4ygo">
+                    <input class="form-control" name="video" type="text" placeholder="Enter video url" value="<?= $course['video'] ?>">
                   </div>
                 </div>
 
@@ -164,28 +167,111 @@ ob_start();
             </div>
 
             <!-- Step 3 content START -->
-            <div id="step-3" role="tabpanel" class="content fade" aria-labelledby="steppertrigger3">
+            <div
+              id="step-3"
+              role="tabpanel"
+              class="content fade"
+              aria-labelledby="steppertrigger3">
+              <!-- Title -->
               <h4>Curriculum</h4>
-              <hr>
+
+              <hr />
+              <!-- Divider -->
+
               <div class="row">
                 <!-- Add lecture Modal button -->
-                <div class="d-sm-flex justify-content-sm-between align-items-center mb-3">
+                <div
+                  class="d-sm-flex justify-content-sm-between align-items-center mb-3">
                   <h5 class="mb-2 mb-sm-0">Upload Lecture</h5>
-                  <a href="#" class="btn btn-sm btn-primary-soft mb-0" data-bs-toggle="modal" data-bs-target="#addLecture"><i class="bi bi-plus-circle me-2"></i>Add Lecture</a>
+                  <a
+                    href="#"
+                    class="btn btn-sm btn-primary-soft mb-0"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addLecture"><i class="bi bi-plus-circle me-2"></i>Add
+                    Lecture</a>
                 </div>
 
                 <!-- Edit lecture START -->
-                <div class="accordion accordion-icon accordion-bg-light" id="lectureHolder"></div>
-                <div class="d-md-flex justify-content-between align-items-start mt-4">
-                  <button type="button" class="btn btn-secondary prev-btn mb-2 mb-md-0">Previous</button>
-                  <button type="button" class="btn btn-light me-auto ms-md-2 mb-2 mb-md-0">Preview Course</button>
-                  <div class="text-md-end">
-                    <button class="btn btn-success mb-2 mb-sm-0">Submit a Course</button>
-                    <p class="mb-0 small mt-1">Once you click "Submit a Course", your course will be uploaded and marked as pending for review.</p>
-                  </div>
+                <div
+                  class="accordion accordion-icon accordion-bg-light"
+                  id="accordionExample2">
+
+                  <?php foreach ($course['lectures'] as $lecture): ?>
+
+                    <!-- Item START -->
+                    <div class="accordion-item mb-3">
+                      <h6
+                        class="accordion-header font-base"
+                        id="heading-1">
+                        <button
+                          class="accordion-button fw-bold rounded d-inline-block collapsed d-block pe-5"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapse-<?= $lecture['id'] ?>"
+                          aria-expanded="false"
+                          aria-controls="collapse-1">
+                          <?= $lecture['title'] ?>
+                        </button>
+                      </h6>
+
+                      <div
+                        id="collapse-<?= $lecture['id'] ?>"
+                        class="accordion-collapse collapse show"
+                        aria-labelledby="heading-1"
+                        data-bs-parent="#accordionExample2">
+                        <div class="accordion-body mt-3">
+                          <?php foreach ($lecture['topics'] as $index => $topic): ?>
+                            <div
+                              class="d-flex justify-content-between align-items-center">
+                              <div class="position-relative">
+                                <a
+                                  href="#"
+                                  class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static"><i class="fas fa-play"></i></a>
+                                <span class="ms-2 mb-0 h6 fw-light"><?= $topic['title'] ?></span>
+                              </div>
+                              <!-- Edit and cancel button -->
+                              <div>
+                                <a
+                                  href="#"
+                                  class="btn btn-sm btn-success-soft btn-round me-1 mb-1 mb-md-0"><i class="far fa-fw fa-edit"></i></a>
+                                <button
+                                  class="btn btn-sm btn-danger-soft btn-round mb-0">
+                                  <i class="fas fa-fw fa-times"></i>
+                                </button>
+                              </div>
+                            </div>
+                            <hr />
+                          <?php endforeach; ?>
+                          <a
+                            href="#"
+                            class="btn btn-sm btn-dark mb-0"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addTopic"><i class="bi bi-plus-circle me-2"></i>Add
+                            topic</a>
+                          <a
+                            href="#"
+                            class="btn btn-sm btn-danger-soft mb-0 mt-1 mt-sm-0">Delete this Lecture</a>
+                        </div>
+                        <!-- Topic END -->
+                      </div>
+                    </div>
+                  <?php endforeach; ?>
+
+                </div>
+                <!-- Edit lecture END -->
+
+                <!-- Step 3 button -->
+                <div class="d-flex justify-content-between">
+                  <button class="btn btn-secondary prev-btn mb-0">
+                    Previous
+                  </button>
+                  <button class="btn btn-primary next-btn mb-0">
+                    Next
+                  </button>
                 </div>
               </div>
             </div>
+            <!-- Step 3 content END -->
           </form>
         </div>
       </div>
