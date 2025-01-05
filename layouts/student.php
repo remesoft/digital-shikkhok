@@ -202,10 +202,10 @@ $user = get_user($conn, $user_id);
                                 <hr class="dropdown-divider">
                             </li>
                             <!-- Links -->
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
+                            <li><a class="dropdown-item" href="../student/student_edit_profile.php"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
                             <li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
                             <li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
-                            <li><a class="dropdown-item bg-danger-soft-hover" href="#"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
+                            <li><a class="dropdown-item bg-danger-soft-hover" href="../includes/logout.php"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -258,7 +258,7 @@ $user = get_user($conn, $user_id);
                             <div class="col-auto">
                                 <div class="avatar avatar-xxl position-relative mt-n3">
                                     <img class="avatar-img rounded-circle border border-white border-3 shadow" src="../uploads/img/users/<?= $user['avatar'] ?>" alt="">
-                                    <span class="badge text-bg-success rounded-pill position-absolute top-50 start-100 translate-middle mt-4 mt-md-5 ms-n3 px-md-3">Pro</span>
+                                    <span class="badge text-bg-success rounded-pill position-absolute top-50 start-100 translate-middle mt-4 mt-md-5 ms-n3 px-md-3">Active</span>
                                 </div>
                             </div>
                             <!-- Profile info -->
@@ -267,9 +267,10 @@ $user = get_user($conn, $user_id);
                                     <h1 class="my-1 fs-4"><?= $user['first_name'] ?> <?= $user['last_name'] ?></h1>
                                     <ul class="list-inline mb-0">
                                         <li class="list-inline-item me-3 mb-1 mb-sm-0">
-                                            <span class="text-body fw-light">Enrolled <span class="h6">7</span> courses</span>
+                                            <i class="fas fa-phone me-1 text-info"></i>
+                                            <span class="text-body fw-light"><?= $user['phone'] ?></span>
                                         </li>
-                                    </ul> 
+                                    </ul>
                                 </div>
                                 <!-- Button -->
                                 <div class="mt-2 mt-sm-0">
