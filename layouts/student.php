@@ -165,11 +165,11 @@ $user = get_user($conn, $user_id);
                                 </a>
                             </li>
 
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="../our_courses.php">
                                     শিক্ষকগণ
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link" href="../contact_us.php">
                                     যোগাযোগ
@@ -272,7 +272,7 @@ $user = get_user($conn, $user_id);
                                     <?php } else { ?>
                                         <img class="avatar-img rounded-circle" src="../uploads/img/users/blank.png" alt="avatar">
                                     <?php } ?>
-                                    <span class="badge text-bg-success rounded-pill position-absolute top-50 start-100 translate-middle mt-4 mt-md-5 ms-n3 px-md-3">Pro</span>
+                                    <span class="badge text-bg-success rounded-pill position-absolute top-50 start-100 translate-middle mt-4 mt-md-5 ms-n3 px-md-3">Online</span>
                                 </div>
                             </div>
                             <!-- Profile info -->

@@ -174,11 +174,11 @@ include_once('./includes/get_user_by_id.php');
                                 </a>
                             </li>
 
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="our_courses.php?type=paid">
                                     শিক্ষকগণ
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link" href="contact_us.php">
                                     যোগাযোগ
