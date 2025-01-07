@@ -1246,11 +1246,19 @@ e.init();
            customization start
 --------------------------------------------- */
 let currentLectureId = null;
-
 // set current lecture id
 function setLectureId(lectureId) {
   console.log(lectureId);
   currentLectureId = lectureId;
+}
+
+function removeLecture(lectureId) {
+  document.getElementById(lectureId).closest(".accordion-item").remove();
+}
+
+function removeTopic(buttonElement) {
+  buttonElement.closest("#topic").nextElementSibling?.remove();
+  buttonElement.closest("#topic").remove();
 }
 
 // create lectures
@@ -1318,10 +1326,9 @@ function createTopic(form) {
   // topic container
   topicHolder.insertAdjacentHTML(
     "beforeend",
-    `
-      <div class="d-flex justify-content-between align-items-center">
+    `<div id="topic" class="d-flex justify-content-between align-items-center topic-element">
         <div class="position-relative">
-          <a href="${data.url}" target="_blank" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static"><i class="fas fa-play"></i></a>
+          <span class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static"><i class="fas fa-play"></i></span>
           <span class="ms-2 mb-0 h6 fw-light">${data.name}</span>
         </div>
         <div>
@@ -1329,124 +1336,10 @@ function createTopic(form) {
           <input type="hidden" name="lectures[${currentLectureId}][topics][${topicId}][duration]" value="${data.duration}">
           <input type="hidden" name="lectures[${currentLectureId}][topics][${topicId}][url]" value="${data.url}">
           <input type="hidden" name="lectures[${currentLectureId}][topics][${topicId}][price]" value="${data.price}">
-          <a href="#" class="btn btn-sm btn-success-soft btn-round me-1 mb-1 mb-md-0"><i class="far fa-fw fa-edit"></i></a>
-          <button onclick="removeTopic(this)" class="btn btn-sm btn-danger-soft btn-round mb-0"><i class="fas fa-fw fa-times"></i></button>
+          <button type="button" onclick="removeTopic(this)" class="btn btn-sm btn-danger-soft btn-round mb-0"><i class="fas fa-fw fa-times"></i></button>
         </div>
       </div>
       <hr>
     `
   );
 }
-
-// const lectureId = `lecture-${Date.now()}`;
-// let currentLectureId = null;
-
-// function setCurrentLecture(lectureId) {
-//   currentLectureId = lectureId;
-// }
-
-// function createLecture(form) {
-//   const data = {};
-//   const formData = new FormData(form);
-
-//   // Extract form data
-//   formData.forEach((value, key) => {
-//     data[key] = value.trim();
-//   });
-
-//   console.log(data);
-// }
-
-// function createLecture(form) {
-//   const data = {};
-//   const formData = new FormData(form);
-
-//   // Extract form data
-//   formData.forEach((value, key) => {
-//     data[key] = value.trim();
-//   });
-
-//   // generate unique id
-//   const lectureId = `lecture-${Date.now()}`;
-
-//   const lecturesContainer = document.getElementById("lectureContainer");
-//   lecturesContainer.insertAdjacentHTML(
-//     "beforeend",
-// `<div class="accordion-item mb-3">
-//   <!-- Lecture Title Start -->
-//   <h6 class="accordion-header font-base">
-//     <button class="accordion-button fw-bold rounded d-inline-block collapsed d-block pe-5" type="button" data-bs-toggle="collapse" data-bs-target="#${lectureId}" aria-expanded="false" aria-controls="${lectureId}">
-//        ${data.name}
-//     </button>
-//   </h6>
-
-//   <!-- Lecture Topics Start -->
-//   <div id="${lectureId}" class="accordion-collapse collapse show" data-bs-parent="#accordionExample2">
-//   <div class="accordion-body mt-3">
-//       <div id="topic-${lectureId}"></div>
-//       <input type="hidden" name="lectures[${lectureId}][name]" value="${data.name}">
-//       <a href="#" onclick="setCurrentLecture('${lectureId}')" class="btn btn-sm btn-dark mb-0" data-bs-toggle="modal" data-bs-target="#addTopic"><i class="bi bi-plus-circle me-2"></i>Add topic</a>
-//       <button type="button" onclick="removeLecture('${lectureId}')" class="btn btn-sm btn-danger-soft mb-0 mt-1 mt-sm-0">Delete this Lecture</button>
-//     </div>
-//   </div>
-// </div>`
-//   );
-
-//   form.reset();
-// }
-
-// function createTopic(form) {
-//   const data = {};
-//   const formData = new FormData(form);
-
-//   // Extract form data into the `data` object
-//   formData.forEach((value, key) => {
-//     data[key] = value.trim();
-//   });
-
-//   // Generate unique `topicId`
-//   const topicId = `topic-${Date.now()}`;
-
-//   // Get the topic container by current lecture ID
-//   const topicContainer = document.getElementById("topic-" + currentLectureId);
-
-//   // Insert the topic HTML into the container
-// topicContainer.insertAdjacentHTML(
-//   "beforeend",
-//   `
-//     <div class="d-flex justify-content-between align-items-center">
-//       <div class="position-relative">
-//         <a href="${data.url}" target="_blank" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static"><i class="fas fa-play"></i></a>
-//         <span class="ms-2 mb-0 h6 fw-light">${data.name}</span>
-//       </div>
-//       <div>
-//         <input type="hidden" name="lectures[${currentLectureId}][topics][${topicId}][name]" value="${data.name}">
-//         <input type="hidden" name="lectures[${currentLectureId}][topics][${topicId}][duration]" value="${data.duration}">
-//         <input type="hidden" name="lectures[${currentLectureId}][topics][${topicId}][url]" value="${data.url}">
-//         <input type="hidden" name="lectures[${currentLectureId}][topics][${topicId}][price]" value="${data.price}">
-//         <a href="#" class="btn btn-sm btn-success-soft btn-round me-1 mb-1 mb-md-0"><i class="far fa-fw fa-edit"></i></a>
-//         <button onclick="removeTopic(this)" class="btn btn-sm btn-danger-soft btn-round mb-0"><i class="fas fa-fw fa-times"></i></button>
-//       </div>
-//     </div>
-//     <hr>
-//   `
-// );
-
-//   // Reset form fields
-//   form.reset();
-// }
-
-// function removeLecture(lectureId) {
-//   const lectureElement = document.querySelector(`#${lectureId}`);
-//   if (lectureElement) {
-//     lectureElement.closest(".accordion-item").remove();
-//   }
-// }
-
-// function removeTopic(buttonElement) {
-//   const topicElement = buttonElement.closest(".d-flex");
-//   if (topicElement) {
-//     topicElement.nextElementSibling?.remove();
-//     topicElement.remove();
-//   }
-// }

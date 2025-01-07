@@ -251,9 +251,9 @@ ob_start();
           </div>
           <div class="col-6 mt-3">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-              <input type="radio" class="btn-check" name="price" value="free" id="option1" checked="">
+              <input type="radio" class="btn-check" name="price" value="free" id="option1">
               <label class="btn btn-sm btn-light btn-primary-soft-check border-0 m-0" for="option1">Free</label>
-              <input type="radio" class="btn-check" name="price" value="premium" id="option2">
+              <input type="radio" class="btn-check" name="price" value="premium" id="option2" checked>
               <label class="btn btn-sm btn-light btn-primary-soft-check border-0 m-0" for="option2">Premium</label>
             </div>
           </div>

@@ -193,11 +193,11 @@ ob_start();
                         <div class="accordion-body mt-3">
                           <div id="topic-lecture-<?= $lecture['id'] ?>">
                             <?php foreach ($lecture['topics'] as $topic) : ?>
-                              <div class="d-flex justify-content-between align-items-center">
+                              <div id="topic" class="d-flex justify-content-between align-items-center">
                                 <div class="position-relative">
-                                  <a href="<?= $topic['video'] ?>" target="_blank" class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static">
+                                  <span class="btn btn-danger-soft btn-round btn-sm mb-0 stretched-link position-static">
                                     <i class="fas fa-play"></i>
-                                  </a>
+                                  </span>
                                   <span class="ms-2 mb-0 h6 fw-light">
                                     <?= $topic['title'] ?>
                                   </span>
@@ -207,8 +207,8 @@ ob_start();
                                   <input type="hidden" name="lectures[lecture-<?= $lecture['id'] ?>][topics][${topicId}][duration]" value="<?= $topic['duration'] ?>">
                                   <input type="hidden" name="lectures[lecture-<?= $lecture['id'] ?>][topics][${topicId}][url]" value="<?= $topic['video'] ?>">
                                   <input type="hidden" name="lectures[lecture-<?= $lecture['id'] ?>][topics][${topicId}][price]" value="<?= $topic['price'] ?>">
-                                  <a href="#" class="btn btn-sm btn-success-soft btn-round me-1 mb-1 mb-md-0"><i class="far fa-fw fa-edit"></i></a>
-                                  <button onclick="removeTopic(this)" class="btn btn-sm btn-danger-soft btn-round mb-0"><i class="fas fa-fw fa-times"></i></button>
+                                  <!-- <a href="#" class="btn btn-sm btn-success-soft btn-round me-1 mb-1 mb-md-0"><i class="far fa-fw fa-edit"></i></a> -->
+                                  <button type="button" onclick="removeTopic(this)" class="btn btn-sm btn-danger-soft btn-round mb-0"><i class="fas fa-fw fa-times"></i></button>
                                 </div>
                               </div>
                               <hr>
@@ -279,7 +279,9 @@ ob_start();
     <div class="modal-content">
       <div class="modal-header bg-dark">
         <h5 class="modal-title text-white" id="addTopicLabel">Add topic</h5>
-        <button type="button" class="btn btn-sm btn-light mb-0 ms-auto" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+        <button type="button" class="btn btn-sm btn-light mb-0 ms-auto" data-bs-dismiss="modal" aria-label="Close">
+          <i class="bi bi-x-lg"></i>
+        </button>
       </div>
       <div class="modal-body">
         <form id="topicForm" class="row text-start g-3">
@@ -297,9 +299,9 @@ ob_start();
           </div>
           <div class="col-6 mt-3">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-              <input type="radio" class="btn-check" name="price" value="free" id="option1" checked="">
+              <input type="radio" class="btn-check" name="price" value="free" id="option1">
               <label class="btn btn-sm btn-light btn-primary-soft-check border-0 m-0" for="option1">Free</label>
-              <input type="radio" class="btn-check" name="price" value="premium" id="option2">
+              <input type="radio" class="btn-check" name="price" value="premium" id="option2" checked>
               <label class="btn btn-sm btn-light btn-primary-soft-check border-0 m-0" for="option2">Premium</label>
             </div>
           </div>
