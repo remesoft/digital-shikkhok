@@ -16,8 +16,8 @@ Page Banner START -->
 		<div class="row">
 			<div class="col-lg-8 col-xl-6 text-center mx-auto">
 				<!-- Title -->
-				<h6 class="text-primary">Contact us</h6>
-				<h1 class="mb-4">We're here to help!</h1>
+				<h6 class="text-primary">যোগাযোগ করুন</h6>
+				<h1 class="mb-4">আমরা সাহায্য করার জন্য এখানে আছি!</h1>
 			</div>
 		</div>
 		
@@ -27,19 +27,19 @@ Page Banner START -->
 			<div class="col-lg-4 mt-lg-0">
 				<div class="card card-body bg-primary shadow py-5 text-center h-100">
 					<!-- Title -->
-					<h5 class="text-white mb-3">Customer Support</h5>
+					<h5 class="text-white mb-3">গ্রাহক সহায়তা</h5>
 					<ul class="list-inline mb-0">
 						<!-- Address -->
 						<li class="list-item mb-3">
-							<a href="#" class="text-white"> <i class="fas fa-fw fa-map-marker-alt me-2 mt-1"></i>Chicago HQ Estica Cop.  Macomb, MI 48042 </a>
+							<a href="#" class="text-white"> <i class="fas fa-fw fa-map-marker-alt me-2 mt-1"></i>সিলেট পলিটেকনিক প্রধান গেট, টেকনিক্যাল রোড, সিলেট। </a>
 						</li>
 						<!-- Phone number -->
 						<li class="list-item mb-3">
-							<a href="#" class="text-white"> <i class="fas fa-fw fa-phone-alt me-2"></i>(423) 733-8222 </a>
+							<a href="#" class="text-white"> <i class="fas fa-fw fa-phone-alt me-2"></i>+8801719979817 </a>
 						</li>
 						<!-- Email id -->
 						<li class="list-item mb-0">
-							<a href="#" class="text-white"> <i class="far fa-fw fa-envelope me-2"></i>example@email.com </a>
+							<a href="#" class="text-white"> <i class="far fa-fw fa-envelope me-2"></i>mantrigaon@gmail.com </a>
 						</li>
 					</ul>
 				</div>
@@ -49,19 +49,19 @@ Page Banner START -->
 			<div class="col-lg-4 mt-lg-0">
 				<div class="card card-body shadow py-5 text-center h-100">
 					<!-- Title -->
-					<h5 class="mb-3">Contact Address</h5>
+					<h5 class="mb-3">যোগাযোগের ঠিকানা</h5>
 					<ul class="list-inline mb-0">
 						<!-- Address -->
 						<li class="list-item mb-3 h6 fw-light">
-							<a href="#"> <i class="fas fa-fw fa-map-marker-alt me-2 mt-1"></i>2492 Centennial NW, Acworth, GA, 30102 </a>
+							<a href="#"> <i class="fas fa-fw fa-map-marker-alt me-2 mt-1"></i>সিলেট পলিটেকনিক প্রধান গেট, টেকনিক্যাল রোড, সিলেট।</a>
 						</li>
 						<!-- Phone number -->
 						<li class="list-item mb-3 h6 fw-light">
-							<a href="#"> <i class="fas fa-fw fa-phone-alt me-2"></i>+896-789-546 </a>
+							<a href="#"> <i class="fas fa-fw fa-phone-alt me-2"></i>+8801719979817 </a>
 						</li>
 						<!-- Email id -->
 						<li class="list-item mb-0 h6 fw-light">
-							<a href="#"> <i class="far fa-fw fa-envelope me-2"></i>example@email.com </a>
+							<a href="#"> <i class="far fa-fw fa-envelope me-2"></i>mantrigaon@gmail.com </a>
 						</li>
 					</ul>
 				</div>
@@ -71,19 +71,19 @@ Page Banner START -->
 			<div class="col-lg-4 mt-lg-0">
 				<div class="card card-body shadow py-5 text-center h-100">
 					<!-- Title -->
-					<h5 class="mb-3">Main Office Address</h5>
+					<h5 class="mb-3">প্রধান অফিসের ঠিকানা</h5>
 					<ul class="list-inline mb-0">
 						<!-- Address -->
 						<li class="list-item mb-3 h6 fw-light">
-							<a href="#"> <i class="fas fa-fw fa-map-marker-alt me-2 mt-1"></i>2002 Horton Ford Rd, Eidson, TN, 37731 </a>
+							<a href="#"> <i class="fas fa-fw fa-map-marker-alt me-2 mt-1"></i>সিলেট পলিটেকনিক প্রধান গেট, টেকনিক্যাল রোড, সিলেট।</a>
 						</li>
 						<!-- Phone number -->
 						<li class="list-item mb-3 h6 fw-light">
-							<a href="#"> <i class="fas fa-fw fa-phone-alt me-2"></i>(678) 324-1251 </a>
+							<a href="#"> <i class="fas fa-fw fa-phone-alt me-2"></i>+8801719979817 </a>
 						</li>
 						<!-- Email id -->
 						<li class="list-item mb-0 h6 fw-light">
-							<a href="#"> <i class="far fa-fw fa-envelope me-2"></i>example@email.com </a>
+							<a href="#"> <i class="far fa-fw fa-envelope me-2"></i>mantrigaon@gmail.com </a>
 						</li>
 					</ul>
 				</div>
@@ -121,28 +121,28 @@ Image and contact form START -->
 			<!-- Contact form START -->
 			<div class="col-md-6">
 				<!-- Title -->
-				<h2 class="mt-4 mt-md-0">Let's talk</h2>
-				<p>To request a quote or want to meet up for coffee, contact us directly or fill out the form and we will get back to you promptly</p>
+				<h2 class="mt-4 mt-md-0">আসুন কথা বলি</h2>
+				<p>একটি প্রস্তাবের জন্য অনুরোধ করতে বা চায়ের আড্ডায় মিলিত হতে চান? সরাসরি আমাদের সাথে যোগাযোগ করুন বা ফর্মটি পূরণ করুন, আমরা দ্রুত আপনার কাছে ফিরে আসব।</p>
 					
 				<form>
 					<!-- Name -->
 					<div class="mb-4 bg-light-input">
-						<label for="yourName" class="form-label">Your name *</label>
+						<label for="yourName" class="form-label">আপনার নাম *</label>
 						<input type="text" class="form-control form-control-lg" id="yourName">
 					</div>
 					<!-- Email -->
 					<div class="mb-4 bg-light-input">
-						<label for="emailInput" class="form-label">Email address *</label>
+						<label for="emailInput" class="form-label">ইমেইল ঠিকানা *</label>
 						<input type="email" class="form-control form-control-lg" id="emailInput">
 					</div>
 					<!-- Message -->
 					<div class="mb-4 bg-light-input">
-						<label for="textareaBox" class="form-label">Message *</label>
+						<label for="textareaBox" class="form-label">বার্তা *</label>
 						<textarea class="form-control" id="textareaBox" rows="4"></textarea>
 					</div>
 					<!-- Button -->
 					<div class="d-grid">
-						<button class="btn btn-lg btn-primary mb-0" type="button">Send Message</button>
+						<button class="btn btn-lg btn-primary mb-0" type="button">বার্তা পাঠান</button>
 					</div>	
 				</form>
 			</div>
@@ -159,7 +159,7 @@ Map START -->
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<iframe class="w-100 h-400px grayscale rounded" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-74.00425878428698!3d40.74076684379132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bf5c1654f3%3A0xc80f9cfce5383d5d!2sGoogle!5e0!3m2!1sen!2sin!4v1586000412513!5m2!1sen!2sin" height="500" style="border:0;" aria-hidden="false" tabindex="0"></iframe>	
+				<iframe class="w-100 h-400px grayscale rounded" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d452.4193980403397!2d91.85860695680273!3d24.885863482892074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3751ab007f980cf5%3A0xce2a16b9b4857ea7!2sSylhet%20Polytechnic%20Institute%20Gate!5e0!3m2!1sen!2sbd!4v1736239091335!5m2!1sen!2sbd" height="500" style="border:0;" aria-hidden="false" tabindex="0"></iframe>	
 			</div>
 		</div>
 	</div>
@@ -175,4 +175,3 @@ Map END -->
 $content = ob_get_clean();
 include('layouts/website.php');
 ?>
-
