@@ -186,7 +186,7 @@ $user = get_user($conn, $user_id);
                             <?php if ($user['avatar']) { ?>
                                 <img class="avatar-img rounded-circle" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
                             <?php } else { ?>
-                                <img class="avatar-img rounded-circle" src="../uploads/img/users/blank.png" alt="avatar">
+                                <img class="avatar-img rounded-circle" src="../assets/images/avatar/empty-profile.png" alt="avatar">
                             <?php } ?>
                         </a>
 
@@ -199,7 +199,7 @@ $user = get_user($conn, $user_id);
                                         <?php if ($user['avatar']) { ?>
                                             <img class="avatar-img rounded-circle" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
                                         <?php } else { ?>
-                                            <img class="avatar-img rounded-circle" src="../uploads/img/users/blank.png" alt="avatar">
+                                            <img class="avatar-img rounded-circle" src="../assets/images/avatar/empty-profile.png" alt="avatar">
                                         <?php } ?>
                                     </div>
                                     <div>
@@ -270,7 +270,7 @@ $user = get_user($conn, $user_id);
                                     <?php if ($user['avatar']) { ?>
                                         <img class="avatar-img rounded-circle" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
                                     <?php } else { ?>
-                                        <img class="avatar-img rounded-circle" src="../uploads/img/users/blank.png" alt="avatar">
+                                        <img class="avatar-img rounded-circle" src="../assets/images/avatar/empty-profile.png" alt="avatar">
                                     <?php } ?>
                                     <span class="badge text-bg-success rounded-pill position-absolute top-50 start-100 translate-middle mt-4 mt-md-5 ms-n3 px-md-3">Online</span>
                                 </div>
