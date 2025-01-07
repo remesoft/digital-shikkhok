@@ -173,6 +173,12 @@ include_once('./includes/get_user_by_id.php');
                                     আমাদের সম্পর্কে
                                 </a>
                             </li>
+
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="our_courses.php?type=paid">
+                                    শিক্ষকগণ
+                                </a>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link" href="contact_us.php">
                                     যোগাযোগ
@@ -189,22 +195,23 @@ include_once('./includes/get_user_by_id.php');
                     ?>
                         <div class="dropdown ms-1 ms-lg-0">
                             <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?php if ($user['avatar'] == null) { ?>
-                                    <img class="avatar-img rounded-circle shadow" src="../assets/images/avatar/empty-profile.png" alt="avatar">
-                                <?php } else { ?>
+                                <?php if ($user['avatar']) { ?>
                                     <img class="avatar-img rounded-circle" src="uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
+                                <?php } else { ?>
+                                    <img class="avatar-img rounded-circle" src="assets/images/avatar/empty-profile.png" alt="avatar">
                                 <?php } ?>
                             </a>
+
                             <ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
                                 <!-- Profile info -->
                                 <li class="px-3 mb-3">
                                     <div class="d-flex align-items-center">
                                         <!-- Avatar -->
                                         <div class="avatar me-3">
-                                            <?php if ($user['avatar'] == null) { ?>
-                                                <img class="avatar-img rounded-circle shadow" src="../assets/images/avatar/empty-profile.png" alt="avatar">
+                                            <?php if ($user['avatar']) { ?>
+                                                <img class="avatar-img rounded-circle" src="uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
                                             <?php } else { ?>
-                                                <img class="avatar-img rounded-circle shadow" src="uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
+                                                <img class="avatar-img rounded-circle" src="assets/images/avatar/empty-profile.png" alt="avatar">
                                             <?php } ?>
                                         </div>
                                         <div>
