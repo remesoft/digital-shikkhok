@@ -30,7 +30,7 @@ ob_start();
 	<div class="card bg-transparent border rounded-3">
 		<!-- Card header -->
 		<div class="card-header bg-transparent border-bottom">
-			<h3 class="card-header-title mb-0">Edit Profile</h3>
+			<h3 class="card-header-title mb-0">এডিট প্রোফাইল</h3>
 		</div>
 		<!-- Card body START -->
 		<div class="card-body">
@@ -39,7 +39,7 @@ ob_start();
 
 				<!-- Profile picture -->
 				<div class="col-12 justify-content-center align-items-center">
-					<label class="form-label">Profile picture</label>
+					<label class="form-label">প্রোফাইল ছবি</label>
 					<div class="d-flex align-items-center">
 						<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
 							<!-- Avatar place holder -->
@@ -55,7 +55,7 @@ ob_start();
 						</label>
 						<!-- Upload button -->
 						<label class="btn btn-primary-soft mb-0 d-block" for="uploadfile-1">
-							Change profile
+						প্রোফাইল পরিবর্তন করুন
 							<input id="uploadfile-1" type="file" name="avatar" class="d-none">
 						</label>
 
@@ -69,11 +69,11 @@ ob_start();
 				<div class="col-12">
 					<div class="input-group d-flex justify-content-between">
 						<div class=" me-2" style="width: 48%;">
-							<label class="form-label d-block">First name</label>
+							<label class="form-label d-block">প্রথম নাম</label>
 							<input type="text" name="fname" id="fname" class="form-control" value="<?php echo $user['first_name']; ?>" placeholder="First name">
 						</div>
 						<div class="w-50">
-							<label class="form-label d-block">Last name</label>
+							<label class="form-label d-block">শেষ নাম</label>
 							<input type="text" name="lname" id="lname" class="form-control" value="<?php echo $user['last_name']; ?>" placeholder="Last name">
 						</div>
 					</div>
@@ -81,19 +81,19 @@ ob_start();
 
 				<!-- Email id -->
 				<div class="col-md-6">
-					<label class="form-label">Email id</label>
+					<label class="form-label">ইমেইল</label>
 					<input class="form-control" type="email" value="<?php echo $user['email']; ?>" placeholder="Email" disabled>
 				</div>
 
 				<!-- Phone number -->
 				<div class="col-md-6">
-					<label class="form-label">Phone number</label>
+					<label class="form-label">ফোন নম্বর</label>
 					<input type="text" name="phone" id="phone" class="form-control" value="<?php echo $user['phone']; ?>" placeholder="Phone number">
 				</div>
 
 				<!-- Save button -->
 				<div class="d-sm-flex justify-content-end">
-					<button type="submit" name="update_profile" class="btn btn-primary mb-0">Save changes</button>
+					<button type="submit" name="update_profile" class="btn btn-primary mb-0">পরিবর্তন সংরক্ষণ করুন</button>
 				</div>
 			</form>
 		</div>
@@ -107,21 +107,19 @@ ob_start();
 			<div class="card border bg-transparent rounded-3">
 				<!-- Card header -->
 				<div class="card-header bg-transparent border-bottom">
-					<h5 class="card-header-title mb-0">Update password</h5>
+					<h5 class="card-header-title mb-0">পাসওয়ার্ড আপডেট করুন</h5>
 				</div>
 				<!-- Card body START -->
 				<div class="card-body">
 					<form action="../includes/process_student_update_password.php" method="POST">
 						<!-- Current password -->
 						<div class="mb-3">
-							<label class="form-label">Current password</label>
-							<input class="form-control" type="password" name="current_password" id="current_password" placeholder="Enter current password">
+							<input class="form-control" type="password" name="current_password" id="current_password" placeholder="বর্তমান পাসওয়ার্ড">
 						</div>
 						<!-- New password -->
 						<div class="mb-3">
-							<label class="form-label"> Enter new password</label>
 							<div class="input-group">
-								<input class="form-control" type="password" name="new_password" id="new_password" placeholder="Enter new password">
+								<input class="form-control" type="password" name="new_password" id="new_password" placeholder="নতুন পাসওয়ার্ড প্রবেশ করুন">
 								<span class="input-group-text p-0 bg-transparent">
 									<i class="far fa-eye cursor-pointer p-2 w-40px"></i>
 								</span>
@@ -130,13 +128,12 @@ ob_start();
 						</div>
 						<!-- Confirm password -->
 						<div>
-							<label class="form-label">Confirm new password</label>
 							<input class="form-control" type="password" name="confirm_password"
-								id="confirm_password" placeholder="Enter new password">
+								id="confirm_password" placeholder="নতুন পাসওয়ার্ড নিশ্চিত করুন">
 						</div>
 						<!-- Button -->
 						<div class="d-flex justify-content-end mt-4">
-							<button type="submit" name="update_password" class="btn btn-primary mb-0">Change password</button>
+							<button type="submit" name="update_password" class="btn btn-primary mb-0">পাসওয়ার্ড পরিবর্তন করুন</button>
 						</div>
 					</form>
 				</div>

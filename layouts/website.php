@@ -226,10 +226,10 @@ include_once('./includes/helpers.php');
                                     <hr class="dropdown-divider">
                                 </li>
                                 <!-- Links -->
-                                <li><a class="dropdown-item" href="student/student_edit_profile.php"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
+                                <li><a class="dropdown-item" href="student/student_edit_profile.php"><i class="bi bi-person fa-fw me-2"></i>এডিট প্রোফাইল</a></li>
                                 <!-- <li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li> -->
-                                <li><a class="dropdown-item" href="404.php"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
-                                <li><a class="dropdown-item bg-danger-soft-hover" href="includes/logout.php"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
+                                <li><a class="dropdown-item" href="coming_soon.php"><i class="bi bi-info-circle fa-fw me-2"></i>সাহায্য</a></li>
+                                <li><a class="dropdown-item bg-danger-soft-hover" href="includes/logout.php"><i class="bi bi-power fa-fw me-2"></i>সাইন আউট</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>

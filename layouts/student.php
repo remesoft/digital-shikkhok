@@ -212,10 +212,10 @@ $user = get_user($conn, $user_id);
                                 <hr class="dropdown-divider">
                             </li>
                             <!-- Links -->
-                            <li><a class="dropdown-item" href="../student/student_edit_profile.php"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
-                            <li><a class="dropdown-item bg-danger-soft-hover" href="../includes/logout.php"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
+                            <li><a class="dropdown-item" href="../student/student_edit_profile.php"><i class="bi bi-person fa-fw me-2"></i>এডিট প্রোফাইল</a></li>
+                            <!-- <li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>অ্যাকাউন্ট সেটিংস</a></li> -->
+                            <li><a class="dropdown-item" href="../coming_soon.php"><i class="bi bi-info-circle fa-fw me-2"></i>সাহায্য</a></li>
+                            <li><a class="dropdown-item bg-danger-soft-hover" href="../includes/logout.php"><i class="bi bi-power fa-fw me-2"></i>সাইন আউট</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -272,7 +272,7 @@ $user = get_user($conn, $user_id);
                                     <?php } else { ?>
                                         <img class="avatar-img rounded-circle" src="../assets/images/avatar/empty-profile.png" alt="avatar">
                                     <?php } ?>
-                                    <span class="badge text-bg-success rounded-pill position-absolute top-50 start-100 translate-middle mt-4 mt-md-5 ms-n3 px-md-3">Online</span>
+                                    <span class="badge text-bg-success rounded-pill position-absolute top-50 start-100 translate-middle mt-4 mt-md-5 ms-n3 px-md-3">অনলাইন</span>
                                 </div>
                             </div>
                             <!-- Profile info -->
@@ -288,7 +288,7 @@ $user = get_user($conn, $user_id);
                                 </div>
                                 <!-- Button -->
                                 <div class="mt-2 mt-sm-0">
-                                    <a href="student-course-list.html" class="btn btn-outline-primary mb-0">View my courses</a>
+                                    <a href="student-course-list.html" class="btn btn-outline-primary mb-0">আমার কোর্সগুলো দেখুন</a>
                                 </div>
                             </div>
                         </div>
@@ -333,15 +333,15 @@ $user = get_user($conn, $user_id);
                                 <div class="bg-dark border rounded-3 p-3 w-100">
                                     <!-- Dashboard menu -->
                                     <div class="list-group list-group-dark list-group-borderless collapse-list">
-                                        <a class="list-group-item <?= is_active_page('student_dashboard.php') ?>" href="../student/student_dashboard.php"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
-                                        <a class="list-group-item <?= is_active_page('my_courses.php') ?>" href="../student/my_courses.php"><i class="bi bi-basket fa-fw me-2"></i>My Courses</a>
+                                        <a class="list-group-item <?= is_active_page('student_dashboard.php') ?>" href="../student/student_dashboard.php"><i class="bi bi-ui-checks-grid fa-fw me-2"></i>ড্যাশবোর্ড</a>
+                                        <a class="list-group-item <?= is_active_page('my_courses.php') ?>" href="../student/my_courses.php"><i class="bi bi-basket fa-fw me-2"></i>আমার কোর্সসমূহ</a>
                                         <!-- <a class="list-group-item" href="student-quiz.html"><i class="bi bi-question-diamond fa-fw me-2"></i>Quiz</a> -->
-                                        <a class="list-group-item <?= is_active_page('student_payment_info.php') ?>" href="../student/student_payment_info.php"><i class="bi bi-credit-card-2-front fa-fw me-2"></i>Payment Info</a>
+                                        <a class="list-group-item <?= is_active_page('student_payment_info.php') ?>" href="../student/student_payment_info.php"><i class="bi bi-credit-card-2-front fa-fw me-2"></i>পেমেন্ট তথ্য</a>
                                         <!-- <a class="list-group-item" href="../student/student_wishlist.php"><i class="bi bi-cart-check fa-fw me-2"></i>Wishlist</a> -->
-                                        <a class="list-group-item <?= is_active_page('student_edit_profile.php') ?>" href="../student/student_edit_profile.php"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
+                                        <a class="list-group-item <?= is_active_page('student_edit_profile.php') ?>" href="../student/student_edit_profile.php"><i class="bi bi-pencil-square fa-fw me-2"></i>এডিট প্রোফাইল</a>
                                         <!-- <a class="list-group-item" href="instructor-setting.html"><i class="bi bi-gear fa-fw me-2"></i>Settings</a> -->
                                         <!-- <a class="list-group-item" href="instructor-delete-account.html"><i class="bi bi-trash fa-fw me-2"></i>Delete Profile</a> -->
-                                        <a class="list-group-item text-danger bg-danger-soft-hover" href="../includes/logout.php"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</a>
+                                        <a class="list-group-item text-danger bg-danger-soft-hover" href="../includes/logout.php"><i class="fas fa-sign-out-alt fa-fw me-2"></i>সাইন আউট</a>
                                     </div>
                                 </div>
                             </div>

@@ -18,7 +18,7 @@ ob_start();
     <div class="card bg-transparent border rounded-3">
         <!-- Card header START -->
         <div class="card-header bg-transparent border-bottom">
-            <h3 class="mb-0">My Courses List</h3>
+            <h3 class="mb-0">আমার কোর্সের তালিকা</h3>
         </div>
         <!-- Card header END -->
 
@@ -34,10 +34,10 @@ ob_start();
                     <!-- Table head -->
                     <thead>
                         <tr>
-                            <th scope="col" class="border-0 rounded-start">Course Title</th>
-                            <th scope="col" class="border-0">Total Lectures</th>
-                            <th scope="col" class="border-0">Completed Lecture</th>
-                            <th scope="col" class="border-0 rounded-end">Action</th>
+                        <th scope="col" class="border-0 rounded-start">কোর্সের শিরোনাম</th>
+                            <th scope="col" class="border-0">মোট লেকচার</th>
+                            <th scope="col" class="border-0">সম্পন্ন লেকচার</th>
+                            <th scope="col" class="border-0 rounded-end">কার্য</th>
                         </tr>
                     </thead>
 
@@ -45,7 +45,7 @@ ob_start();
                     <tbody>
                         <?php if (empty($courses)) { ?>
                             <tr>
-                                <td colspan="4" class="text-center">No courses found</td>
+                                <td colspan="4" class="text-center">কোনো কোর্স পাওয়া যায়নি</td>
                             </tr>
                         <?php } else { ?>
                             <?php foreach ($courses as $course): ?>
