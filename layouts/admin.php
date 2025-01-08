@@ -147,9 +147,9 @@ $user = get_user($conn, $user_id);
                             </a>
                             <!-- Submenu -->
                             <ul class="nav collapse flex-column show" id="collapsepage" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link <?= is_active_page('all_courses.php') ?>" href="../admin/all_courses.php">All Courses</a></li>
-                                <li class="nav-item"> <a class="nav-link <?= is_active_page('create_course.php') ?>" href="../admin/create_course.php">Create Course</a></li>
-                                <li class="nav-item"> <a class="nav-link <?= is_active_page('enrollments.php') ?>" href="../admin/enrollments.php">Enrollments</a></li>
+                                <li class="nav-item"> <a class="nav-link <?= is_active_page('all_courses.php') ?>" href="all_courses.php">All Courses</a></li>
+                                <li class="nav-item"> <a class="nav-link <?= is_active_page('create_course.php') ?>" href="create_course.php">Create Course</a></li>
+                                <li class="nav-item"> <a class="nav-link <?= is_active_page('purchase.php') ?>" href="purchase.php">Enrollments</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -191,7 +191,7 @@ $user = get_user($conn, $user_id);
                             <a class="h5 mb-0 text-body" href="profile.php" data-bs-toggle="tooltip" data-bs-placement="top" title="Settings">
                                 <i class="bi bi-gear-fill"></i>
                             </a>
-                            <a class="h5 mb-0 text-body" href="index-2.html" data-bs-toggle="tooltip" data-bs-placement="top" title="Home">
+                            <a class="h5 mb-0 text-body" href="../admin/dashboard.php" data-bs-toggle="tooltip" data-bs-placement="top" title="Home">
                                 <i class="bi bi-globe"></i>
                             </a>
                             <a class="h5 mb-0 text-body" href="../includes/logout.php" data-bs-toggle="tooltip" data-bs-placement="top" title="Sign out">
@@ -251,14 +251,14 @@ $user = get_user($conn, $user_id);
                             <div class="collapse navbar-collapse w-100" id="navbarTopContent">
 
                                 <!-- Top search START -->
-                                <div class="nav my-3 my-xl-0 flex-nowrap align-items-center">
+                                <!-- <div class="nav my-3 my-xl-0 flex-nowrap align-items-center">
                                     <div class="nav-item w-100">
                                         <form class="position-relative">
                                             <input class="form-control pe-5 bg-secondary bg-opacity-10 border-0" type="search" placeholder="Search" aria-label="Search">
                                             <button class="bg-transparent px-2 py-0 border-0 position-absolute top-50 end-0 translate-middle-y" type="submit"><i class="fas fa-search fs-6 text-primary"></i></button>
                                         </form>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- Top search END -->
                             </div>
                             <!-- Topbar menu END -->
@@ -384,16 +384,16 @@ $user = get_user($conn, $user_id);
                                                     <?php } ?>
                                                 </div>
                                                 <div>
-                                                    <a class="h6 mt-2 mt-sm-0" href="#"><?= $user['first_name'] ?> <?= $user['last_name'] ?></a>
+                                                    <a class="h6 mt-2 mt-sm-0" href="profile.php"><?= $user['first_name'] ?> <?= $user['last_name'] ?></a>
                                                     <p class="small m-0"><?= $user['email'] ?></p>
                                                 </div>
                                             </div>
                                             <hr>
                                         </li>
                                         <!-- Links -->
-                                        <li><a class="dropdown-item" href="../admin/profile.php"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
-                                        <li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
-                                        <li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
+                                        <li><a class="dropdown-item" href="profile.php"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
+                                        <li><a class="dropdown-item" href="profile.php"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
+                                        <!-- <li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li> -->
                                         <li><a class="dropdown-item bg-danger-soft-hover" href="../includes/logout.php"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
                                         <li>
                                             <hr class="dropdown-divider">

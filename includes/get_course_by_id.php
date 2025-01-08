@@ -22,12 +22,12 @@ function get_course($conn, $course_id)
   // Fetch the course
   $course = mysqli_fetch_assoc($result);
 
-  // If no course is found, redirect to 404
-  if (!$course) {
-    http_response_code(404);
-    header("Location: ../404.php");
-    exit;
-  }
+  // // If no course is found, redirect to 404
+  // if (!$course) {
+  //   http_response_code(404);
+  //   header("Location: ../404.php");
+  //   exit;
+  // }
 
   // Return the course if found
   return $course;

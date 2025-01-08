@@ -23,7 +23,7 @@ ob_start();
               <li class="list-inline-item fw-light h6 me-3 mb-1 mb-sm-0"><i class="fas fa-star me-2"></i>4.5/5.0</li>
               <li class="list-inline-item fw-light h6 me-3 mb-1 mb-sm-0"><i class="fas fa-user-graduate me-2"></i>12k Enrolled</li>
               <li class="list-inline-item fw-light h6 me-3 mb-1 mb-sm-0"><i class="fas fa-signal me-2"></i>All levels</li>
-              <li class="list-inline-item fw-light h6 me-3 mb-1 mb-sm-0"><i class="bi bi-patch-exclamation-fill me-2"></i>Last updated <?= date('m/Y', strtotime($course['updated_at'])) ?></li>
+              <li class="list-inline-item fw-light h6 me-3 mb-1 mb-sm-0"><i class="bi bi-patch-exclamation-fill me-2"></i> <?= date('m/Y', strtotime($course['updated_at'])) ?></li>
               <li class="list-inline-item fw-light h6"><i class="fas fa-globe me-2"></i><?= $course['language'] ?></li>
             </ul>
           </div>

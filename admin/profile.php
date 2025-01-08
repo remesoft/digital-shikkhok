@@ -27,11 +27,11 @@ ob_start();
       <!-- Tab START -->
       <ul class="nav nav-pills nav-tabs-bg-dark flex-column">
         <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#tab-1"><i class="fas fa-user fa-fw me-2"></i>Profile Settings</a> </li>
-        <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#tab-2"><i class="fas fa-cog fa-fw me-2"></i>General Settings</a> </li>
-        <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#tab-3"><i class="fas fa-bell fa-fw me-2"></i>Notification Settings</a> </li>
-        <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#tab-4"><i class="fas fa-user-circle fa-fw me-2"></i>Account Settings</a> </li>
-        <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#tab-5"><i class="fas fa-sliders-h fa-fw me-2"></i>Social Settings</a> </li>
-        <li class="nav-item"> <a class="nav-link mb-0" data-bs-toggle="tab" href="#tab-6"><i class="fas fa-envelope-open-text fa-fw me-2"></i>Email Settings</a> </li>
+        <li class="nav-item"> <a class="nav-link opacity-25" data-bs-toggle="tab" href="#tab-2" disabled><i class="fas fa-cog fa-fw me-2"></i>General Settings</a> </li>
+        <li class="nav-item"> <a class="nav-link opacity-25" data-bs-toggle="tab" href="#tab-3" disabled><i class="fas fa-bell fa-fw me-2"></i>Notifications</a> </li>
+        <li class="nav-item"> <a class="nav-link opacity-25" data-bs-toggle="tab" href="#tab-4" disabled><i class="fas fa-user-circle fa-fw me-2"></i>Account Settings</a> </li>
+        <li class="nav-item"> <a class="nav-link opacity-25" data-bs-toggle="tab" href="#tab-5" disabled><i class="fas fa-sliders-h fa-fw me-2"></i>Social Settings</a> </li>
+        <li class="nav-item"> <a class="nav-link opacity-25 mb-0" data-bs-toggle="tab" href="#tab-6" disabled><i class="fas fa-envelope-open-text fa-fw me-2"></i>Inbox Settings</a> </li>
       </ul>
       <!-- Tab END -->
     </div>

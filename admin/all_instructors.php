@@ -44,6 +44,7 @@ ob_start();
             <th scope="col" class="border-0 rounded-start">Instructors name</th>
             <th scope="col" class="border-0">Join date</th>
             <th scope="col" class="border-0">Email</th>
+            <th scope="col" class="border-0">Phone</th>
             <th scope="col" class="border-0 rounded-end text-end">Actions</th>
           </tr>
         </thead>
@@ -59,7 +60,7 @@ ob_start();
                 <div class="d-flex align-items-center position-relative">
                   <!-- Image -->
                   <div class="avatar avatar-md">
-                    <img src="../uploads/img/users/<?= $user['avatar'] ? $user['avatar'] : 'blank.png' ?>" class="rounded-circle" alt="">
+                    <img style="height: 50px; width: 50px" src="../uploads/img/users/<?= $user['avatar'] ? $user['avatar'] : 'blank.png' ?>" class="img-thumbnail rounded-circle" alt="">
                   </div>
                   <div class="mb-0 ms-3">
                     <!-- Title -->
@@ -70,8 +71,9 @@ ob_start();
                       </a>
                     </h6>
                     <span class="text-body small">
-                      <i class="fas fa-phone text-info me-1 mt-1"></i>
-                      <?= $user['phone'] ?>
+                      <!-- <i class="fas fa-phone text-info me-1 mt-1"></i> -->
+                      <?php //$user['phone'] 
+                      ?>
                     </span>
                   </div>
                 </div>
@@ -82,6 +84,7 @@ ob_start();
 
               <!-- Table data -->
               <td><?= $user['email'] ?></td>
+              <td><?= $user['phone'] ?></td>
 
               <!-- Table data -->
               <td class="text-end">
@@ -97,7 +100,7 @@ ob_start();
                   </a>
                   <!-- dropdown button -->
                   <ul
-                    class="dropdown-menu dropdown-w-sm dropdown-menu-end min-w-auto shadow rounded"
+                    class="dropdown-menu dropdown-w-sm dropdown-menu-s min-w-auto shadow rounded"
                     aria-labelledby="dropdownShare2">
                     <li>
                       <form method="POST" action="../includes/process_update_role.php">
@@ -127,7 +130,7 @@ ob_start();
                 <a href="mailto:<?= $user['email'] ?>" class="btn btn-light btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Message">
                   <i class="bi bi-envelope"></i>
                 </a>
-                <a href="#" class="btn btn-light btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                <a href="../coming_soon.php" class="btn btn-light btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
                   <i class="bi bi-eye"></i>
                 </a>
               </td>
