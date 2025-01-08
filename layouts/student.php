@@ -380,10 +380,10 @@ $user = get_user($conn, $user_id);
                 <div class="col-md-4">
                     <!-- Rating -->
                     <ul class="list-inline mb-0 text-center text-md-end">
-                        <li class="list-inline-item ms-2"><a href="#"><i class="text-white fab fa-facebook"></i></a></li>
-                        <li class="list-inline-item ms-2"><a href="#"><i class="text-white fab fa-instagram"></i></a></li>
-                        <li class="list-inline-item ms-2"><a href="#"><i class="text-white fab fa-linkedin-in"></i></a></li>
-                        <li class="list-inline-item ms-2"><a href="#"><i class="text-white fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item ms-2"><a target="_blank" href="http://facebook.com/digitalshikkhok"><i class="text-white fab fa-facebook"></i></a></li>
+                        <li class="list-inline-item ms-2"><a target="_blank" href="https://www.instagram.com/digitalshikkhok"><i class="text-white fab fa-instagram"></i></a></li>
+                        <li class="list-inline-item ms-2"><a target="_blank" href="http://youtube.com/@DigitalShikkhok"><i class="text-white fab fa-linkedin-in"></i></a></li>
+                        <li class="list-inline-item ms-2"><a target="_blank" href="http://twitter.com/digitalshikkhok"><i class="text-white fab fa-twitter"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -403,6 +403,7 @@ $user = get_user($conn, $user_id);
     <script src="../assets/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
     <script src="../assets/vendor/aos/aos.js"></script>
     <script src="../assets/js/student_video_player.js"></script>
+    <script src="../assets/js/remove_student_profile.js"></script>
 
     <!-- Template Functions -->
     <script src="../assets/js/functions.js"></script>

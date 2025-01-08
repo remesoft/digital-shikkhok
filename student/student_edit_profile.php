@@ -44,19 +44,23 @@ ob_start();
 						<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
 							<!-- Avatar place holder -->
 							<span class="avatar avatar-xl">
-							<?php if ($user['avatar']) { ?>
-                                <img class="avatar-img rounded-circle" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
-                            <?php } else { ?>
-                                <img class="avatar-img rounded-circle" src="../assets/images/avatar/empty-profile.png" alt="avatar">
-                            <?php } ?>
+								<?php if ($user['avatar']) { ?>
+									<img class="avatar-img rounded-circle" id="userProfileImg" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
+								<?php } else { ?>
+									<img class="avatar-img rounded-circle" src="../assets/images/avatar/empty-profile.png" alt="avatar">
+								<?php } ?>
 							</span>
-							<!-- Remove btn -->
-							<button type="button" class="uploadremove"><i class="bi bi-x text-white"></i></button>
+							<?php if ($user['avatar']) { ?>
+								<!-- Remove btn -->
+								<button type="button" class="uploadremove" id="uploadremove" data-user-id="<?php echo $user['id']; ?>">
+									<i class="bi bi-x text-white"></i>
+								</button>
+							<?php } ?>
 						</label>
 						<!-- Upload button -->
 						<label class="btn btn-primary-soft mb-0 d-block" for="uploadfile-1">
-						প্রোফাইল পরিবর্তন করুন
-							<input id="uploadfile-1" type="file" name="avatar" class="d-none">
+							প্রোফাইল পরিবর্তন করুন
+							<input id="uploadfile-1" type="file" name="avatar" class="d-none" value="<?php echo $user['avatar']; ?>">
 						</label>
 
 
