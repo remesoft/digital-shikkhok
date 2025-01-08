@@ -1,9 +1,10 @@
 <?php
 session_start();
 include('includes/db.php');
+include('includes/helpers.php');
 include('includes/get_courses.php');
 include('includes/get_course_by_id.php');
-$pageTitle = "Our Courses";
+$page_title = "Our Course | Digital Shikkhok";
 ob_start();
 ?>
 

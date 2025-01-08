@@ -1,10 +1,8 @@
 <?
-session_start();
-include_once('./includes/helpers.php');
-include_once('./includes/db.php');
-include_once('./includes/get_user_by_id.php');
-
-
+include_once('../includes/session.php');
+include_once('../includes/db.php');
+include_once('../includes/helpers.php');
+include_once('../includes/get_user_by_id.php');
 ?>
 
 
@@ -153,23 +151,23 @@ include_once('./includes/get_user_by_id.php');
                         <ul class="navbar-nav navbar-nav-scroll me-auto"></ul>
                         <ul class="navbar-nav navbar-nav-scroll me-auto" style="font-size: 17px;">
                             <li class="nav-item">
-                                <a class="nav-link" href="index.php">
+                                <a class="nav-link <?= is_active_page('index.php') ?>" href="index.php">
                                     হোম
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="our_courses.php?type=free">
+                                <a class="nav-link <?= is_active_page('our_courses.php', 'type', 'free') ?>" href="our_courses.php?type=free">
                                     ফ্রি কোর্স
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="our_courses.php?type=paid">
+                                <a class="nav-link <?= is_active_page('our_courses.php', 'type', 'paid') ?>" href="our_courses.php?type=paid">
                                     পেইড কোর্স
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="about_us.php">
+                                <a class="nav-link <?= is_active_page('about_us.php') ?>" href="about_us.php">
                                     আমাদের সম্পর্কে
                                 </a>
                             </li>
@@ -180,7 +178,7 @@ include_once('./includes/get_user_by_id.php');
                                 </a>
                             </li> -->
                             <li class="nav-item">
-                                <a class="nav-link" href="contact_us.php">
+                                <a class="nav-link <?= is_active_page('contact_us.php') ?>" href="contact_us.php">
                                     যোগাযোগ
                                 </a>
                             </li>
@@ -267,7 +265,6 @@ include_once('./includes/get_user_by_id.php');
             </nav>
         </div>
     </header>
-
 
 
     <!-- ----------------------------------- -->

@@ -87,11 +87,24 @@ function get_status_classes($status)
   return $classes[$status] ?? 'bg-gray';
 }
 
-function is_active_page($page)
+
+function is_active_page($page_name, $query_key = null, $query_value = null)
 {
   $current_page = basename($_SERVER['PHP_SELF']);
-  return  $current_page == $page ? 'active' : '';
+  $current_query = isset($_GET[$query_key]) ? $_GET[$query_key] : null;
+  if ($current_page == $page_name) {
+    if ($query_key && $query_value) {
+      return $current_query == $query_value ? 'active' : '';
+    }
+    return 'active';
+  }
+
+  return '';
 }
+
+
+
+
 
 
 function protected_for($required_role)

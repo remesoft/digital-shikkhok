@@ -115,7 +115,7 @@ $user = get_user($conn, $user_id);
 
             <!-- Navbar brand for xl START -->
             <div class="d-flex align-items-center">
-                <a class="navbar-brand d-flex align-items-center gap-2" href="index-2.html">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="../admin/dashboard.php">
                     <img class="navbar-brand-item" src="../assets/images/logo.png" alt="">
                     <h5 class="text-white mb-0"><span style="color:rgb(250, 70, 82)">Digital</span> Shikkhok</h5>
                 </a>
@@ -133,6 +133,12 @@ $user = get_user($conn, $user_id);
 
                         <!-- Title -->
                         <li class="nav-item ms-2 my-2">Pages</li>
+                        <li class="nav-item">
+                            <a class="nav-link <?= is_active_page('inbox.php') ?>" href="inbox.php">
+                                <i class="fas fa-inbox fa-fw me-2"></i>
+                                Inbox
+                            </a>
+                        </li>
 
                         <!-- Course menu item -->
                         <li class="nav-item">
