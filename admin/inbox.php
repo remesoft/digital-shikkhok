@@ -32,14 +32,21 @@ ob_start();
         <!-- Table head -->
         <thead>
           <tr>
-            <th scope="col" class="border-0 px-3 py-2" style="width: 30%;">Date & Time</th>
-            <th scope="col" class="border-0 py-2">Description</th>
+            <th scope="col" class="border-0 px-3 py-2">Date & Time</th>
+            <th scope="col" class="border-0 py-2">Name</th>
+            <th scope="col" class="border-0 py-2">Email</th>
+            <th scope="col" class="border-0 py-2">Message</th>
+            <th scope="col" class="border-0 py-2">Action</th>
           </tr>
         </thead>
 
         <!-- Table body START -->
         <tbody>
           <tr>
+            <td>working</td>
+            <td>working</td>
+            <td>working</td>
+            <td>working</td>
             <td>working</td>
           </tr>
         </tbody>

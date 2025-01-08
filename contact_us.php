@@ -119,30 +119,52 @@ Image and contact form START -->
 				</div>
 
 				<!-- Contact form START -->
-				<div class="col-md-6">
+				<div class="col-md-6" id="contact">
 					<!-- Title -->
 					<h2 class="mt-4 mt-md-0">আসুন কথা বলি</h2>
+
+					<!-- ----------------------------------- -->
+					<!--         Alert Dialog                -->
+					<!-- ----------------------------------- -->
+					<?php
+					if (isset($_SESSION['error_message']) || isset($_SESSION['success_message'])) {
+						$alert_type = isset($_SESSION['error_message']) ? 'warning' : 'success';
+						$message = isset($_SESSION['error_message']) ? $_SESSION['error_message'] : $_SESSION['success_message'];
+					?>
+						<div class="alert alert-<?= $alert_type ?> alert-dismissible fade show" role="alert">
+							<strong><?= $alert_type === 'warning' ? 'Error:' : 'Success:' ?></strong> <?= htmlspecialchars($message) ?>
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>
+					<?php
+						if ($alert_type === 'warning') {
+							unset($_SESSION['error_message']);
+						} else {
+							unset($_SESSION['success_message']);
+						}
+					}
+					?>
+
 					<p>একটি প্রস্তাবের জন্য অনুরোধ করতে বা চায়ের আড্ডায় মিলিত হতে চান? সরাসরি আমাদের সাথে যোগাযোগ করুন বা ফর্মটি পূরণ করুন, আমরা দ্রুত আপনার কাছে ফিরে আসব।</p>
 
-					<form>
+					<form action="includes/process_contact_submit.php" method="post">
 						<!-- Name -->
 						<div class="mb-4 bg-light-input">
 							<label for="yourName" class="form-label">আপনার নাম *</label>
-							<input type="text" class="form-control form-control-lg" id="yourName">
+							<input type="text" name="name" class="form-control form-control-lg" id="yourName">
 						</div>
 						<!-- Email -->
 						<div class="mb-4 bg-light-input">
-							<label for="emailInput" class="form-label">ইমেইল ঠিকানা *</label>
-							<input type="email" class="form-control form-control-lg" id="emailInput">
+							<label for="phoneInput" class="form-label">মোবাইল নম্বর *</label>
+							<input type="text" name="phone" class="form-control form-control-lg" id="phoneInput">
 						</div>
 						<!-- Message -->
 						<div class="mb-4 bg-light-input">
 							<label for="textareaBox" class="form-label">বার্তা *</label>
-							<textarea class="form-control" id="textareaBox" rows="4"></textarea>
+							<textarea class="form-control" name="message" id="textareaBox" rows="4"></textarea>
 						</div>
 						<!-- Button -->
 						<div class="d-grid">
-							<button class="btn btn-lg btn-primary mb-0" type="button">বার্তা পাঠান</button>
+							<button class="btn btn-lg btn-primary mb-0" type="submit">বার্তা পাঠান</button>
 						</div>
 					</form>
 				</div>
@@ -150,11 +172,9 @@ Image and contact form START -->
 			</div>
 		</div>
 	</section>
-	<!-- =======================
-Image and contact form END -->
+	<!-- Image and contact form END -->
 
-	<!-- =======================
-Map START -->
+	<!-- Map START -->
 	<section class="pt-0">
 		<div class="container">
 			<div class="row">
@@ -169,6 +189,7 @@ Map END -->
 
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
+
 
 
 <?php

@@ -139,18 +139,25 @@ $user = get_user($conn, $user_id);
                                 Inbox
                             </a>
                         </li>
-
-                        <!-- Course menu item -->
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#collapsepage" role="button" aria-expanded="true" aria-controls="collapsepage">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#collapsepage" role="button" aria-expanded="false" aria-controls="collapsepage">
                                 <i class="bi bi-basket fa-fw me-2"></i>Courses
                             </a>
-                            <!-- Submenu -->
-                            <ul class="nav collapse flex-column show" id="collapsepage" data-bs-parent="#navbar-sidebar">
-                                <li class="nav-item"> <a class="nav-link <?= is_active_page('all_courses.php') ?>" href="all_courses.php">All Courses</a></li>
-                                <li class="nav-item"> <a class="nav-link <?= is_active_page('create_course.php') ?>" href="create_course.php">Create Course</a></li>
-                                <li class="nav-item"> <a class="nav-link <?= is_active_page('purchase.php') ?>" href="purchase.php">Enrollments</a></li>
+                            <ul class="nav collapse flex-column" id="collapsepage" data-bs-parent="#navbar-sidebar">
+                                <li class="nav-item">
+                                    <a class="nav-link <?= is_active_page('all_courses.php') ?>" href="all_courses.php">All Courses</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <?= is_active_page('create_course.php') ?>" href="create_course.php">Create Course</a>
+                                </li>
                             </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="enrollments.php" class="nav-link <?= is_active_page('enrollments.php') ?>">
+                                <i class="far fa-chart-bar fa-fw me-2"></i>
+                                Enrollments
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a href="all_students.php" class="nav-link <?= is_active_page('all_students.php') ?>">
@@ -162,12 +169,6 @@ $user = get_user($conn, $user_id);
                             <a href="all_instructors.php" class="nav-link <?= is_active_page('all_instructors.php') ?>">
                                 <i class="fas fa-chalkboard-teacher fa-fw me-2"></i>
                                 Instructor
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link <?= is_active_page('enrollments.php') ?>" href="enrollments.php">
-                                <i class="far fa-chart-bar fa-fw me-2"></i>
-                                Enrollments
                             </a>
                         </li>
                         <li class="nav-item">

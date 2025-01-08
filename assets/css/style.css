@@ -23873,8 +23873,27 @@ html[dir="rtl"] .choices__input {
   width: auto;
   margin-right: 10px;
 }
-.navbar-logo1{
+.navbar-logo1 {
   height: 70px;
   width: auto;
   margin-right: 10px;
+}
+.scale-hover {
+  transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+
+.scale-hover:hover {
+  transform: scale(1.1); /* Scale up the image */
+}
+.avatar,
+.avatar-sm {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar-sm {
+  height: 35px;
+  width: 35px;
 }

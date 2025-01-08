@@ -92,5 +92,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 
-header("Location: ../admin/create_course.php");
+header("Location: ../admin/all_courses.php");
 exit;

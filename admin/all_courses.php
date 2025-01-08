@@ -49,11 +49,14 @@ ob_start();
                 <div class="d-flex align-items-center position-relative">
                   <!-- Image -->
                   <div class="w-60px">
-                    <img src="../uploads/img/thumbnails/<?= htmlspecialchars($course['thumbnail']) ?>" class="rounded" alt="">
+                    <img src="../uploads/img/thumbnails/<?= $course['thumbnail'] ?>" class="rounded" alt="">
                   </div>
                   <!-- Title -->
                   <h6 class="table-responsive-title mb-0 ms-2">
-                    <a href="#" class="stretched-link d-inline-block text-truncate" style="max-width: 250px;"><?= htmlspecialchars($course['title']) ?></a>
+                    <a href="../course_details.php?id=<?= $course['id'] ?>"
+                      class="stretched-link d-inline-block text-truncate"
+                      style="max-width: 250px;"><?= $course['title'] ?>
+                    </a>
                   </h6>
                 </div>
               </td>
@@ -76,8 +79,10 @@ ob_start();
               <td class="text-center">৳ <?= htmlspecialchars($course['price']) ?></td>
               <td class="text-center"> <?= total_enrolled($conn, $course['id']) ?></td>
               <td class="d-flex justify-content-end">
-                <a href="edit_course.php?id=<?= $course['id'] ?>" class="btn btn-sm btn-success me-1 mb-1 mb-md-0">Edit</a>
-                <button class="btn btn-sm btn-danger mb-0" data-bs-toggle="modal" data-bs-target="#deleteLecture">Delete</button>
+                <a href="edit_course.php?id=<?= $course['id'] ?>" class="btn btn-sm btn-success-soft btn-round me-1 mb-1 mb-md-0"><i class="far fa-fw fa-edit"></i></a>
+                <button class="btn btn-sm btn-danger-soft btn-round mb-0" type="button" data-bs-toggle="modal" data-bs-target="#deleteLecture">
+                  <i class="fas fa-fw fa-times"></i>
+                </button>
               </td>
             </tr>
           <?php endforeach; ?>
@@ -114,7 +119,7 @@ ob_start();
 <!-- Page main content END -->
 
 <!-- ------------------------------->
-<!--      Delete Lecture Modal    -->
+<!--      Delete Course Modal     -->
 <!-- ------------------------------->
 <div class="modal fade" id="deleteLecture" tabindex="-1" aria-labelledby="addLectureLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -131,8 +136,8 @@ ob_start();
           </div>
         </div>
         <div class="modal-footer" style="border: none;">
-          <button type="button" class="btn btn-danger-soft my-0" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-success my-0" data-bs-dismiss="modal">Delete Course</button>
+          <button type="button" class="btn btn-secondary-soft my-0" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-danger my-0" data-bs-dismiss="modal">Delete Course</button>
           <input type="text" name="id" value="<?= $course['id'] ?>" hidden>
         </div>
       </form>

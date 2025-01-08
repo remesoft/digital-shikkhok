@@ -8,6 +8,8 @@ include('../includes/get_records.php');
 include('../includes/get_totals.php');
 
 // variables
+$conditions = "role = 'student'" . (isset($_GET['phone']) ? " AND phone LIKE '%" . $_GET['phone'] . "%'" : '');
+$users = get_records_by_conditions($conn, 'users', $conditions);
 $page_title = "Enrollments | Admin Panel | Digital Shikkhok";
 ob_start();
 ?>
@@ -22,8 +24,8 @@ ob_start();
       <h4 class="mb-2 mb-sm-0">Students Table</h4>
       <div class="nav my-3 my-xl-0 flex-nowrap align-items-center">
         <div class="nav-item w-100">
-          <form class="position-relative">
-            <input class="form-control pe-5 bg-secondary bg-opacity-10 border-0" type="search" placeholder="Mobile number..." aria-label="Search">
+          <form class="position-relative" action="<?= $_SERVER['PHP_SELF'] ?>" method="get">
+            <input class="form-control pe-5 bg-secondary bg-opacity-10 border-0" name="phone" type="search" placeholder="Mobile number..." aria-label="Search">
             <button class="bg-transparent px-2 py-0 border-0 position-absolute top-50 end-0 translate-middle-y" type="submit"><i class="fas fa-search fs-6 text-primary"></i></button>
           </form>
         </div>
@@ -52,16 +54,14 @@ ob_start();
 
         <!-- Table body START -->
         <tbody>
-          <?php
-          $users = get_records_by_conditions($conn, 'users', 'role = "student"');
-          foreach ($users as $user) : ?>
+          <?php foreach ($users as $user) : ?>
             <tr>
               <!-- Table data -->
               <td>
                 <div class="d-flex align-items-center position-relative">
                   <!-- Image -->
                   <div class="avatar avatar-md">
-                    <img src="../uploads/img/users/<?= $user['avatar'] ? $user['avatar'] : 'blank.png' ?>" class="rounded-circle" alt="">
+                    <img src="../uploads/img/users/<?= $user['avatar'] ? $user['avatar'] : 'blank.png' ?>" class="avatar" alt="">
                   </div>
                   <div class="mb-0 ms-3">
                     <!-- Title -->
