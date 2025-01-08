@@ -1,12 +1,8 @@
 <?php
-// Start session
-if (!isset($_SESSION)) {
-    session_start();
-}
-include_once('./includes/db.php');
-include_once('./includes/get_user_by_id.php');
-include_once('./includes/helpers.php');
-
+include_once('../includes/session.php');
+include_once('../includes/db.php');
+include_once('../includes/helpers.php');
+include_once('../includes/get_user_by_id.php');
 ?>
 
 
@@ -160,12 +156,12 @@ include_once('./includes/helpers.php');
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link <?= ($_SERVER['PHP_SELF']) == '/digital-shikkhok/our_courses.php' && $_GET['type'] == 'free' ? 'active' : '' ?>" href="our_courses.php?type=free">
+                                <a class="nav-link <?= is_active_page('our_courses.php', 'type', 'free') ?>" href="our_courses.php?type=free">
                                     ফ্রি কোর্স
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link <?= ($_SERVER['PHP_SELF']) == '/digital-shikkhok/our_courses.php' && $_GET['type'] == 'paid' ? 'active' : '' ?>" href="our_courses.php?type=paid">
+                                <a class="nav-link <?= is_active_page('our_courses.php', 'type', 'paid') ?>" href="our_courses.php?type=paid">
                                     পেইড কোর্স
                                 </a>
                             </li>
@@ -272,7 +268,6 @@ include_once('./includes/helpers.php');
             </nav>
         </div>
     </header>
-
 
 
     <!-- ----------------------------------- -->

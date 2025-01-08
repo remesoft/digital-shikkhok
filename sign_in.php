@@ -1,6 +1,7 @@
 <?php
 session_start();
-$pageTitle = "Home";
+include('includes/helpers.php');
+$page_title = "Sign In | Digital Shikkhok";
 ob_start();
 ?>
 

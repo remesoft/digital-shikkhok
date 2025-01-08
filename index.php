@@ -1,9 +1,10 @@
 <?php
 session_start();
 include 'includes/db.php';
+include 'includes/helpers.php';
 include 'includes/get_courses.php';
 include 'includes/get_course_by_id.php';
-$pageTitle = "Home";
+$page_title = "Home | Digital Shikkhok";
 $courses = get_courses($conn);
 ob_start();
 ?>
@@ -1294,7 +1295,7 @@ Reviews START -->
         <!-- Title -->
         <h2 class="fs-1">আমাদের শিক্ষার্থীদের মূল্যবান মতামত</h2>
         <p>আমাদের শিক্ষার্থীরা তাদের অভিজ্ঞতা ও মতামতের মাধ্যমে আমাদের কোর্সগুলোর গুণগত মান এবং শিক্ষাদানের প্রক্রিয়া নিয়ে মূল্যবান প্রতিক্রিয়া প্রদান করেছেন। এই প্রতিক্রিয়া আমাদের সেবাকে আরও উন্নত করতে সহায়তা করে এবং আপনিও তাদের অভিজ্ঞতা থেকে অনুপ্রাণিত হয়ে সঠিক কোর্সটি বেছে নিতে পারবেন।</p>
-        <a href="#" class="btn btn-primary mb-0">রিভিউ দেখুন</a>
+        <!-- <a href="" class="btn btn-primary mb-0">রিভিউ দেখুন</a> -->
       </div>
     </div>
     <!-- Row END -->

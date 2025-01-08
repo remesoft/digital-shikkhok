@@ -1,6 +1,7 @@
 <?php
 session_start();
-$pageTitle = "404 | Page Not Found";
+include('includes/helpers.php');
+$page_title = "404 | Page Not Found";
 ob_start();
 ?>
 
@@ -15,11 +16,11 @@ ob_start();
         <!-- Title -->
         <h1 class="display-1 text-danger mb-0">404</h1>
         <!-- Subtitle -->
-        <h2>Oh no, something went wrong!</h2>
+        <h2>অহ না, কিছু ভুল হয়েছে!</h2>
         <!-- info -->
-        <p class="mb-4">Either something went wrong or this page doesn't exist anymore.</p>
+        <p class="mb-4">যা ঘটেছে তা হয়তো ভুল, অথবা এই পৃষ্ঠাটি আর নেই।</p>
         <!-- Button -->
-        <a href="index-2.html" class="btn btn-primary mb-0">Take me to Homepage</a>
+        <a href="index.php" class="btn btn-primary mb-0">আমাকে হোমপেজে নিয়ে চলো</a>
       </div>
     </div>
   </div>
