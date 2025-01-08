@@ -124,7 +124,7 @@ ob_start();
 						<div class="mb-3">
 							<div class="input-group">
 								<input class="form-control" type="password" name="new_password" id="new_password" placeholder="নতুন পাসওয়ার্ড প্রবেশ করুন">
-								<span class="input-group-text p-0 bg-transparent">
+								<span class="input-group-text p-0 bg-transparent" id="password-view" style="cursor: pointer;" onclick="togglePassword('new_password')">
 									<i class="far fa-eye cursor-pointer p-2 w-40px"></i>
 								</span>
 							</div>
