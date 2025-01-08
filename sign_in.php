@@ -86,6 +86,9 @@ ob_start();
                                 <div class="input-group input-group-lg">
                                     <span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="fas fa-lock"></i></span>
                                     <input type="password" class="form-control border-0 bg-light rounded-end ps-1" placeholder="●●●●●●●●●" id="pass" name="pass" required>
+                                    <span class="input-group-text p-0 border-0" id="password-view-login" style="cursor: pointer;" onclick="togglePassword('pass')">
+									    <i class="far fa-eye cursor-pointer p-2 w-40px"></i>
+								    </span>
                                 </div>
                                 <div id="passwordHelpBlock" class="form-text">
                                     আপনার পাসওয়ার্ড কমপক্ষে ৮টি অক্ষর হতে হবে।

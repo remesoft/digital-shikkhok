@@ -21,7 +21,7 @@ ob_start();
 	<div class="card bg-transparent border rounded-3">
 		<!-- Card header START -->
 		<div class="card-header bg-transparent border-bottom">
-			<h3 class="mb-0">Billing history</h3>
+			<h3 class="mb-0">পেমেন্ট তথ্য</h3>
 		</div>
 		<!-- Card header END -->
 
@@ -38,12 +38,12 @@ ob_start();
 					<!-- Table head -->
 					<thead>
 						<tr>
-							<th scope="col" class="border-0 rounded-start">Date</th>
-							<th scope="col" class="border-0">Course name</th>
-							<th scope="col" class="border-0">Payment Number</th>
-							<th scope="col" class="border-0">Status</th>
-							<th scope="col" class="border-0">Total</th>
-							<th scope="col" class="border-0 rounded-end">Action</th>
+							<th scope="col" class="border-0 rounded-start">তারিখ</th>
+							<th scope="col" class="border-0">কোর্সের নাম</th>
+							<th scope="col" class="border-0">পেমেন্ট নম্বর</th>
+							<th scope="col" class="border-0">অবস্থা</th>
+							<th scope="col" class="border-0">মোট</th>
+							<th scope="col" class="border-0 rounded-end">কার্য</th>
 						</tr>
 					</thead>
 					<!-- Table body -->
@@ -51,7 +51,7 @@ ob_start();
 						<!-- Table item -->
 						<?php if (empty($records)) { ?>
 							<tr>
-								<td colspan="6" class="text-center">No records found</td>
+								<td colspan="6" class="text-center">কোনো তথ্য পাওয়া যায়নি</td>
 							</tr>
 						<?php } else { ?>
 							<?php foreach ($records as $info) { ?>

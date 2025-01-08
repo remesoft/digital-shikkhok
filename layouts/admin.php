@@ -363,7 +363,11 @@ $user = get_user($conn, $user_id);
                                 <!-- Profile dropdown START -->
                                 <li class="nav-item ms-2 ms-md-3 dropdown">
                                     <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img class="avatar-img rounded-circle" src="../uploads/img/users/<?= $user['avatar'] ?>" alt="avatar">
+                                        <?php if ($user['avatar']) { ?>
+                                            <img class="avatar-img rounded-circle" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
+                                        <?php } else { ?>
+                                            <img class="avatar-img rounded-circle" src="../assets/images/avatar/empty-profile.png" alt="avatar">
+                                        <?php } ?>
                                     </a>
 
                                     <!-- Profile dropdown START -->
@@ -373,7 +377,11 @@ $user = get_user($conn, $user_id);
                                             <div class="d-flex align-items-center">
                                                 <!-- Avatar -->
                                                 <div class="avatar me-3">
-                                                    <img class="avatar-img rounded-circle shadow" src="../uploads/img/users/<?= $user['avatar'] ?>" alt="avatar">
+                                                    <?php if ($user['avatar']) { ?>
+                                                        <img class="avatar-img rounded-circle" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
+                                                    <?php } else { ?>
+                                                        <img class="avatar-img rounded-circle" src="../assets/images/avatar/empty-profile.png" alt="avatar">
+                                                    <?php } ?>
                                                 </div>
                                                 <div>
                                                     <a class="h6 mt-2 mt-sm-0" href="#"><?= $user['first_name'] ?> <?= $user['last_name'] ?></a>
