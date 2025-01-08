@@ -149,12 +149,12 @@ $user = get_user($conn, $user_id);
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../our_courses.php">
+                                <a class="nav-link" href="../our_courses.php?type=free">
                                     ফ্রি কোর্স
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../our_courses.php">
+                                <a class="nav-link" href="../our_courses.php?type=paid">
                                     পেইড কোর্স
                                 </a>
                             </li>
