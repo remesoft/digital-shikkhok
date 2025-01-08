@@ -288,7 +288,7 @@ $user = get_user($conn, $user_id);
                                 </div>
                                 <!-- Button -->
                                 <div class="mt-2 mt-sm-0">
-                                    <a href="student-course-list.html" class="btn btn-outline-primary mb-0">View my courses</a>
+                                    <a href="../student/my_courses.php" class="btn btn-outline-primary mb-0">View my courses</a>
                                 </div>
                             </div>
                         </div>
