@@ -5,9 +5,20 @@ include('../includes/session.php');
 include('../includes/get_records.php');
 include('../includes/helpers.php');
 
-// variables
+// Pagination variables
+$limit = 10; // Records per page
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
+
+// Conditions
 $conditions = "1" . (isset($_GET['phone']) ? " AND phone LIKE '%" . $_GET['phone'] . "%'" : '');
-$contacts = get_records_by_conditions($conn, 'contacts', $conditions);
+$result = get_records_by_conditions_with_pagination($conn, 'contacts', $conditions, $limit, $offset);
+
+$contacts = $result['data'];
+$total_records = $result['total'];
+$total_pages = ceil($total_records / $limit);
+$start_record = ($page - 1) * $limit + 1;
+$end_record = min($start_record + $limit - 1, $total_records);
 $page_title = "All Courses | Admin Panel | Digital Shikkhok";
 ob_start();
 ?>
@@ -53,16 +64,16 @@ ob_start();
         <tbody>
           <?php foreach ($contacts as $contact) : ?>
             <tr>
-              <td><?= format_date($contact['created_at']) ?></td>
-              <td><?= $contact['name'] ?></td>
-              <td><?= $contact['phone'] ?></td>
-              <td><?= $contact['message'] ?></td>
-              <td class="text-end">
-                <a href="#" class="btn btn-sm btn-success-soft btn-round me-1 mb-1 mb-md-0">
-                  <i class="far fa-fw fa-edit"></i>
-                </a>
-                <button type="button" class="btn btn-sm btn-danger-soft btn-round mb-0">
-                  <i class="fas fa-fw fa-times"></i>
+              <td class="py-2"><?= format_date($contact['created_at']) ?></td>
+              <td class="py-2"><?= $contact['name'] ?></td>
+              <td class="py-2"><?= $contact['phone'] ?></td>
+              <td class="py-2"><?= $contact['message'] ?></td>
+              <td class="py-2 text-end">
+                <button type="button" class="btn btn-sm btn-secondary-soft btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy Contact">
+                  <i class="fas fa-copy fa-fw"></i>
+                </button>
+                <button type="button" class="btn btn-sm btn-danger-soft btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Contact">
+                  <i class="fas fa-trash-alt"></i>
                 </button>
               </td>
             </tr>
@@ -77,24 +88,7 @@ ob_start();
   <!-- Card body END -->
 
   <!-- Card footer START -->
-  <div class="card-footer bg-transparent pt-0">
-    <!-- Pagination START -->
-    <div class="d-sm-flex justify-content-sm-between align-items-sm-center">
-      <!-- Content -->
-      <p class="mb-0 text-center text-sm-start">Showing 1 to 8 of 20 entries</p>
-      <!-- Pagination -->
-      <nav class="d-flex justify-content-center mb-0" aria-label="navigation">
-        <ul class="pagination pagination-sm pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
-          <li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-left"></i></a></li>
-          <li class="page-item mb-0"><a class="page-link" href="#">1</a></li>
-          <li class="page-item mb-0 active"><a class="page-link" href="#">2</a></li>
-          <li class="page-item mb-0"><a class="page-link" href="#">3</a></li>
-          <li class="page-item mb-0"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
-        </ul>
-      </nav>
-    </div>
-    <!-- Pagination END -->
-  </div>
+  <?php include('../components/pagination.php') ?>
   <!-- Card END -->
 </div>
 <!-- Page main content END -->

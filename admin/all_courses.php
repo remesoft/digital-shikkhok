@@ -4,9 +4,21 @@ include('../includes/db.php');
 include('../includes/session.php');
 include('../includes/get_courses.php');
 include('../includes/get_totals.php');
+include('../includes/get_records.php');
 
-// variables
-$courses = get_courses($conn);
+// Pagination variables
+$limit = 2; // Records per page
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
+
+// Phone condition
+$result = get_records_by_conditions_with_pagination($conn, 'courses', '1', $limit, $offset);
+
+$courses = $result['data'];
+$total_records = $result['total'];
+$total_pages = ceil($total_records / $limit);
+$start_record = ($page - 1) * $limit + 1;
+$end_record = min($start_record + $limit - 1, $total_records);
 $page_title = "All Courses | Admin Panel | Digital Shikkhok";
 ob_start();
 ?>
@@ -95,26 +107,58 @@ ob_start();
   </div>
   <!-- Card body END -->
 
-  <!-- Card footer START -->
   <div class="card-footer bg-transparent pt-0">
-    <!-- Pagination START -->
     <div class="d-sm-flex justify-content-sm-between align-items-sm-center">
-      <!-- Content -->
-      <p class="mb-0 text-center text-sm-start">Showing 1 to 8 of 20 entries</p>
+      <p class="mb-0 text-center text-sm-start">
+        Showing <?= $start_record ?> to
+        <?= $end_record ?> of
+        <?= $total_records ?>
+        entries
+      </p>
       <!-- Pagination -->
       <nav class="d-flex justify-content-center mb-0" aria-label="navigation">
         <ul class="pagination pagination-sm pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
-          <li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-left"></i></a></li>
-          <li class="page-item mb-0"><a class="page-link" href="#">1</a></li>
-          <li class="page-item mb-0 active"><a class="page-link" href="#">2</a></li>
-          <li class="page-item mb-0"><a class="page-link" href="#">3</a></li>
-          <li class="page-item mb-0"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+          <!-- Previous Button -->
+          <li class="page-item mb-0 <?= ($page <= 1) ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?page=<?= max(1, $page - 1); ?>" tabindex="-1">
+              <i class="fas fa-angle-left"></i>
+            </a>
+          </li>
+
+          <!-- First Page -->
+          <?php if ($page > 3) : ?>
+            <li class="page-item mb-0"><a class="page-link" href="?page=1">1</a></li>
+            <?php if ($page > 4) : ?>
+              <li class="page-item mb-0 disabled"><span class="page-link">...</span></li>
+            <?php endif; ?>
+          <?php endif; ?>
+
+          <!-- Centered Pages -->
+          <?php for ($i = max(1, $page - 2); $i <= min($total_pages, $page + 2); $i++) : ?>
+            <li class="page-item mb-0 <?= ($i == $page) ? 'active' : ''; ?>">
+              <a class="page-link" href="?page=<?= $i; ?>"><?= $i; ?></a>
+            </li>
+          <?php endfor; ?>
+
+          <!-- Last Page -->
+          <?php if ($page < $total_pages - 2) : ?>
+            <?php if ($page < $total_pages - 3) : ?>
+              <li class="page-item mb-0 disabled"><span class="page-link">...</span></li>
+            <?php endif; ?>
+            <li class="page-item mb-0"><a class="page-link" href="?page=<?= $total_pages; ?>"><?= $total_pages; ?></a></li>
+          <?php endif; ?>
+
+          <!-- Next Button -->
+          <li class="page-item mb-0 <?= ($page >= $total_pages) ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?page=<?= min($total_pages, $page + 1); ?>">
+              <i class="fas fa-angle-right"></i>
+            </a>
+          </li>
         </ul>
       </nav>
+
     </div>
-    <!-- Pagination END -->
   </div>
-  <!-- Card END -->
 </div>
 <!-- Page main content END -->
 

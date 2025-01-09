@@ -8,8 +8,20 @@ include('../includes/get_records.php');
 include('../includes/get_record.php');
 
 
-$conditions = isset($_GET['phone']) ? "phone LIKE '%" . $_GET['phone'] . "%'" : '1';
-$enrollments = get_records_by_conditions($conn, 'enrollments', $conditions);
+// Pagination variables
+$limit = 10; // Records per page
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
+
+// Conditions
+$conditions = "1" . (isset($_GET['phone']) ? " AND phone LIKE '%" . $_GET['phone'] . "%'" : '');
+$result = get_records_by_conditions_with_pagination($conn, 'enrollments', $conditions, $limit, $offset);
+
+$enrollments = $result['data'];
+$total_records = $result['total'];
+$total_pages = ceil($total_records / $limit);
+$start_record = ($page - 1) * $limit + 1;
+$end_record = min($start_record + $limit - 1, $total_records);
 $page_title = "Enrollments | Admin Panel | Digital Shikkhok";
 ob_start();
 ?>
@@ -80,7 +92,7 @@ ob_start();
               <td class="text-center">
                 <a href="all_students.php?phone=<?= $user['phone'] ?>">
                   <img
-                    class="avatar-sm img-thumbnail scale-hover"
+                    class="custom-avatar custom-avatar-sm img-thumbnail scale-hover"
                     src="../uploads/img/users/<?= $user['avatar'] ? $user['avatar'] : 'blank.png' ?>"
                     alt="">
                 </a>
@@ -118,25 +130,7 @@ ob_start();
   <!-- Card body END -->
 
   <!-- Card footer START -->
-  <div class="card-footer bg-transparent pt-0">
-    <!-- Pagination START -->
-    <div class="d-sm-flex justify-content-sm-between align-items-sm-center">
-      <!-- Content -->
-      <p class="mb-0 text-center text-sm-start">Showing 1 to 8 of 20 entries</p>
-      <!-- Pagination -->
-      <nav class="d-flex justify-content-center mb-0" aria-label="navigation">
-        <ul class="pagination pagination-sm pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
-          <li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-left"></i></a></li>
-          <li class="page-item mb-0"><a class="page-link" href="#">1</a></li>
-          <li class="page-item mb-0 active"><a class="page-link" href="#">2</a></li>
-          <li class="page-item mb-0"><a class="page-link" href="#">3</a></li>
-          <li class="page-item mb-0"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
-        </ul>
-      </nav>
-    </div>
-    <!-- Pagination END -->
-  </div>
-  <!-- Card END -->
+  <?php include('../components/pagination.php') ?>
 </div>
 <!-- Page main content END -->
 

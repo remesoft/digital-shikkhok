@@ -2,10 +2,17 @@
 include_once('includes/session.php');
 include_once('includes/db.php');
 include_once('includes/helpers.php');
-include_once('includes/get_user_by_id.php');
+include_once('includes/get_record.php');
+
+$user = null;
+
+// Check if user is logged in and has a valid role
+if (!empty($_SESSION['user_id']) && !empty($_SESSION['user_role'])) {
+    $user_id = $_SESSION['user_id'];
+    $user = get_record($conn, 'users', $user_id);
+}
+
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -137,15 +144,6 @@ include_once('includes/get_user_by_id.php');
                     <!-- logo start -->
                     <a href="/digital-shikkhok"><img class="navbar-logo" src="assets/images/logo.png" alt="logo"></a>
 
-                    <!-- Responsive navbar toggler -->
-                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-animation">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </span>
-                    </button>
-
                     <!-- Main navbar START -->
                     <div class="navbar-collapse w-100 collapse" id="navbarCollapse">
                         <ul class="navbar-nav navbar-nav-scroll me-auto"></ul>
@@ -185,17 +183,11 @@ include_once('includes/get_user_by_id.php');
                         </ul>
                     </div>
 
-                    <?php if (isset($_SESSION['user_id']) && $_SESSION['user_role'] == 'student') {
-                        // include    'includes/get_user_by_id.php';
-                        include    'includes/db.php';
-                        $user_id = $_SESSION['user_id'];
-                        $user = get_user($conn, $user_id);
-                    ?>
-                        <div class="dropdown ms-1 ms-lg-0">
+                    <?php if ($user) { ?>
+                        <div class="dropdown ms-1 ms-lg-0 ms-auto">
                             <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img class="avatar-img rounded-circle" src="uploads/img/users/<?= $user['avatar'] ?: 'blank.png'; ?>" alt="avatar">
                             </a>
-
                             <ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
                                 <!-- Profile info -->
                                 <li class="px-3 mb-3">
@@ -253,14 +245,22 @@ include_once('includes/get_user_by_id.php');
                             </ul>
                         </div>
                     <?php } else { ?>
-                        <!-- Sign up Button -->
-                        <a href="sign_in.php" class="px-4 py-2 bg-success d-inline-block rounded-5 shadow-lg text-white"
-                            style="
-                background: url(assets/images/pattern/01.png) no-repeat center center;
-                background-size: cover;
-                z-index: 20;
-                white-space: nowrap;">লগিন/সাইনআপ</a>
+                        <a href="sign_in.php" class="px-4 py-2 bg-success d-inline-block rounded-5 shadow-lg text-white ms-auto"
+                            style="background: url(assets/images/pattern/01.png) no-repeat center center;background-size: cover;z-index: 20;white-space: nowrap;">
+                            লগিন/সাইনআপ
+                        </a>
                     <?php } ?>
+
+                    <!-- Responsive navbar toggler -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-animation">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </button>
+
+                </div>
             </nav>
         </div>
     </header>
@@ -269,7 +269,9 @@ include_once('includes/get_user_by_id.php');
     <!-- ----------------------------------- -->
     <!--       Main content goes here        -->
     <!-- ----------------------------------- -->
-    <main><?php echo $content; ?></main>
+    <main>
+        <?php echo $content; ?>
+    </main>
 
 
     <!-- ----------------------------------- -->
