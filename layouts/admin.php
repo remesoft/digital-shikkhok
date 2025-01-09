@@ -134,7 +134,7 @@ $user = get_user($conn, $user_id);
                         <!-- Title -->
                         <li class="nav-item ms-2 my-2">Pages</li>
                         <li class="nav-item">
-                            <a class="nav-link <?= is_active_page('inbox.php') ?>" href="inbox.php">
+                            <a class="nav-link <?= is_active_page('all_contact.php') ?>" href="all_contact.php">
                                 <i class="fas fa-inbox fa-fw me-2"></i>
                                 Inbox
                             </a>

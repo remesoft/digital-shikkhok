@@ -68,13 +68,21 @@ ob_start();
               <td class="py-2"><?= $contact['name'] ?></td>
               <td class="py-2"><?= $contact['phone'] ?></td>
               <td class="py-2"><?= $contact['message'] ?></td>
-              <td class="py-2 text-end">
+              <td class="py-2 d-flex justify-content-end">
                 <button type="button" class="btn btn-sm btn-secondary-soft btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy Contact">
                   <i class="fas fa-copy fa-fw"></i>
                 </button>
-                <button type="button" class="btn btn-sm btn-danger-soft btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Contact">
-                  <i class="fas fa-trash-alt"></i>
-                </button>
+                <form action="../includes/process_delete_contacts.php" method="post" id="deleteContactForm">
+                  <input type=" hidden" name="id" value="<?= $contact['id'] ?>" hidden>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-danger-soft btn-round mb-0"
+                    data-bs-placement="top"
+                    data-bs-toggle="modal"
+                    data-bs-target="#deleteContactModal">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </form>
               </td>
             </tr>
           <?php endforeach; ?>
@@ -94,28 +102,25 @@ ob_start();
 <!-- Page main content END -->
 
 <!-- ------------------------------->
-<!--      Delete Lecture Modal    -->
+<!--      Delete Course Modal     -->
 <!-- ------------------------------->
-<div class="modal fade" id="deleteLecture" tabindex="-1" aria-labelledby="addLectureLabel" aria-hidden="true">
+<div class="modal fade" id="deleteContactModal" tabindex="-1" aria-labelledby="addLectureLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-dark">
         <h5 class="modal-title text-white" id="addLectureLabel">Are you sure?</h5>
       </div>
-      <form id="lectureForm" method="post" action="../includes/process_delete_course.php">
-        <div class="modal-body">
-          <div class="row text-start g-3">
-            <div class="col-12">
-              <p>If your delete your course you will lost all the data related to this course. Make sure before deleting.</p>
-            </div>
+      <div class="modal-body">
+        <div class="row text-start g-3">
+          <div class="col-12">
+            <p>If your delete this contact you will lost all the data related to this contact. Make sure before deleting.</p>
           </div>
         </div>
-        <div class="modal-footer" style="border: none;">
-          <button type="button" class="btn btn-danger-soft my-0" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-success my-0" data-bs-dismiss="modal">Delete Course</button>
-          <input type="text" name="id" value="<?= $course['id'] ?>" hidden>
-        </div>
-      </form>
+      </div>
+      <div class="modal-footer" style="border: none;">
+        <button type="button" class="btn btn-secondary-soft my-0" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-danger my-0" data-bs-dismiss="modal" form="deleteContactForm">Delete Course</button>
+      </div>
     </div>
   </div>
 </div>
