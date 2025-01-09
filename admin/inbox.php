@@ -2,11 +2,12 @@
 // include essential files
 include('../includes/db.php');
 include('../includes/session.php');
-include('../includes/get_courses.php');
-include('../includes/get_totals.php');
+include('../includes/get_records.php');
+include('../includes/helpers.php');
 
 // variables
-$courses = get_courses($conn);
+$conditions = "1" . (isset($_GET['phone']) ? " AND phone LIKE '%" . $_GET['phone'] . "%'" : '');
+$contacts = get_records_by_conditions($conn, 'contacts', $conditions);
 $page_title = "All Courses | Admin Panel | Digital Shikkhok";
 ob_start();
 ?>
@@ -18,8 +19,16 @@ ob_start();
   <!-- Title -->
   <div class="row mb-3">
     <div class="col-12 d-sm-flex justify-content-between align-items-center">
-      <h4 class=" mb-2 mb-sm-0">Inbox</h4>
-      <a href="create_course.php" class="btn btn-sm btn-primary mb-0">Create a Course</a>
+      <h4 class="mb-2 mb-sm-0">Inbox</h4>
+      <div class="nav my-3 my-xl-0 flex-nowrap align-items-center">
+        <div class="nav-item w-100">
+          <form class="position-relative" action="<?= $_SERVER['PHP_SELF'] ?>" method="get">
+            <input class="form-control pe-5 bg-secondary bg-opacity-10 border-0" name="phone" type="search" placeholder="Mobile number..." aria-label="Search">
+            <button class="bg-transparent px-2 py-0 border-0 position-absolute top-50 end-0 translate-middle-y" type="submit"><i class="fas fa-search fs-6 text-primary"></i></button>
+          </form>
+        </div>
+      </div>
+      <!-- <a href="create_course.php" class="btn btn-sm btn-primary mb-0">Create a Course</a> -->
     </div>
   </div>
 
@@ -34,21 +43,30 @@ ob_start();
           <tr>
             <th scope="col" class="border-0 px-3 py-2">Date & Time</th>
             <th scope="col" class="border-0 py-2">Name</th>
-            <th scope="col" class="border-0 py-2">Email</th>
+            <th scope="col" class="border-0 py-2">Phone</th>
             <th scope="col" class="border-0 py-2">Message</th>
-            <th scope="col" class="border-0 py-2">Action</th>
+            <th scope="col" class="border-0 py-2 text-end">Action</th>
           </tr>
         </thead>
 
         <!-- Table body START -->
         <tbody>
-          <tr>
-            <td>working</td>
-            <td>working</td>
-            <td>working</td>
-            <td>working</td>
-            <td>working</td>
-          </tr>
+          <?php foreach ($contacts as $contact) : ?>
+            <tr>
+              <td><?= format_date($contact['created_at']) ?></td>
+              <td><?= $contact['name'] ?></td>
+              <td><?= $contact['phone'] ?></td>
+              <td><?= $contact['message'] ?></td>
+              <td class="text-end">
+                <a href="#" class="btn btn-sm btn-success-soft btn-round me-1 mb-1 mb-md-0">
+                  <i class="far fa-fw fa-edit"></i>
+                </a>
+                <button type="button" class="btn btn-sm btn-danger-soft btn-round mb-0">
+                  <i class="fas fa-fw fa-times"></i>
+                </button>
+              </td>
+            </tr>
+          <?php endforeach; ?>
         </tbody>
         <!-- Table body END -->
       </table>

@@ -182,12 +182,7 @@ $user = get_user($conn, $user_id);
                     <!-- Profile START -->
                     <div class="dropdown ms-1 ms-lg-0">
                         <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-
-                            <?php if ($user['avatar']) { ?>
-                                <img class="avatar-img rounded-circle" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
-                            <?php } else { ?>
-                                <img class="avatar-img rounded-circle" src="../assets/images/avatar/empty-profile.png" alt="avatar">
-                            <?php } ?>
+                            <img class="avatar-img rounded-circle" src="../uploads/img/users/<?= $user['avatar'] ?: 'blank.png'; ?>" alt="avatar">
                         </a>
 
                         <ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
@@ -196,11 +191,7 @@ $user = get_user($conn, $user_id);
                                 <div class="d-flex align-items-center">
                                     <!-- Avatar -->
                                     <div class="avatar me-3">
-                                        <?php if ($user['avatar']) { ?>
-                                            <img class="avatar-img rounded-circle" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
-                                        <?php } else { ?>
-                                            <img class="avatar-img rounded-circle" src="../assets/images/avatar/empty-profile.png" alt="avatar">
-                                        <?php } ?>
+                                        <img class="avatar-img rounded-circle" src="../uploads/img/users/<?= $user['avatar'] ?: 'blank.png'; ?>" alt="avatar">
                                     </div>
                                     <div>
                                         <a class="h6" href="#"><?= $user['first_name'] ?> <?= $user['last_name'] ?></a>
@@ -267,11 +258,7 @@ $user = get_user($conn, $user_id);
                             <!-- Avatar -->
                             <div class="col-auto">
                                 <div class="avatar avatar-xxl position-relative mt-n3">
-                                    <?php if ($user['avatar']) { ?>
-                                        <img class="avatar-img rounded-circle" src="../uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
-                                    <?php } else { ?>
-                                        <img class="avatar-img rounded-circle" src="../assets/images/avatar/empty-profile.png" alt="avatar">
-                                    <?php } ?>
+                                    <img class="avatar-img rounded-circle" src="../uploads/img/users/<?= $user['avatar'] ?: 'blank.png'; ?>" alt="avatar">
                                     <span class="badge text-bg-success rounded-pill position-absolute top-50 start-100 translate-middle mt-4 mt-md-5 ms-n3 px-md-3">অনলাইন</span>
                                 </div>
                             </div>
@@ -288,7 +275,7 @@ $user = get_user($conn, $user_id);
                                 </div>
                                 <!-- Button -->
                                 <div class="mt-2 mt-sm-0">
-                                    <a href="student-course-list.html" class="btn btn-outline-primary mb-0">আমার কোর্সগুলো দেখুন</a>
+                                    <a href="my_courses.php" class="btn btn-outline-primary mb-0">আমার কোর্সগুলো</a>
                                 </div>
                             </div>
                         </div>

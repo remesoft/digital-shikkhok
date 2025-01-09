@@ -23885,15 +23885,15 @@ html[dir="rtl"] .choices__input {
 .scale-hover:hover {
   transform: scale(1.1); /* Scale up the image */
 }
-.avatar,
-.avatar-sm {
+.custom-avatar,
+.custom-avatar-sm {
   height: 40px;
   width: 40px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.avatar-sm {
+.custom-avatar-sm {
   height: 35px;
   width: 35px;
 }

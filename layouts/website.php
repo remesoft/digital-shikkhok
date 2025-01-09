@@ -193,11 +193,7 @@ include_once('includes/get_user_by_id.php');
                     ?>
                         <div class="dropdown ms-1 ms-lg-0">
                             <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?php if ($user['avatar']) { ?>
-                                    <img class="avatar-img rounded-circle" src="uploads/img/users/<?php echo $user['avatar']; ?>" alt="avatar">
-                                <?php } else { ?>
-                                    <img class="avatar-img rounded-circle" src="assets/images/avatar/empty-profile.png" alt="avatar">
-                                <?php } ?>
+                                <img class="avatar-img rounded-circle" src="uploads/img/users/<?= $user['avatar'] ?: 'blank.png'; ?>" alt="avatar">
                             </a>
 
                             <ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">

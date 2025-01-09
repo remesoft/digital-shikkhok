@@ -7,9 +7,19 @@ include('../includes/get_course_by_id.php');
 include('../includes/get_records.php');
 include('../includes/get_totals.php');
 
-// variables
+
+// Pagination variables
+$limit = 1; // Records per page
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
+
+// Conditions
 $conditions = "role = 'student'" . (isset($_GET['phone']) ? " AND phone LIKE '%" . $_GET['phone'] . "%'" : '');
-$users = get_records_by_conditions($conn, 'users', $conditions);
+$result = get_records_by_conditions_with_pagination($conn, 'users', $conditions, $limit, $offset);
+
+$users = $result['data'];
+$total_records = $result['total'];
+$total_pages = ceil($total_records / $limit);
 $page_title = "Enrollments | Admin Panel | Digital Shikkhok";
 ob_start();
 ?>
@@ -156,11 +166,28 @@ ob_start();
       <!-- Pagination -->
       <nav class="d-flex justify-content-center mb-0" aria-label="navigation">
         <ul class="pagination pagination-sm pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
-          <li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-left"></i></a></li>
-          <li class="page-item mb-0"><a class="page-link" href="#">1</a></li>
-          <li class="page-item mb-0 active"><a class="page-link" href="#">2</a></li>
-          <li class="page-item mb-0"><a class="page-link" href="#">3</a></li>
-          <li class="page-item mb-0"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+          <!-- Previous Button -->
+          <li class="page-item mb-0 <?= ($page <= 1) ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?page=<?= max(1, $page - 1); ?>&phone=<?= isset($_GET['phone']) ? $_GET['phone'] : ''; ?>" tabindex="-1">
+              <i class="fas fa-angle-left"></i>
+            </a>
+          </li>
+
+          <!-- Page Numbers -->
+          <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+            <li class="page-item mb-0 <?= ($i == $page) ? 'active' : ''; ?>">
+              <a class="page-link" href="?page=<?= $i; ?>&phone=<?= isset($_GET['phone']) ? $_GET['phone'] : ''; ?>">
+                <?= $i; ?>
+              </a>
+            </li>
+          <?php endfor; ?>
+
+          <!-- Next Button -->
+          <li class="page-item mb-0 <?= ($page >= $total_pages) ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?page=<?= min($total_pages, $page + 1); ?>&phone=<?= isset($_GET['phone']) ? $_GET['phone'] : ''; ?>">
+              <i class="fas fa-angle-right"></i>
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
