@@ -3,7 +3,7 @@ session_start();
 include('includes/db.php');
 include('includes/helpers.php');
 include('includes/get_course_by_id.php');
-$pageTitle = "Course Details";
+$page_title = "Our courses | Digital Shikkhok";
 $course = get_detailed_course($conn, $_GET['id']);
 ob_start();
 ?>

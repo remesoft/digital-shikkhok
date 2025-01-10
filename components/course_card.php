@@ -24,7 +24,9 @@
       </div>
       <!-- Title -->
       <h5 class="card-title fw-normal">
-        <a href="#"><?= $course['title'] ?></a>
+        <a href="course_details.php?id=<?= $course['id'] ?>">
+          <?= $course['title'] ?>
+        </a>
       </h5>
       <p class="mb-2 text-truncate-2">
         <?= $course['short_desc'] ?>
