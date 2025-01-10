@@ -35,8 +35,6 @@ function get_checkout_link($course_id)
   if (isset($_SESSION['user_email'])) {
     return "./checkout.php?id=$course_id";
   } else {
-    $message = "Please log in or sign up to checkout this course.";
-    $_SESSION['error_message'] = $message;
     return "./sign_up.php";
   }
 }
@@ -101,10 +99,6 @@ function is_active_page($page_name, $query_key = null, $query_value = null)
 
   return '';
 }
-
-
-
-
 
 
 function protected_for($required_role)
