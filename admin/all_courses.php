@@ -7,7 +7,7 @@ include('../includes/get_totals.php');
 include('../includes/get_records.php');
 
 // Pagination variables
-$limit = 2; // Records per page
+$limit = 10; // Records per page
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
@@ -90,11 +90,14 @@ ob_start();
               <!-- Table data -->
               <td class="text-center">৳ <?= htmlspecialchars($course['price']) ?></td>
               <td class="text-center"> <?= total_enrolled($conn, $course['id']) ?></td>
-              <td class="d-flex justify-content-end">
-                <a href="edit_course.php?id=<?= $course['id'] ?>" class="btn btn-sm btn-success-soft btn-round me-1 mb-1 mb-md-0"><i class="far fa-fw fa-edit"></i></a>
-                <button class="btn btn-sm btn-danger-soft btn-round mb-0" type="button" data-bs-toggle="modal" data-bs-target="#deleteLecture">
-                  <i class="fas fa-fw fa-times"></i>
-                </button>
+              <td class="">
+                <div class="d-flex justify-content-end">
+                  <a href="edit_course.php?id=<?= $course['id'] ?>" class="btn btn-sm btn-success-soft btn-round me-1 mb-1 mb-md-0"><i class="far fa-fw fa-edit"></i></a>
+                  <button class="btn btn-sm btn-danger-soft btn-round mb-0" type="button" data-bs-toggle="modal" data-bs-target="#deleteLecture">
+                    <i class="fas fa-fw fa-times"></i>
+                  </button>
+                </div>
+
               </td>
             </tr>
           <?php endforeach; ?>

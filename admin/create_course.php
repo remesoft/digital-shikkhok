@@ -1,8 +1,13 @@
 <?php
 // include essential files
-require_once('../includes/session.php');
+require '../includes/db.php';
+require '../includes/session.php';
+require '../includes/fetch.php';
+
 
 // variables
+$conditions = "role = 'instructor' or role = 'admin'";
+$instructors = fetch_records($conn, 'users', ['conditions' => $conditions])['data'];
 $page_title = "Create Course | Admin Panel | Digital Shikkhok";
 ob_start();
 ?>
@@ -11,7 +16,6 @@ ob_start();
 <!-- ----------------------------------- -->
 <!--        Page Content Start           -->
 <!-- ----------------------------------- -->
-
 <div class="page-content-wrapper border">
   <h1 class="h4 mb-3">New Course</h1>
 
@@ -105,6 +109,27 @@ ob_start();
                 <div class="col-md-6">
                   <label class="form-label">Course Language</label>
                   <input name="language" type="text" class="form-control" placeholder="Enter course language" value="Bangla" require>
+                </div>
+
+                <!-- Course level -->
+                <div class="col-md-6">
+                  <label class="form-label">Select Instructors</label>
+                  <select name="instructor_id" class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="false" data-remove-item-button="true" require>
+                    <option value="">Select course level</option>
+                    <?php foreach ($instructors as $instructor) : ?>
+                      <option value="<?= $instructor['id'] ?>">
+                        <?= $instructor['first_name'] . " " . $instructor['last_name'] ?>
+                      </option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+
+                <!-- Switch -->
+                <div class="col-md-6 d-flex align-items-center justify-content-start mt-5">
+                  <div class="form-check form-switch form-check-md">
+                    <input name="upcoming" class="form-check-input" type="checkbox" id="upcoming">
+                    <label class="form-check-label" for="upcoming">Check this for upcoming course.</label>
+                  </div>
                 </div>
 
                 <!-- Course description -->

@@ -4,8 +4,12 @@ include 'includes/db.php';
 include 'includes/helpers.php';
 include 'includes/get_courses.php';
 include 'includes/get_course_by_id.php';
+include 'includes/get_records.php';
+include 'includes/fetch.php';
+
+$courses = fetch_records($conn, 'courses', ['limit' => 3])['data'];
+$upcoming_courses = fetch_records($conn, 'courses', ['conditions' => "status = 'upcoming'"])['data'];
 $page_title = "Home | Digital Shikkhok";
-$courses = get_courses($conn);
 ob_start();
 ?>
 
@@ -285,6 +289,9 @@ ob_start();
         <div class="d-sm-flex align-items-center justify-content-center justify-content-lg-start">
           <!-- Button -->
           <a href="our_courses.php" class="btn btn-lg btn-danger-soft me-2 mb-4 mb-sm-0">শুরু করুন</a>
+          <!-- <a href="our_courses.php?type=paid" class="btn btn-lg btn-orange me-2 mb-4 mb-sm-0">পেইড কোর্স</a>
+          <a href="our_courses.php?type=free" class="btn btn-lg btn-success me-2 mb-4 mb-sm-0">ফ্রি কোর্স</a> -->
+
           <!-- Video button -->
           <div
             class="d-flex align-items-center justify-content-center py-2 ms-0 ms-sm-4">
@@ -526,70 +533,12 @@ Popular course START -->
     </div>
     <div class="row g-4 mt-3">
       <?php
-      $courses = get_courses($conn);
-      foreach ($courses as $course): ?>
-        <div class="col-sm-6 col-lg-4 col-xl-3">
-          <div class="card shadow h-100">
-            <!-- Image -->
-            <img
-              src="./uploads/img/thumbnails/<?= $course['thumbnail'] ?>"
-              class="card-img-top"
-              alt="course image" />
-            <!-- Card body -->
-            <div class="card-body pb-0">
-              <!-- Badge and favorite -->
-              <div class="d-flex justify-content-between mb-2">
-                <a
-                  href="#"
-                  class="badge bg-purple bg-opacity-10 text-purple">All level</a>
-                <a href="#" class="h6 mb-0"><i class="far fa-heart"></i></a>
-              </div>
-              <!-- Title -->
-              <h5 class="card-title fw-normal">
-                <a href="#"><?= $course['title'] ?></a>
-              </h5>
-              <p class="mb-2 text-truncate-2">
-                <?= $course['short_desc'] ?>
-              </p>
-              <!-- Rating star -->
-              <ul class="list-inline mb-0">
-                <li class="list-inline-item me-0 small">
-                  <i class="fas fa-star text-warning"></i>
-                </li>
-                <li class="list-inline-item me-0 small">
-                  <i class="fas fa-star text-warning"></i>
-                </li>
-                <li class="list-inline-item me-0 small">
-                  <i class="fas fa-star text-warning"></i>
-                </li>
-                <li class="list-inline-item me-0 small">
-                  <i class="fas fa-star text-warning"></i>
-                </li>
-                <li class="list-inline-item me-0 small">
-                  <i class="far fa-star text-warning"></i>
-                </li>
-                <li class="list-inline-item ms-2 h6 fw-light mb-0">
-                  4.0/5.0
-                </li>
-              </ul>
-            </div>
-            <!-- Card footer -->
-            <div class="card-footer pt-0 pb-3">
-              <hr />
-              <div class="d-flex justify-content-between">
-                <span class="h6 fw-light mb-0">
-                  <i class="far fa-clock text-danger me-2"></i>
-                  <?= $course['duration'] ?>
-                </span>
-                <span class="h6 fw-light mb-0">
-                  <i class="fas fa-table text-orange me-2"></i>
-                  <?= count_topics($conn, $course['id']) ?> lectures
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      <?php endforeach ?>
+      foreach ($courses as $course):
+        $instructor = fetch_record($conn, 'users', $course['instructor_id']);
+        $instructor_name = $instructor['first_name'] . " " . $instructor['last_name'];
+        $instructor_avatar = $instructor['avatar'];
+        include './components/course_card.php';
+      endforeach; ?>
     </div>
   </div>
 </section>
@@ -683,316 +632,14 @@ Trending courses START -->
           data-items="3"
           data-items-lg="2"
           data-items-sm="1">
-          <!-- Card item START -->
-          <div>
-            <div class="card action-trigger-hover border bg-transparent">
-              <!-- Image -->
-              <img
-                src="assets/images/courses/4by3/14.jpg"
-                class="card-img-top"
-                alt="course image" />
-              <!-- Ribbon -->
-              <div class="ribbon mt-3"><span>Free</span></div>
-              <!-- Card body -->
-              <div class="card-body pb-0">
-                <!-- Badge and favorite -->
-                <div class="d-flex justify-content-between mb-3">
-                  <span class="hstack gap-2">
-                    <a
-                      href="#"
-                      class="badge bg-primary bg-opacity-10 text-primary">Design</a>
-                    <a href="#" class="badge text-bg-dark">Beginner</a>
-                  </span>
-                  <a href="#" class="h6 fw-light mb-0"><i class="far fa-bookmark"></i></a>
-                </div>
-                <!-- Title -->
-                <h5 class="card-title">
-                  <a href="#">The complete Digital Marketing Course - 8 Course in
-                    1</a>
-                </h5>
-                <!-- Rating -->
-                <div class="d-flex justify-content-between mb-2">
-                  <div class="hstack gap-2">
-                    <p class="text-warning m-0">
-                      4.5<i class="fas fa-star text-warning ms-1"></i>
-                    </p>
-                    <span class="small">(6500)</span>
-                  </div>
-                  <div class="hstack gap-2">
-                    <p class="h6 fw-light mb-0 m-0">6500</p>
-                    <span class="small">(Student)</span>
-                  </div>
-                </div>
-                <!-- Time -->
-                <div class="hstack gap-3">
-                  <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>6h
-                    56m</span>
-                  <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>82
-                    lectures</span>
-                </div>
-              </div>
-              <!-- Card footer -->
-              <div class="card-footer pt-0 bg-transparent">
-                <hr />
-                <!-- Avatar and Price -->
-                <div
-                  class="d-flex justify-content-between align-items-center">
-                  <!-- Avatar -->
-                  <div class="d-flex align-items-center">
-                    <div class="avatar avatar-sm">
-                      <img
-                        class="avatar-img rounded-1"
-                        src="assets/images/avatar/10.jpg"
-                        alt="avatar" />
-                    </div>
-                    <p class="mb-0 ms-2">
-                      <a href="#" class="h6 fw-light mb-0">Larry Lawson</a>
-                    </p>
-                  </div>
-                  <!-- Price -->
-                  <div>
-                    <h4 class="text-success mb-0 item-show">Free</h4>
-                    <a
-                      href="#"
-                      class="btn btn-sm btn-success-soft item-show-hover"><i class="fas fa-shopping-cart me-2"></i>Add to
-                      cart</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Card item END -->
-
-          <!-- Card item START -->
-          <div>
-            <div class="card action-trigger-hover border bg-transparent">
-              <!-- Image -->
-              <img
-                src="assets/images/courses/4by3/15.jpg"
-                class="card-img-top"
-                alt="course image" />
-              <!-- Card body -->
-              <div class="card-body pb-0">
-                <!-- Badge and favorite -->
-                <div class="d-flex justify-content-between mb-3">
-                  <span class="hstack gap-2">
-                    <a
-                      href="#"
-                      class="badge bg-primary bg-opacity-10 text-primary">Development</a>
-                    <a href="#" class="badge text-bg-dark">All level</a>
-                  </span>
-                  <a href="#" class="h6 fw-light mb-0"><i class="far fa-bookmark"></i></a>
-                </div>
-                <!-- Title -->
-                <h5 class="card-title">
-                  <a href="#">Angular – The Complete Guide (2021 Edition)</a>
-                </h5>
-                <!-- Rating -->
-                <div class="d-flex justify-content-between mb-2">
-                  <div class="hstack gap-2">
-                    <p class="text-warning m-0">
-                      4.0<i class="fas fa-star text-warning ms-1"></i>
-                    </p>
-                    <span class="small">(3500)</span>
-                  </div>
-                  <div class="hstack gap-2">
-                    <p class="h6 fw-light mb-0 m-0">4500</p>
-                    <span class="small">(Student)</span>
-                  </div>
-                </div>
-                <!-- Time -->
-                <div class="hstack gap-3">
-                  <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>12h
-                    45m</span>
-                  <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>65
-                    lectures</span>
-                </div>
-              </div>
-              <!-- Card footer -->
-              <div class="card-footer pt-0 bg-transparent">
-                <hr />
-                <!-- Avatar and Price -->
-                <div
-                  class="d-flex justify-content-between align-items-center">
-                  <!-- Avatar -->
-                  <div class="d-flex align-items-center">
-                    <div class="avatar avatar-sm">
-                      <img
-                        class="avatar-img rounded-1"
-                        src="assets/images/avatar/04.jpg"
-                        alt="avatar" />
-                    </div>
-                    <p class="mb-0 ms-2">
-                      <a href="#" class="h6 fw-light mb-0">Billy Vasquez</a>
-                    </p>
-                  </div>
-                  <!-- Price -->
-                  <div>
-                    <h4 class="text-success mb-0 item-show">$255</h4>
-                    <a
-                      href="#"
-                      class="btn btn-sm btn-success-soft item-show-hover"><i class="fas fa-shopping-cart me-2"></i>Add to
-                      cart</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Card item END -->
-
-          <!-- Card item START -->
-          <div>
-            <div class="card action-trigger-hover border bg-transparent">
-              <!-- Image -->
-              <img
-                src="assets/images/courses/4by3/17.jpg"
-                class="card-img-top"
-                alt="course image" />
-              <!-- Card body -->
-              <div class="card-body pb-0">
-                <!-- Badge and favorite -->
-                <div class="d-flex justify-content-between mb-3">
-                  <span class="hstack gap-2">
-                    <a
-                      href="#"
-                      class="badge bg-primary bg-opacity-10 text-primary">Design</a>
-                    <a href="#" class="badge text-bg-dark">Beginner</a>
-                  </span>
-                  <a href="#" class="h6 fw-light mb-0"><i class="far fa-bookmark"></i></a>
-                </div>
-                <!-- Title -->
-                <h5 class="card-title">
-                  <a href="#">Time Management Mastery: Do More, Stress Less</a>
-                </h5>
-                <!-- Rating -->
-                <div class="d-flex justify-content-between mb-2">
-                  <div class="hstack gap-2">
-                    <p class="text-warning m-0">
-                      4.5<i class="fas fa-star text-warning ms-1"></i>
-                    </p>
-                    <span class="small">(2000)</span>
-                  </div>
-                  <div class="hstack gap-2">
-                    <p class="h6 fw-light mb-0 m-0">8000</p>
-                    <span class="small">(Student)</span>
-                  </div>
-                </div>
-                <!-- Time -->
-                <div class="hstack gap-3">
-                  <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>24h
-                    56m</span>
-                  <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>55
-                    lectures</span>
-                </div>
-              </div>
-              <!-- Card footer -->
-              <div class="card-footer pt-0 bg-transparent">
-                <hr />
-                <!-- Avatar and Price -->
-                <div
-                  class="d-flex justify-content-between align-items-center">
-                  <!-- Avatar -->
-                  <div class="d-flex align-items-center">
-                    <div class="avatar avatar-sm">
-                      <img
-                        class="avatar-img rounded-1"
-                        src="assets/images/avatar/09.jpg"
-                        alt="avatar" />
-                    </div>
-                    <p class="mb-0 ms-2">
-                      <a href="#" class="h6 fw-light mb-0">Lori Stevens</a>
-                    </p>
-                  </div>
-                  <!-- Price -->
-                  <div>
-                    <h4 class="text-success mb-0 item-show">$500</h4>
-                    <a
-                      href="#"
-                      class="btn btn-sm btn-success-soft item-show-hover"><i class="fas fa-shopping-cart me-2"></i>Add to
-                      cart</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Card item END -->
-
-          <!-- Card item START -->
-          <div>
-            <div class="card action-trigger-hover border bg-transparent">
-              <!-- Image -->
-              <img
-                src="assets/images/courses/4by3/16.jpg"
-                class="card-img-top"
-                alt="course image" />
-              <!-- Card body -->
-              <div class="card-body pb-0">
-                <!-- Badge and favorite -->
-                <div class="d-flex justify-content-between mb-3">
-                  <span class="hstack gap-2">
-                    <a
-                      href="#"
-                      class="badge bg-primary bg-opacity-10 text-primary">Design</a>
-                    <a href="#" class="badge text-bg-dark">Beginner</a>
-                  </span>
-                  <a href="#" class="h6 fw-light mb-0"><i class="far fa-bookmark"></i></a>
-                </div>
-                <!-- Title -->
-                <h5 class="card-title">
-                  <a href="#">Time Management Mastery: Do More, Stress Less</a>
-                </h5>
-                <!-- Rating -->
-                <div class="d-flex justify-content-between mb-2">
-                  <div class="hstack gap-2">
-                    <p class="text-warning m-0">
-                      4.0<i class="fas fa-star text-warning ms-1"></i>
-                    </p>
-                    <span class="small">(2000)</span>
-                  </div>
-                  <div class="hstack gap-2">
-                    <p class="h6 fw-light mb-0 m-0">1200</p>
-                    <span class="small">(Student)</span>
-                  </div>
-                </div>
-                <!-- Time -->
-                <div class="hstack gap-3">
-                  <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>09h
-                    56m</span>
-                  <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>21
-                    lectures</span>
-                </div>
-              </div>
-              <!-- Card footer -->
-              <div class="card-footer pt-0 bg-transparent">
-                <hr />
-                <!-- Avatar and Price -->
-                <div
-                  class="d-flex justify-content-between align-items-center">
-                  <!-- Avatar -->
-                  <div class="d-flex align-items-center">
-                    <div class="avatar avatar-sm">
-                      <img
-                        class="avatar-img rounded-1"
-                        src="assets/images/avatar/01.jpg"
-                        alt="avatar" />
-                    </div>
-                    <p class="mb-0 ms-2">
-                      <a href="#" class="h6 fw-light mb-0">Frances Guerrero</a>
-                    </p>
-                  </div>
-                  <!-- Price -->
-                  <div>
-                    <h4 class="text-success mb-0 item-show">$200</h4>
-                    <a
-                      href="#"
-                      class="btn btn-sm btn-success-soft item-show-hover"><i class="fas fa-shopping-cart me-2"></i>Add to
-                      cart</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Card item END -->
+          <!-- Card -->
+          <?php
+          foreach ($upcoming_courses as $course):
+            $instructor = fetch_record($conn, 'users', $course['instructor_id']);
+            $instructor_name = $instructor['first_name'] . " " . $instructor['last_name'];
+            $instructor_avatar = $instructor['avatar'];
+            include './components/course_card_v2.php';
+          endforeach; ?>
         </div>
       </div>
       <!-- Slider END -->

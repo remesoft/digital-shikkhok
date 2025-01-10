@@ -4,40 +4,69 @@ include('includes/db.php');
 include('includes/helpers.php');
 include('includes/get_courses.php');
 include('includes/get_course_by_id.php');
+include('includes/fetch.php');
+
+// Pagination variables
+$limit = 6; // Records per page
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
+
+// Course price
+$conditions = match ($_GET['type'] ?? '') {
+  'free' => "price = 0",
+  'paid' => "price > 0",
+  default => '1'
+};
+
+// Phone condition
+$result = fetch_records($conn, 'courses', [
+  'conditions' => $conditions,
+  'limit' => $limit,
+  'offset' => $offset
+]);
+
+// impotent data
+$courses = $result['data'];
+$total_records = $result['total'];
+$total_pages = ceil($total_records / $limit);
+$start_record = ($page - 1) * $limit + 1;
+$end_record = min($start_record + $limit - 1, $total_records);
 $page_title = "Our Course | Digital Shikkhok";
 ob_start();
 ?>
 
 <!--Page Banner START -->
-<section class="py-4">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="bg-light p-4 text-center rounded-3">
-          <h1 class="m-0">কোর্সগুলো এক্সপ্লোর করুন</h1>
-          <!-- Breadcrumb -->
-          <div class="d-flex justify-content-center">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb breadcrumb-dots mb-0">
-                <li class="breadcrumb-item"><a href="index.php">হোম</a></li>
-                <li class="breadcrumb-item active" aria-current="page">
-                  <?php
-                  $type = $_GET['type'] ?? null;
-                  $type_labels = [
-                    'free' => 'ফ্রি কোর্স',
-                    'paid' => 'পেইড কোর্স',
-                  ];
-                  echo $type_labels[$type] ?? 'আমাদের কোর্সসমূহ';
-                  ?>
-                </li>
-              </ol>
-            </nav>
-          </div>
-        </div
-          </div>
-      </div>
-    </div>
-</section>
+<?php if (!empty($courses)) { ?>
+  <section class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="bg-light p-4 text-center rounded-3">
+            <h1 class="m-0">কোর্সগুলো এক্সপ্লোর করুন</h1>
+            <!-- Breadcrumb -->
+            <div class="d-flex justify-content-center">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-dots mb-0">
+                  <li class="breadcrumb-item"><a href="index.php">হোম</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <?php
+                    $type = $_GET['type'] ?? null;
+                    $type_labels = [
+                      'free' => 'ফ্রি কোর্স',
+                      'paid' => 'পেইড কোর্স',
+                    ];
+                    echo $type_labels[$type] ?? 'আমাদের কোর্সসমূহ';
+                    ?>
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div
+            </div>
+        </div>
+  </section>
+<?php } ?>
+
 
 <!-- Page content START -->
 <section class="pt-0">
@@ -47,96 +76,25 @@ ob_start();
       <div class="col-12">
         <div class="row g-4">
           <?php
-          $courses = get_courses($conn);
-          foreach ($courses as $course): ?>
-            <div class="col-lg-4">
-              <div class="card action-trigger-hover border bg-transparent">
-                <img
-                  src="uploads/img/thumbnails/<?= $course['thumbnail'] ?>"
-                  class="card-img-top"
-                  alt="course image" />
-                <div class="card-body pb-0">
-                  <div class="d-flex justify-content-between mb-3">
-                    <span class="hstack gap-2">
-                      <a
-                        href="#"
-                        class="badge bg-primary bg-opacity-10 text-primary">Student</a>
-                      <a href="#" class="badge text-bg-dark">Diploma</a>
-                    </span>
-                    <a href="#" class="h6 fw-light mb-0"><i class="far fa-bookmark"></i></a>
-                  </div>
-                  <!-- Title -->
-                  <h5 class="card-title">
-                    <a href="course_details.php?id=<?= $course['id'] ?>"><?= $course['title'] ?></a>
-                  </h5>
-                  <!-- Rating -->
-                  <div class="d-flex justify-content-between mb-2">
-                    <div class="hstack gap-2">
-                      <p class="text-warning m-0">
-                        4.5<i class="fas fa-star text-warning ms-1"></i>
-                      </p>
-                      <span class="small">(6500)</span>
-                    </div>
-                    <div class="hstack gap-2">
-                      <p class="h6 fw-light mb-0 m-0">6500</p>
-                      <span class="small">(Student)</span>
-                    </div>
-                  </div>
-                  <!-- Time -->
-                  <div class="hstack gap-3">
-                    <span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i><?= $course['duration'] ?></span>
-                    <span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i><?= count_topics($conn, $course['id']) ?>
-                      lectures</span>
-                  </div>
-                </div>
-                <!-- Card footer -->
-                <div class="card-footer pt-0 bg-transparent">
-                  <hr />
-                  <!-- Avatar and Price -->
-                  <div
-                    class="d-flex justify-content-between align-items-center">
-                    <!-- Avatar -->
-                    <div class="d-flex align-items-center">
-                      <div class="avatar avatar-sm">
-                        <img
-                          class="avatar-img rounded-1"
-                          src="./uploads/img/instructors/instructor-02.png"
-                          alt="avatar" />
-                      </div>
-                      <p class="mb-0 ms-2">
-                        <a href="#" class="h6 fw-light mb-0">MD. Sharif Ahmed</a>
-                      </p>
-                    </div>
-                    <!-- Price -->
-                    <div>
-                      <h4 class="text-success mb-0 item-show">৳<?= $course['price'] ?></h4>
-                      <a
-                        href="#"
-                        class="btn btn-sm btn-success-soft item-show-hover"><i class="fas fa-shopping-cart me-2"></i>Add to
-                        cart</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <?php endforeach; ?>
-        </div>
-        <!-- Course Grid END -->
+          if (!empty($courses)) {
+            foreach ($courses as $course):
+              $instructor = fetch_record($conn, 'users', $course['instructor_id']);
+              $instructor_name = $instructor['first_name'] . " " . $instructor['last_name'];
+              $instructor_avatar = $instructor['avatar'];
+              include './components/course_card_v2.php';
+            endforeach;
 
-        <!-- Pagination START -->
-        <!-- <div class="col-12">
-          <nav class="mt-4 d-flex justify-content-center" aria-label="navigation">
-            <ul class="pagination pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
-              <li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-double-left"></i></a></li>
-              <li class="page-item mb-0"><a class="page-link" href="#">1</a></li>
-              <li class="page-item mb-0 active"><a class="page-link" href="#">2</a></li>
-              <li class="page-item mb-0"><a class="page-link" href="#">..</a></li>
-              <li class="page-item mb-0"><a class="page-link" href="#">6</a></li>
-              <li class="page-item mb-0"><a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a></li>
-            </ul>
-          </nav>
-        </div> -->
-        <!-- Pagination END -->
+            // pagination
+            include './components/pagination_v2.php';
+          } else { ?>
+            <div class="col-12 text-center">
+              <h1 class="display-5 text-danger mb-0">এখনও</h1>
+              <h2>কোর্স আপলোড হয়নি।</h2>
+              <p class="mb-4">কোর্স আপলোড হলেই পেয়ে যাবেন।</p>
+              <a href="index.php" class="btn btn-primary mb-0">আমাকে হোমপেজে নিয়ে চলো</a>
+            <?php } ?>
+            </div>
+        </div>
       </div>
       <!-- Main content END -->
     </div><!-- Row END -->

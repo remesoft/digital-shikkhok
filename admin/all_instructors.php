@@ -6,6 +6,7 @@ include('../includes/helpers.php');
 include('../includes/get_course_by_id.php');
 include('../includes/get_records.php');
 include('../includes/get_totals.php');
+include('../includes/fetch.php');
 
 // Pagination variables
 $limit = 10; // Records per page
@@ -13,9 +14,18 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
 // Conditions
-$conditions = "role = 'instructor'" . (isset($_GET['phone']) ? " AND phone LIKE '%" . $_GET['phone'] . "%'" : '');
-$result = get_records_by_conditions_with_pagination($conn, 'users', $conditions, $limit, $offset);
+$phone_condition = isset($_GET['phone']) ? " AND phone LIKE '%" . $_GET['phone'] . "%'" : '';
+$conditions = "role = 'instructor' or role = 'admin'" . $phone_condition;
 
+// query parameters
+$query_params = [
+  'conditions' => $conditions,
+  'limit' => $limit,
+  'offset' => $offset
+];
+
+// impotent data
+$result = fetch_records($conn, 'users', $query_params);
 $users = $result['data'];
 $total_records = $result['total'];
 $total_pages = ceil($total_records / $limit);

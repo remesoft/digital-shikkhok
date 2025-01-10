@@ -14,10 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       'thumbnail' => upload_image("../uploads/img/thumbnails/", "thumbnail"),
       'video' => $_POST['video'] ?? '',
       'duration' => $_POST['duration'] ?? '',
-      'instructor' => 1, // TODO: Replace with dynamic instructor value
       'price' => $_POST['price'] ?? '',
       'total_lectures' => $_POST['total_lectures'] ?? '',
       'language' => $_POST['language'] ?? '',
+      'instructor_id' => $_POST['instructor_id'] ?? '',
+      'upcoming' => $_POST['upcoming'] ? 'upcoming' : 'live',
     ];
 
     // Generate the placeholders and values dynamically

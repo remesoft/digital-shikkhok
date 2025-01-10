@@ -52,7 +52,7 @@ ob_start();
         <!-- Table head -->
         <thead>
           <tr>
-            <th scope="col" class="border-0 px-3 py-2">Date & Time</th>
+            <th scope="col" class="border-0 px-3 py-2" style="white-space: nowrap;">Date & Time</th>
             <th scope="col" class="border-0 py-2">Name</th>
             <th scope="col" class="border-0 py-2">Phone</th>
             <th scope="col" class="border-0 py-2">Message</th>
@@ -64,25 +64,27 @@ ob_start();
         <tbody>
           <?php foreach ($contacts as $contact) : ?>
             <tr>
-              <td class="py-2"><?= format_date($contact['created_at']) ?></td>
-              <td class="py-2"><?= $contact['name'] ?></td>
-              <td class="py-2"><?= $contact['phone'] ?></td>
-              <td class="py-2"><?= $contact['message'] ?></td>
-              <td class="py-2 d-flex justify-content-end">
-                <button type="button" class="btn btn-sm btn-secondary-soft btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy Contact">
-                  <i class="fas fa-copy fa-fw"></i>
-                </button>
-                <form action="../includes/process_delete_contacts.php" method="post" id="deleteContactForm">
-                  <input type=" hidden" name="id" value="<?= $contact['id'] ?>" hidden>
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-danger-soft btn-round mb-0"
-                    data-bs-placement="top"
-                    data-bs-toggle="modal"
-                    data-bs-target="#deleteContactModal">
-                    <i class="fas fa-trash-alt"></i>
+              <td valign="top" class=" py-2" style="white-space: nowrap;"><?= format_date($contact['created_at']) ?></td>
+              <td valign="top" class=" py-2" style="white-space: nowrap;"><?= $contact['name'] ?></td>
+              <td valign="top" class=" py-2"><?= $contact['phone'] ?></td>
+              <td valign="top" class=" py-2"><?= $contact['message'] ?></td>
+              <td valign="top" class=" py-2">
+                <div class="d-flex justify-content-end">
+                  <button type="button" class="btn btn-sm btn-secondary-soft btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy Contact">
+                    <i class="fas fa-copy fa-fw"></i>
                   </button>
-                </form>
+                  <form action="../includes/process_delete_contacts.php" method="post" id="deleteContactForm">
+                    <input type=" hidden" name="id" value="<?= $contact['id'] ?>" hidden>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-danger-soft btn-round mb-0"
+                      data-bs-placement="top"
+                      data-bs-toggle="modal"
+                      data-bs-target="#deleteContactModal">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </form>
+                </div>
               </td>
             </tr>
           <?php endforeach; ?>
